@@ -3556,7 +3556,7 @@ function wrapText(text, maxW) {
   return lines;
 }
 function uiButton(x, y, w, h, label, act, o = {}) { // schräger, leicht windschiefer Comic-Knopf (Day-of-the-Tentacle-Richtung); Trefferfläche bleibt das Rechteck
-  if (y >= 520) y += DY; // Knöpfe unten am Bildschirm wandern mit der Höhe
+  if (y >= 520 && !o.fixed) y += DY; // Knöpfe unten am Bildschirm wandern mit der Höhe (fixed: schon verschoben)
   ui.push({ x, y, w, h, act });
   const col = kMix(o.color || KC.orange, '#1a1230', .42), seed = Math.floor(x * 7 + y * 13 + w * 3), R = i => kRnd(i, seed), dir = seed % 2 ? 1 : -1, sk = Math.min(11, h * .26) * (.6 + R(1) * .6), j = Math.min(4.5, h * .12);
   const q = (dx, dy) => [[x + (dir > 0 ? sk : 0) + R(2) * j + dx, y + R(3) * j + dy], [x + w - (dir > 0 ? 0 : sk) - R(4) * j + dx, y + R(5) * j * .6 + dy], [x + w - (dir > 0 ? sk : 0) - R(6) * j + dx, y + h - R(7) * j + dy], [x + (dir > 0 ? 0 : sk) + R(8) * j * .7 + dx, y + h - R(9) * j * .5 + dy]];
@@ -4694,12 +4694,14 @@ function drawSlots(dt) {
 
 // ---------- Titelbild (aus dem Stil-Prototyp): Dämmerung, Haus, Katzen auf dem Zaun, Ferdi im Gras ----------
 function drawTitleMenu() { // Menü unten auf dem animierten Küchenbild
-  const sh = ctx.createLinearGradient(0, 440, 0, H); sh.addColorStop(0, 'rgba(8,12,16,0)'); sh.addColorStop(.35, 'rgba(8,12,16,.7)'); sh.addColorStop(1, 'rgba(8,12,16,.9)');
-  ctx.fillStyle = sh; ctx.fillRect(0, 440, W, H - 440);
-  // Menütafel unten: großer PLAY-Knopf, darunter vier Knöpfe auf dunkler Steinplatte
+  const sh = ctx.createLinearGradient(0, 440 + DY, 0, H); sh.addColorStop(0, 'rgba(8,12,16,0)'); sh.addColorStop(.35, 'rgba(8,12,16,.7)'); sh.addColorStop(1, 'rgba(8,12,16,.9)');
+  ctx.fillStyle = sh; ctx.fillRect(0, 440 + DY, W, H - 440 - DY);
+  // Menütafel unten (mit dem Versatz): großer PLAY-Knopf, darunter vier Knöpfe auf dunkler Steinplatte
+  ctx.save(); ctx.translate(0, DY);
   kPoly([[10, 540], [350, 540], [346, 632], [14, 632]]); kTone('#2a2a33', 2.2);
   ctx.strokeStyle = 'rgba(200,190,160,.35)'; ctx.lineWidth = 1.4; ctx.stroke();
-  uiButton(44, 484, 272, 54, tr('Spielen'), () => { state.back = 'title'; setScreen('slots'); }, { color: '#6fae8c', size: 30, text: '#fff8e0' });
+  ctx.restore();
+  uiButton(44, 484 + DY, 272, 54, tr('Spielen'), () => { state.back = 'title'; setScreen('slots'); }, { color: '#6fae8c', size: 30, text: '#fff8e0', fixed: true });
   uiButton(20, 552, 156, 34, tr('Katzen & Shop'), () => openScreen('cats'), { size: 14, color: KC.orange });
   uiButton(184, 552, 156, 34, tr('Minispiele'), () => openScreen('mini'), { size: 14, color: KC.sky });
   uiButton(20, 594, 156, 30, tr("So geht's"), () => openScreen('howto'), { size: 14, color: KC.lilac });
@@ -4709,7 +4711,7 @@ function drawTitleMenu() { // Menü unten auf dem animierten Küchenbild
   { const lbl = tr('Spielstand: {n}', { n: Saves.active >= 0 ? Saves.name(Saves.active) : '-' });
     ctx.font = KSCRIPT(12); const bw = Math.min(250, ctx.measureText(lbl).width + 30);
     uiButton(8, 8, bw, 28, lbl, () => { state.back = 'title'; setScreen('slots'); }, { size: 12, color: '#e8dcf8' }); }
-  ctx.font = KFONT(10); ctx.textAlign = 'right'; ctx.fillStyle = 'rgba(255,255,255,.7)'; ctx.fillText(VERSION, 352, 632);
+  ctx.font = KFONT(10); ctx.textAlign = 'right'; ctx.fillStyle = 'rgba(255,255,255,.7)'; ctx.fillText(VERSION, 352, 632 + DY);
 }
 
 // ---------- Pause und Anleitung ----------
