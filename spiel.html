@@ -783,7 +783,7 @@ function drawLevelBG(L) {
   }
   items.sort((a, b) => a.y - b.y);
   // Weg: weiches Band mit Kantenton, Licht und Kieseln
-  const P = levelPath(L); ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.beginPath(); P.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
+  const P = L.path; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.beginPath(); P.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));  // L ist schon mit verteilter Höhe (mapLevel), hier nicht noch einmal verschieben
   ctx.strokeStyle = kShade(th.path, -.5); ctx.lineWidth = 27; ctx.stroke(); ctx.strokeStyle = th.path; ctx.lineWidth = 23; ctx.stroke();
   ctx.save(); ctx.translate(-1.5, -2); ctx.strokeStyle = kShade(th.path, .5); ctx.lineWidth = 12; ctx.globalAlpha = .55; ctx.stroke(); ctx.restore(); ctx.globalAlpha = 1;
   const pr = mulberry(L.n * 7); for (let i = 0; i < 46; i++) { const p = P[Math.floor(pr() * P.length)]; ctx.fillStyle = kShade(th.path, pr() < .5 ? -.25 : .4); ctx.beginPath(); ctx.ellipse(p.x + (pr() - .5) * 18, p.y + (pr() - .5) * 14, 1.6 + pr() * 1.8, 1.1 + pr() * 1.2, 0, 0, TAU); ctx.fill(); }
@@ -1017,7 +1017,7 @@ function drawSpots() {
 //  CONFIG – alle Zahlen zum Anpassen stehen in diesem Block (Werte, Schwierigkeit, Levels, Upgrades)
 // =====================================================================================
 const W = 360; let H = 640, DY = 0; // H: Spielfeldhöhe, passt sich dem Handy an (mind. 640); DY = H - 640, verschiebt die untere Zone
-const VERSION = 'V 5.1 · Build 36';
+const VERSION = 'V 5.1 · Build 41';
 const DEBUG = typeof location !== 'undefined' && /[?&](debug|dev)\b/.test(location.search); // ?debug in der Adresse: alle Levels frei, viele Leckerlis
 
 // ---- Spielwerte ----
@@ -1387,7 +1387,7 @@ const EN = {
   'Abendhof': 'Evening yard', 
   'Ausguck': 'Lookout', 'Kurve': 'Bend', 'Ecke': 'Corner', 'Hügel': 'Hilltop', 'Versteck': 'Hideout', 'Wachposten': 'Watchpost'
 };
-Object.assign(EN, {"Über das Spiel": "About the game", "Basierend auf einer Geschichte von": "Based on a story from", "Programmierung": "Programming", "Die Geschichte": "The story", "Lisa hat drei Katzen, die ständig rein und raus müssen: Balkontür, Küchentür, überall. Dazu lungert die Nachbarskatze Ferdi vor der Tür, schläft auf dem Katzenturm und wartet, bis ein Fenster offen ist, um das Futter wegzufressen. Lisa kommt sich vor wie in einem Tower-Defense-Spiel. So ist die Idee zu diesem Spiel entstanden.": "Lisa has three cats who are always going in and out: the balcony door, the kitchen door, everywhere. Then the neighbour's cat Ferdi hangs around the door, sleeps on the cat tower and waits for a window to be open so he can eat the cats' food. Lisa feels like she is in a tower defence game. That is how the idea for this game was born."}); Object.assign(EN, {"Zeit ist um!": "Time's up!", "Führe deine Katze über die Straße in den Park. Sie trödelt!": "Lead your cat across the road to the park. It dawdles!", "Steuere deine Katze. Fang den wild flitzenden roten Punkt!": "Steer your cat. Catch the wildly darting red dot!", "Zieh deine Katze. Fang den roten Punkt!": "Drag your cat. Catch the red dot!", "Bitte auf den Bildschirm tippen, um zu starten": "Please tap on the screen to start", 
+Object.assign(EN, {"Lisa hat drei Katzen, die ständig rein und raus müssen: Balkontür, Küchentür, überall. Dazu lungert die Nachbarskatze Ferdi vor der Tür, schläft auf dem Katzenturm und wartet, bis ein Fenster offen ist, um das Futter wegzufressen. Lisa kommt sich vor wie in einem Tower-Defense-Spiel. So ist die Idee zu diesem Spiel entstanden.": "It all began in Lisa’s home, where peace and quiet rarely lasted for long. Leia, Rufio and Esme were curious cats who were forever changing their minds. They wanted to go out onto the balcony, then come back in a moment later; soon after, they might be waiting at the kitchen door, ready to head out again. Lisa was constantly opening and closing doors, letting them out whenever they fancied an adventure—and letting them back in the moment they wanted to return.\n\nBut the greatest challenge came from beyond Lisa’s own little kingdom. Ferdi, the neighbour’s cat, had discovered the comforts of her home. He would linger by the doors, settle on the cat tower as if it were his throne, and keep a watchful eye on every window. The moment an opening appeared, Ferdi was ready to slip inside and make a feast of the cats’ food.\n\nSo Lisa found herself on constant lookout: opening doors for Leia, Rufio and Esme, welcoming them back in, and trying to keep Ferdi from sneaking in for a snack. With cats coming and going in every direction, it began to feel less like an ordinary day at home and more like defending a busy little fortress. And somewhere between one open door and another attempted food raid, Lisa had an idea: what if this everyday feline commotion became a game? That was how her tower defence adventure was born."}); Object.assign(EN, {"Ziel": "Goal", "Fenster & Tür": "Windows & door", "Katzen": "Cats", "Ferdi": "Ferdi", "Freigänger": "Strolling cats", "Riegel": "Bolt", "Knacki-Ferdi": "Knacki-Ferdi", "Leckerlis": "Treats", "Verbessern": "Upgrades", "Pillen": "Pills", "Stern": "Star", "Kissen": "Cushion", "Lachs": "Salmon", "Flasche": "Bottle", "Minze": "Mint", "Handy": "Phone", "Speichern": "Saving"}); Object.assign(EN, {"Ziel": "Ziel", "Ferdi leert den Napf. Überlebe die Wellen.": "Ferdi will the bowl empty. Survive the waves.", "Fenster & Tür": "Fenster & Tür", "Antippen zum Öffnen/Schließen. Offen = Ferdi kommt.": "Tap to open or close. Open = Ferdi comes in.", "Katzen": "Katzen", "Offenes Fenster: sie geht raus. Draußen Feld antippen.": "Open window: she goes out. Tap a spot outside.", "Ferdi": "Ferdi", "Mit dem Besen antippen. Drinnen kommt er zurück.": "Tap with the broom. Inside he comes back.", "Freigänger": "Freigänger", "Ab Level 4. Nur Ferdi antippen, nie eigene Katzen.": "From level 4. Tap only Ferdi, never your cats.", "Riegel": "Riegel", "300 Leckerlis. Schließt Fenster & Tür nach 3 Sek.": "300 treats. Closes windows & door after 3 sec.", "Knacki-Ferdi": "Knacki-Ferdi", "Aus der Garage. Bricht geschlossene Fenster auf.": "From the garage. Breaks open closed windows.", "Leckerlis": "Leckerlis", "Jeder verscheuchte Ferdi bringt welche. Hexe: extra.": "Each chased Ferdi gives treats. Witch: extra.", "Verbessern": "Verbessern", "Katze antippen, Upgrade. Ab Stufe 3 zwei Pfade.": "Tap a cat, upgrade. From level 3 two paths.", "Pillen": "Pillen", "Unten links, nur in einer Welle. Rot = zu wenig.": "Bottom left, only during a wave. Red = too few.", "Stern": "Stern", "Katzen 15 Sek. 1,5× schneller. 1× pro Welle.": "Cats 15 sec. 1.5× faster. Once per wave.", "Kissen": "Kissen", "30 Sek. keine Ungeduld bei den Katzen.": "30 sec. cats stay patient.", "Lachs": "Lachs", "Ferdi-Belohnungen 1,5×. 1× pro Welle.": "Ferdi rewards 1.5×. Once per wave.", "Flasche": "Flasche", "5 Sek. alle Ferdis nur 60 % Tempo.": "5 sec. all Ferdis at 60 % speed.", "Minze": "Minze", "10 Sek. alle Katzen doppelt so schnell.": "10 sec. all cats twice as fast.", "Handy": "Handy", "Oben rechts. Holt alle Ferdis im Bild ab. Kostet.": "Top right. Fetches all Ferdis on screen. Costs treats.", "Speichern": "Speichern", "Mond unten links bringt dich ins Bett. Nur dort.": "Moon bottom left takes you to bed. Only place to save."}); Object.assign(EN, {"Riegel": "Bolt", "Im Eingänge-Menü kostet der Riegel 300 Leckerlis. Danach schließen sich Fenster und Terrassentür 3 Sekunden nach dem Öffnen von selbst.": "In the entrances menu the bolt costs 300 treats. After that the window and patio door close by themselves 3 seconds after opening.", "Knacki-Ferdi": "Knacki-Ferdi", "In der Garage bricht Knacki-Ferdi geschlossene Fenster mit dem Brecheisen auf. Dann klettert er durch.": "In the garage Knacki-Ferdi breaks open closed windows with a crowbar. Then he climbs through."}); Object.assign(EN, {"Über das Spiel": "About the game", "Basierend auf einer Geschichte von": "Based on a story from", "Programmierung": "Programming", "Die Geschichte": "The story", "Lisa hat drei Katzen, die ständig rein und raus müssen: Balkontür, Küchentür, überall. Dazu lungert die Nachbarskatze Ferdi vor der Tür, schläft auf dem Katzenturm und wartet, bis ein Fenster offen ist, um das Futter wegzufressen. Lisa kommt sich vor wie in einem Tower-Defense-Spiel. So ist die Idee zu diesem Spiel entstanden.": "It all began in Lisa’s home, where peace and quiet rarely lasted for long. Leia, Rufio and Esme were curious cats who were forever changing their minds. They wanted to go out onto the balcony, then come back in a moment later; soon after, they might be waiting at the kitchen door, ready to head out again. Lisa was constantly opening and closing doors, letting them out whenever they fancied an adventure—and letting them back in the moment they wanted to return.\n\nBut the greatest challenge came from beyond Lisa’s own little kingdom. Ferdi, the neighbour’s cat, had discovered the comforts of her home. He would linger by the doors, settle on the cat tower as if it were his throne, and keep a watchful eye on every window. The moment an opening appeared, Ferdi was ready to slip inside and make a feast of the cats’ food.\n\nSo Lisa found herself on constant lookout: opening doors for Leia, Rufio and Esme, welcoming them back in, and trying to keep Ferdi from sneaking in for a snack. With cats coming and going in every direction, it began to feel less like an ordinary day at home and more like defending a busy little fortress. And somewhere between one open door and another attempted food raid, Lisa had an idea: what if this everyday feline commotion became a game? That was how her tower defence adventure was born."}); Object.assign(EN, {"Zeit ist um!": "Time's up!", "Führe deine Katze über die Straße in den Park. Sie trödelt!": "Lead your cat across the road to the park. It dawdles!", "Steuere deine Katze. Fang den wild flitzenden roten Punkt!": "Steer your cat. Catch the wildly darting red dot!", "Zieh deine Katze. Fang den roten Punkt!": "Drag your cat. Catch the red dot!", "Bitte auf den Bildschirm tippen, um zu starten": "Please tap on the screen to start", 
   '+1 Portion in jedem Level': '+1 serving in every level', 'Ab Stufe {l}': 'From level {l}', 'Alles löschen': 'Delete all',
   'Am Schuppen wartet ein Pappkarton. Und der Karton hat Augen.': 'A cardboard box waits at the shed. And the box has eyes.',
   'Angelloch': 'Ice hole', 'Ausguck': 'Lookout', 'Baldrian-Kissen!': 'Valerian pillow!', 'Bank': 'Bench', 'Banner': 'Banner', 'Baumstumpf': 'Tree stump',
@@ -3327,7 +3327,7 @@ function drawBonus(dt) {
   if (B.phase === 'play') {
     ctx.fillStyle = 'rgba(40,24,12,.72)'; ctx.beginPath(); ctx.roundRect(316, 6, 36, 30, 10); ctx.fill();
     line(327, 15, 341, 27, '#fff', 3); line(341, 15, 327, 27, '#fff', 3);
-    ui.push({ x: 310, y: 0, w: 50, h: 40, act: () => { if (B.finale) { finishFinale(); return; } Snd.mode('chip'); B.phase = 'intro'; B.birds = []; } });
+    ui.push({ x: 310, y: 0, w: 50, h: 40, act: () => { if (B.finale) { finishFinale(); return; } leaveBonus(); } }); // X: zurück ins Minispiel-Menü
   }
   // Overlays
   if (B.phase !== 'play') { ctx.fillStyle = 'rgba(25,14,8,.45)'; ctx.fillRect(0, 0, W, H); }
@@ -3431,9 +3431,9 @@ function drawIntro(dt) {
   const fr = kRnd(Math.floor(t * 16), 7);
   const flick = fr < 0.10 ? 0.12 : fr < 0.18 ? 0.55 : 0.9 + 0.1 * Math.sin(t * 9);
   const led = introPt(INTRO_PT.led), lg = ctx.createRadialGradient(led[0], led[1], 1, led[0], led[1], 34);
-  lg.addColorStop(0, `rgba(255,70,50,${0.85 * flick * ei})`); lg.addColorStop(1, 'rgba(255,70,50,0)');
+  lg.addColorStop(0, `rgba(80,255,120,${0.85 * flick * ei})`); lg.addColorStop(1, 'rgba(80,255,120,0)');
   ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.fillStyle = lg; ctx.fillRect(led[0] - 36, led[1] - 36, 72, 72); ctx.restore();
-  ctx.fillStyle = `rgba(255,90,70,${0.8 * flick * ei})`; ctx.beginPath(); ctx.arc(led[0], led[1], 2.6, 0, TAU); ctx.fill();
+  ctx.fillStyle = `rgba(110,255,150,${0.8 * flick * ei})`; ctx.beginPath(); ctx.arc(led[0], led[1], 2.6, 0, TAU); ctx.fill();
   // seltenes Flackern des Neonschilds „ATTACKS“
   const nf = kRnd(Math.floor(t * 7), 11) < 0.05 ? 0.25 : 1;
   const nq = introPt(INTRO_PT.neon), ng = ctx.createRadialGradient(nq[0], nq[1], 2, nq[0], nq[1], 46);
@@ -3451,9 +3451,9 @@ function drawIntro(dt) {
       return;
     }
     const eg = ctx.createRadialGradient(e[0], e[1], 0.5, e[0], e[1], 16);
-    eg.addColorStop(0, `rgba(230,255,140,${0.9 * pulse * ei})`); eg.addColorStop(0.35, `rgba(160,235,90,${0.45 * pulse * ei})`); eg.addColorStop(1, 'rgba(120,220,80,0)');
+    eg.addColorStop(0, `rgba(255,150,130,${0.9 * pulse * ei})`); eg.addColorStop(0.35, `rgba(255,60,50,${0.45 * pulse * ei})`); eg.addColorStop(1, 'rgba(230,30,30,0)');
     ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.fillStyle = eg; ctx.fillRect(e[0] - 18, e[1] - 18, 36, 36); ctx.restore();
-    ctx.fillStyle = `rgba(245,255,190,${0.95 * ei})`; ctx.beginPath(); ctx.ellipse(e[0], e[1], 2.2, 3.4, 0, 0, TAU); ctx.fill();
+    ctx.fillStyle = `rgba(255,220,210,${0.95 * ei})`; ctx.beginPath(); ctx.ellipse(e[0], e[1], 2.2, 3.4, 0, 0, TAU); ctx.fill();
   });
 
   // Staub im Mondlicht
@@ -4726,24 +4726,25 @@ function drawPauseMenu(dt) {
 }
 // ---------- Tutorial: Schritt für Schritt, jede Karte erklärt einen Teil des Spiels ----------
 const TUT = [
-  { t: 'Willkommen', x: 'Ferdi will den Futternapf leeren. Deine drei Katzen verteidigen Haus und Napf.' },
-  { t: 'Fenster und Tür', x: 'Tippe auf Fenster oder Terrassentür, um sie zu öffnen oder zu schließen. Ist eins offen, kommt Ferdi herein.' },
-  { t: 'Katzen raus und rein', x: 'Will eine Katze raus, öffne ein Fenster. Draußen tippst du ein Feld an: Dort wacht sie.' },
-  { t: 'Ferdi verscheuchen', x: 'Ferdi hat kein Namensschild. Tippe ihn mit dem Besen weg. Im Haus schiebt jeder Hieb ihn zurück.' },
-  { t: 'Freigänger', x: 'Ab Level 4 gehen deine Katzen auch spazieren. Sie tragen ihr Namensschild. Tippe nur Ferdi an, nie eine eigene Katze.' },
-  { t: 'Leckerlis', x: 'Jeder verscheuchte Ferdi bringt Leckerlis. Die Hexe oben mit dem goldenen Leckerli bringt extra.' },
-  { t: 'Katzen verbessern', x: 'Tippe eine Katze auf ihrem Feld an und wähle Upgrade. Ab Stufe 3 wählt sie einen von zwei Pfaden.' },
-  { t: 'Die Pillen: so liest du sie', x: 'Links am Rand, unter dem Menü-Knopf, stehen fünf Verbrauchsgüter. Du benutzt sie nur während einer Welle. Die Zahl darunter ist der Preis. Ist sie rot, hast du zu wenig Leckerlis.', icons: 'pills' },
-  { t: 'Premium-Leckerli', x: 'Der orange Stern. Alle Katzen schießen 15 Sekunden lang 1,5-mal so schnell. Einmal pro Welle.', icons: 'pill:premium' },
-  { t: 'Baldrian-Kissen', x: 'Das lila Kissen. 30 Sekunden lang werden die Katzen nicht ungeduldig und nicht beleidigt.', icons: 'pill:calm' },
-  { t: 'Lachs-Leckerli', x: 'Der Lachs. Ferdi-Belohnungen steigen bis zum Wellenende auf das 1,5-fache. Einmal pro Welle.', icons: 'pill:lachs' },
-  { t: 'Sprühflasche', x: 'Die blaue Flasche. 5 Sekunden lang laufen alle Ferdis nur noch mit 60 % Tempo.', icons: 'pill:spray' },
-  { t: 'Katzenminze-Bombe', x: 'Die grüne Minze. 10 Sekunden lang schießen alle Katzen doppelt so schnell.', icons: 'pill:catnip' },
-  { t: 'Das Handy', x: 'Oben rechts ruft das Handy Ferdis Besitzer an. Er holt alle Ferdis im Bild ab. Das kostet Leckerlis.', icons: 'phone' },
-  { t: 'Speichern', x: 'Zwischen den Wellen: der Mond unten links bringt dich ins Bett. Nur dort wird gespeichert.' },
-  { t: 'Ziel', x: 'Überstehe alle Wellen. Frisst Ferdi den Napf leer, ist das Spiel vorbei. Weniger Verluste bringen mehr Sterne.' }
+  { t: "Ziel", x: "Ferdi leert den Napf. Überlebe die Wellen." },
+  { t: "Fenster & Tür", x: "Antippen zum Öffnen/Schließen. Offen = Ferdi kommt." },
+  { t: "Katzen", x: "Offenes Fenster: sie geht raus. Draußen Feld antippen." },
+  { t: "Ferdi", x: "Mit dem Besen antippen. Drinnen kommt er zurück." },
+  { t: "Freigänger", x: "Ab Level 4. Nur Ferdi antippen, nie eigene Katzen." },
+  { t: "Riegel", x: "300 Leckerlis. Schließt Fenster & Tür nach 3 Sek." },
+  { t: "Knacki-Ferdi", x: "Aus der Garage. Bricht geschlossene Fenster auf." },
+  { t: "Leckerlis", x: "Jeder verscheuchte Ferdi bringt welche. Hexe: extra." },
+  { t: "Verbessern", x: "Katze antippen, Upgrade. Ab Stufe 3 zwei Pfade." },
+  { t: "Pillen", x: "Unten links, nur in einer Welle. Rot = zu wenig." },
+  { t: "Stern", x: "Katzen 15 Sek. 1,5× schneller. 1× pro Welle." },
+  { t: "Kissen", x: "30 Sek. keine Ungeduld bei den Katzen." },
+  { t: "Lachs", x: "Ferdi-Belohnungen 1,5×. 1× pro Welle." },
+  { t: "Flasche", x: "5 Sek. alle Ferdis nur 60 % Tempo." },
+  { t: "Minze", x: "10 Sek. alle Katzen doppelt so schnell." },
+  { t: "Handy", x: "Oben rechts. Holt alle Ferdis im Bild ab. Kostet." },
+  { t: "Speichern", x: "Mond unten links bringt dich ins Bett. Nur dort." }
 ];
-function openTut() { state.tutStep = 0; openScreen('tut'); }
+function openTut() { openScreen('tut'); }
 function startLevelMaybeTut(i) { // beim allerersten Start (Level 1, neuer Spielstand) zeigt sich die Anleitung einmal
   const sv = Saves.cur(); state.pick = null;
   if (i === 0 && sv && !sv.tut) { sv.tut = true; Saves.save(); state.tutAuto = true; openTut(); return; }
@@ -4786,38 +4787,19 @@ function drawPillGlyph(id, x, y, r, on) { // gleiches Symbol wie im Spiel, nur g
   else if (id === 'catnip') { ctx.beginPath(); ctx.ellipse(0, 0, 10, 5, -.6, 0, TAU); kInk('#e2ffd0', 1.8); }
   ctx.restore();
 }
-function drawTutIcons(kind) {
-  if (kind.startsWith('pill:')) {
-    const id = kind.slice(5);
-    drawPillGlyph(id, 180, 340, 34, false);
-    ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = KC.gold; ctx.font = KSCRIPT(14);
-    ctx.fillText(tr('Kosten: {c} Leckerlis', { c: PILL_COST[id] }), 180, 398);
-    return;
-  }
-  if (kind === 'pills') {
-    [['Premium', KC.orange], ['Baldrian', KC.lilac], ['Lachs', '#ff9a6a'], ['Spray', '#7fb8e8'], ['Katzenminze', '#8fd47a']].forEach(([nm, col], i) => {
-      const x = 46 + i * 67; drawPillGlyph(['premium', 'calm', 'lachs', 'spray', 'catnip'][i], x, 330, 17, false);
-      ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = KC.text; ctx.font = KSCRIPT(9.5); ctx.fillText(tr(nm), x, 360);
-    });
-  } else if (kind === 'phone') {
-    iconBtn(180, 330, 22, '#ffd24a', false);
-    ctx.fillStyle = KC.ink; ctx.beginPath(); ctx.roundRect(170, 316, 20, 30, 4); ctx.fill();
-    ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = KC.gold; ctx.font = KSCRIPT(12); ctx.fillText('50', 180, 362);
-  }
-}
-function drawTut(dt) {
+function drawTut(dt) { // alles auf einer Seite: jede Zeile erklärt ein Teil des Spiels
   backdrop(.6, dt);
   panel(12, 8, 336, 626);
   hdr(tr('Tutorial'), 40, 28, { depth: 3 });
-  const n = state.tutStep, s = TUT[n], last = n === TUT.length - 1;
-  ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = '#b7a3dc'; ctx.font = KSCRIPT(12);
-  ctx.fillText(tr('Schritt {a} von {b}', { a: n + 1, b: TUT.length }), 180, 76);
-  kText(tr(s.t), 180, 130, 26, { depth: 3, rot: -.02, fill: KC.cream, fill2: KC.gold, maxW: 300 });
-  ctx.fillStyle = KC.text; ctx.font = KSCRIPT(15); ctx.textAlign = 'center';
-  wrapText(tr(s.x), 286).forEach((l, k) => ctx.fillText(l, 180, 186 + k * 21));
-  if (s.icons) drawTutIcons(s.icons);
-  uiButton(30, 560, 130, 42, n > 0 ? tr('Zurück') : tr('Verlassen'), () => { if (n > 0) state.tutStep--; else tutLeave(); }, { color: '#e8dcf8', size: 15 });
-  uiButton(190, 560, 130, 42, last ? tr('Fertig') : tr('Weiter'), () => { if (last) tutLeave(); else state.tutStep++; }, { color: KC.mint, size: 17 });
+  ctx.textBaseline = 'middle';
+  TUT.forEach((s, n) => { // Titel oben, Satz darunter; zu lange Sätze werden kleiner, statt umzubrechen
+    const y = 80 + n * 27;
+    ctx.textAlign = 'left'; ctx.fillStyle = KC.gold; ctx.font = KSCRIPT(12); ctx.fillText(tr(s.t), 28, y);
+    const txt = tr(s.x); let size = 11;
+    while (size > 9) { ctx.font = KSCRIPT(size); if (ctx.measureText(txt).width <= 300) break; size -= .5; }
+    ctx.fillStyle = KC.text; ctx.fillText(txt, 28, y + 13);
+  });
+  uiButton(110, 560, 140, 42, tr('Fertig'), () => tutLeave(), { color: KC.mint, size: 17 });
 }
 function drawHowto(dt) {
   backdrop(.6, dt);
@@ -5093,7 +5075,11 @@ function drawAbout(dt) {
   ctx.fillStyle = KC.gold; ctx.fillText(tr('Programmierung'), 30, 160);
   ctx.fillStyle = KC.text; ctx.fillText('Martin Alexander Schlatter', 30, 180);
   ctx.fillStyle = KC.gold; ctx.fillText(tr('Die Geschichte'), 30, 216);
-  ctx.fillStyle = '#d8ccec'; ctx.font = KSCRIPT(11.5); wrapText(tr(ABOUT_STORY), 298).forEach((l, k) => ctx.fillText(l, 30, 238 + k * 16));
+  ctx.fillStyle = '#d8ccec'; { // Text wird so klein, dass er zwischen Überschrift und Zurück-Knopf passt
+    let size = 11.5, lines = [], lh = 16;
+    for (; size >= 8; size -= .5) { ctx.font = KSCRIPT(size); lh = size * 1.38; lines = wrapText(tr(ABOUT_STORY), 298); if (lines.length * lh <= 520 - 232) break; }
+    lines.forEach((l, k) => ctx.fillText(l, 30, 232 + k * lh));
+  }
   uiButton(90, 540, 180, 40, tr('Zurück'), () => setScreen('options'), { color: KC.mint, size: 17 });
 }
 
