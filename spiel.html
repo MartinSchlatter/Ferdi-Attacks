@@ -783,7 +783,7 @@ function drawLevelBG(L) {
   }
   items.sort((a, b) => a.y - b.y);
   // Weg: weiches Band mit Kantenton, Licht und Kieseln
-  const P = L.path; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.beginPath(); P.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
+  const P = levelPath(L); ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.beginPath(); P.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
   ctx.strokeStyle = kShade(th.path, -.5); ctx.lineWidth = 27; ctx.stroke(); ctx.strokeStyle = th.path; ctx.lineWidth = 23; ctx.stroke();
   ctx.save(); ctx.translate(-1.5, -2); ctx.strokeStyle = kShade(th.path, .5); ctx.lineWidth = 12; ctx.globalAlpha = .55; ctx.stroke(); ctx.restore(); ctx.globalAlpha = 1;
   const pr = mulberry(L.n * 7); for (let i = 0; i < 46; i++) { const p = P[Math.floor(pr() * P.length)]; ctx.fillStyle = kShade(th.path, pr() < .5 ? -.25 : .4); ctx.beginPath(); ctx.ellipse(p.x + (pr() - .5) * 18, p.y + (pr() - .5) * 14, 1.6 + pr() * 1.8, 1.1 + pr() * 1.2, 0, 0, TAU); ctx.fill(); }
@@ -798,6 +798,7 @@ function drawLevelBG(L) {
   if (!th.night && !th.rain) for (let i = 0; i < 2; i++) live.birds.push({ x: R0() * W, y: 24 + R0() * 60, v: 14 + R0() * 10, ph: R0() * 6 });
   if (th.night) for (let i = 0; i < 16; i++) live.flies.push({ x: 20 + R0() * 320, y: 150 + R0() * 340, ph: R0() * 6 });
   state.bgLive = live;
+  ctx.save(); ctx.translate(0, DY); // Terrasse und Hof-Ecke sitzen am Haus, also mit dem Versatz
   // Terrasse vor dem Haus: geschwungene Bretter, Geländer mit Kugeln
   kSmooth([[105, 490], [232, 486], [360, 490], [360, 518], [232, 521], [105, 518]]); kTone('#c99a5a', 2.4); ctx.save(); ctx.clip();
   ctx.fillStyle = 'rgba(40,16,10,.2)'; for (let x = 105; x < 360; x += 26) ctx.fillRect(x, 486, 2, 36); ctx.fillStyle = 'rgba(255,230,160,.4)'; ctx.fillRect(105, 488, 255, 6); ctx.fillStyle = 'rgba(60,20,10,.18)'; ctx.fillRect(105, 508, 255, 14); ctx.restore();
@@ -810,6 +811,7 @@ function drawLevelBG(L) {
   if (!th.snow) { kFlowers(26, 600, 1.2, L.n * 3); kFlowers(70, 628, 1, L.n * 5); }
   ctx.restore();
   ctx.fillStyle = 'rgba(30,10,60,.25)'; ctx.fillRect(104, 514, 3, 126);
+  ctx.restore();
 }
 function kSprite(w, h, ox, oy, fn) { // einmal gezeichnetes Bild, das später schwanken darf
   const r = cv.width / W, c = document.createElement('canvas'); c.width = Math.ceil(w * r); c.height = Math.ceil(h * r);
@@ -818,6 +820,9 @@ function kSprite(w, h, ox, oy, fn) { // einmal gezeichnetes Bild, das später sc
   return { c, w, h, ox, oy };
 }
 function buildBackground() {
+  // Ränder neben dem Spielfeld (Handy ist höher als 360:640) bekommen die Farben des Levels: oben Himmel, unten Boden
+  const th = LEVELS[state.level] && LEVELS[state.level].theme;
+  if (th) document.body.style.background = `linear-gradient(${th.sky[0]}, ${th.sky[0]} 50%, ${th.ground} 50%, ${th.ground})`;
   bgCanvas.width = cv.width; bgCanvas.height = cv.height;
   const bctx = bgCanvas.getContext('2d'); bctx.setTransform(cv.width / W, 0, 0, cv.height / H, 0, 0); ctx = bctx;
   try { drawLevelBG(LEVELS[state.level]); } finally { ctx = mainCtx; }
@@ -1011,7 +1016,7 @@ function drawSpots() {
 // =====================================================================================
 //  CONFIG – alle Zahlen zum Anpassen stehen in diesem Block (Werte, Schwierigkeit, Levels, Upgrades)
 // =====================================================================================
-const W = 360, H = 640;
+const W = 360; let H = 640, DY = 0; // H: Spielfeldhöhe, passt sich dem Handy an (mind. 640); DY = H - 640, verschiebt die untere Zone
 const VERSION = 'V 5.1';
 const DEBUG = typeof location !== 'undefined' && /[?&](debug|dev)\b/.test(location.search); // ?debug in der Adresse: alle Levels frei, viele Leckerlis
 
@@ -1059,7 +1064,7 @@ function riegelTick(dt) { // schließt offene Fenster und Türen nach RIEGEL_T, 
     if (w.riegelT > 0) return;
     const busy = state.enemies.some(e => e.target === w && e.mode === 'inside') || state.cats.some(c => c.win === w && ['toIn', 'in', 'toOut'].includes(c.st));
     if (busy) { w.riegelT = 0; return; } // wartet, bis die Figur durch ist
-    w.open = false; w.riegelT = undefined; floater(w.cx, 500, tr('Riegel zu!'), '#c9f0ff'); Snd.play('creak');
+    w.open = false; w.riegelT = undefined; floater(w.cx, 500 + DY, tr('Riegel zu!'), '#c9f0ff'); Snd.play('creak');
   });
 }
 function buyZugluft() { // Zugluft-Alarm im Eingänge-Menü: einmal kaufen, dauerhaft
@@ -1275,6 +1280,7 @@ const DUEL_BOSS = { // hp = Lebenspunkte (x Schwierigkeit), hit/all = Schaden Ei
 
 // ---- Haus und Katzen ----
 const OUT_Y = 512, IN_Y = 592, FOOT = 19, NAPF = { x: 336, y: 604 };
+const INY = () => IN_Y + DY, OUTY = () => OUT_Y + DY; // Positionen der Zone unten, mit Versatz für hohe Handys
 const WINS = [ // Zugänge. Alle Katzen benutzen alle, aber jeder hat seinen Haken (kind: door | window | flap)
   { id: 'tuer',    kind: 'door',   name: 'Terrassentür', cx: 300, w: 100, top: 540, bot: 628, enterX: 262, open: false, a: 0, flap: false, flapT: 0, locked: false },
   { id: 'fenster', kind: 'window', name: 'Fenster',      cx: 205, w: 60,  top: 548, bot: 612, enterX: 205, open: false, a: 0, flap: false, flapT: 0, locked: false },
@@ -1509,7 +1515,7 @@ const state = { page: 0, pick: null, endA: 0, lang: 'en', level: 0, treats: 100,
   sel: null, screen: 'boot', back: 'title', mode: 'normal', endT: 0, conf: [], note: '', noteT: 0, hinted: false, items: { besen: 0, napf: 0, turm: 0, besenPfad: 0, fliegen: 0, zugluft: 0 },
   pen: 0, tapCd: 0, boostT: 0, calmT: 0, boostUsed: false, lachsOn: false, sprayT: 0, catnipT: 0, lock: 0, stars: 0, lost: 0, walkHinted: false, bossHinted: false,
   cats: Object.keys(CATS).map(id => ({
-    id, type: id, lvl: 1, st: 'in', x: CATS[id].idleX, y: IN_Y, dir: 1, timer: CATS[id].first, patience: 0, stay: 0, choose: 0, win: null, spot: null, cd: 0, ring: 0,
+    id, type: id, lvl: 1, st: 'in', x: CATS[id].idleX, y: INY(), dir: 1, timer: CATS[id].first, patience: 0, stay: 0, choose: 0, win: null, spot: null, cd: 0, ring: 0,
     chip: false, skill: FLAP_SKILL0, rolled: false, flap: false, push: false, lastSpot: null, path: null, atkT: 0
   })) };
 
@@ -1532,11 +1538,16 @@ function resize() {
   const vw = b.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
   const vh = b.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
   if (!(vw > 0 && vh > 0)) return;
-  const s = Math.min(vw / W, vh / H);
+  // Breite füllt den Bildschirm, die Höhe folgt dem Handy (mindestens 640, höchstens 900). Auf breiten Bildschirmen: Höhe 640, seitlich Rand
+  let s = vw / W, h = Math.round(vh / s);
+  if (h < 640) { s = vh / 640; h = 640; }
+  h = Math.min(900, h);
   const dpr = Math.min(DPR_MAX, window.devicePixelRatio || 1);
-  const key = [s.toFixed(3), dpr].join('|');
+  const key = [s.toFixed(3), h, dpr].join('|');
   if (key === lastFit) return; // nichts geändert (Adressleiste ein/aus ohne Größenwechsel): keinen Neuaufbau
   lastFit = key;
+  H = h; DY = H - 640;
+  WK.bg = null; BED.bg = null; // Minispiel-Hintergründe mit der neuen Höhe neu bauen
   cv.style.width = W * s + 'px';
   cv.style.height = H * s + 'px';
   requestAnimationFrame(fitLayers);
@@ -1544,6 +1555,7 @@ function resize() {
   cv.height = Math.round(H * s * dpr);
   document.documentElement.style.setProperty('--s', s);
   mainCtx.setTransform(cv.width / W, 0, 0, cv.height / H, 0, 0);
+  if (typeof state !== 'undefined' && LEVELS[state.level]) { PATH = levelPath(LEVELS[state.level]); buildPath(); }
   buildBackground();
 }
 window.addEventListener('resize', resize);
@@ -1553,6 +1565,7 @@ if (window.visualViewport) window.visualViewport.addEventListener('resize', resi
 // ---------- Pfadlänge ----------
 const SEG = [];
 let PATH_LEN = 0;
+function levelPath(L) { return L.path.map((p, k) => k === L.path.length - 1 ? { x: p.x, y: p.y + DY } : p); } // Wegende liegt am Haus, also mit dem Versatz
 function buildPath() {
   SEG.length = 0; PATH_LEN = 0;
   for (let i = 0; i < PATH.length - 1; i++) {
@@ -1589,7 +1602,7 @@ function nearestOpen(x, y) {
   let best = null, bd = 1e9;
   WINS.forEach(w => {
     if (!w.open) return;
-    const d = Math.hypot(w.cx - x, (y === undefined ? 0 : IN_Y - y) * 0.2);
+    const d = Math.hypot(w.cx - x, (y === undefined ? 0 : INY() - y) * 0.2);
     if (d < bd) { bd = d; best = w; }
   });
   return best;
@@ -1757,7 +1770,7 @@ function hurt(e, dmg, text, src) {
 function biteNapf(e) {
   const bite = ENEMY[e.type].bite;
   state.napf = Math.max(0, state.napf - bite);
-  floater(NAPF.x - 20, 570, tr('Mampf!'), '#ff9d9d'); Snd.play('eat'); juiceHit(0.05, 0.45);
+  floater(NAPF.x - 20, 570 + DY, tr('Mampf!'), '#ff9d9d'); Snd.play('eat'); juiceHit(0.05, 0.45);
   if (state.napf <= 0) {
     state.over = true; state.won = false; state.endT = 1.6; Snd.mode('over', true); Saves.save();
     showMsg(tr('Ferdi hat den ganzen Napf leergefressen!'), 1500);
@@ -1800,11 +1813,11 @@ function updateEnemy(e, dt) {
     const dx = e.target.cx - e.x, step = sp * dt;
     if (Math.abs(dx) <= step) {
       e.x = e.target.cx;
-      if (E.knacki && !e.target.open && e.target.kind === 'window' && !e.target.locked) { e.target.open = true; floater(e.target.cx, 500, tr('Knacks!'), '#ffd24a'); Snd.play('creak'); juiceHit(0.02, 0.15); } // Knacki-Ferdi bricht das Fenster auf
+      if (E.knacki && !e.target.open && e.target.kind === 'window' && !e.target.locked) { e.target.open = true; floater(e.target.cx, 500 + DY, tr('Knacks!'), '#ffd24a'); Snd.play('creak'); juiceHit(0.02, 0.15); } // Knacki-Ferdi bricht das Fenster auf
       if (e.target.open || e.target.kind === 'flap') {
-        if (state.items.zugluft && e.target.kind === 'window') { floater(e.target.cx, 500, tr('Zugluft-Alarm!'), '#ffd24a'); Snd.play('rufio'); juiceHit(0.03, 0.2); } // Zugluft-Alarm: Warnung, bevor Ferdi ins Fenster klettert
-        e.mode = 'inside'; e.pause = e.pauseMax = e.target.kind === 'window' ? WINDOW_PAUSE + (state.items.fliegen ? FLIEGEN_PAUSE : 0) : DOOR_PAUSE; e.x = e.target.enterX; e.y = IN_Y; e.dx = 1;
-        floater(e.target.cx, 520, tr('Ferdi ist drin!'), '#ff9d9d'); Snd.play('alarm');
+        if (state.items.zugluft && e.target.kind === 'window') { floater(e.target.cx, 500 + DY, tr('Zugluft-Alarm!'), '#ffd24a'); Snd.play('rufio'); juiceHit(0.03, 0.2); } // Zugluft-Alarm: Warnung, bevor Ferdi ins Fenster klettert
+        e.mode = 'inside'; e.pause = e.pauseMax = e.target.kind === 'window' ? WINDOW_PAUSE + (state.items.fliegen ? FLIEGEN_PAUSE : 0) : DOOR_PAUSE; e.x = e.target.enterX; e.y = INY(); e.dx = 1;
+        floater(e.target.cx, 520 + DY, tr('Ferdi ist drin!'), '#ff9d9d'); Snd.play('alarm');
       } else e.wait = 2.5;
     } else { e.x += Math.sign(dx) * step; e.dx = dx; }
   } else { // inside: läuft zum Napf, Tippen verscheucht ihn
@@ -1835,7 +1848,7 @@ function updateWalker(w, dt) {
   if (w.d >= PATH_LEN) { w.d = PATH_LEN; w.dirP = -1; }
   if (w.d <= 0 && w.dirP < 0) {
     w.dead = true;
-    if (w.cat) { const c = w.cat; c.st = 'in'; c.x = CATS[c.type].idleX; c.y = IN_Y; c.dir = 1; c.timer = 8 + Math.random() * 8; }
+    if (w.cat) { const c = w.cat; c.st = 'in'; c.x = CATS[c.type].idleX; c.y = INY(); c.dir = 1; c.timer = 8 + Math.random() * 8; }
     return;
   }
   const p = pointAt(w.d); w.x = p.x; w.y = p.y; if (p.dx) w.dx = p.dx * w.dirP;
@@ -1903,7 +1916,7 @@ function updateWave(dt) {
 // ---------- Neustart ohne Seiten-Reload ----------
 function setLevel(i) { // Karte wechseln
   const L = LEVELS[i];
-  state.level = i; PATH = L.path; SPOTS = L.spots; WAVES = L.waves;
+  state.level = i; PATH = levelPath(L); SPOTS = L.spots; WAVES = L.waves;
   buildPath(); buildBackground();
 }
 function newRun(level, resume) { // frischer Durchlauf: Katzen-Stufen, Pfade und Türchen bleiben, das Level beginnt von vorn (oder bei der gemerkten Welle)
@@ -1915,7 +1928,7 @@ function newRun(level, resume) { // frischer Durchlauf: Katzen-Stufen, Pfade und
   state.treats = sv ? (DEBUG ? Math.max(sv.treats, 3000) : sv.treats) : state.treats;
   applyMode();
   if (cur) { state.wave = cur.wave; state.treats = cur.treats; state.napf = Math.min(state.napfMax, cur.napf); state.started = true; }
-  state.cats.forEach(c => { Object.assign(c, { hop: 0, land: 0, st: 'in', x: CATS[c.type].idleX, y: IN_Y, dir: 1, timer: CATS[c.type].first, patience: 0, stay: 0, choose: 0, win: null, spot: null, cd: 0, ring: 0, rolled: false, flap: false, push: false, lastSpot: null, atkT: 0, noBf: 0, bf: null }); });
+  state.cats.forEach(c => { Object.assign(c, { hop: 0, land: 0, st: 'in', x: CATS[c.type].idleX, y: INY(), dir: 1, timer: CATS[c.type].first, patience: 0, stay: 0, choose: 0, win: null, spot: null, cd: 0, ring: 0, rolled: false, flap: false, push: false, lastSpot: null, atkT: 0, noBf: 0, bf: null }); });
   WINS.forEach(w => { w.open = false; w.a = 0; w.flapT = 0; }); state.flapBuild = null; setFlapLock();
   Snd.mode('chip', false); // Titelmelodie läuft weiter, nicht von vorn
   btn.textContent = tr('Welle {n} starten', { n: state.wave + 1 }); btn.style.display = 'block';
@@ -2164,10 +2177,10 @@ function updateCat(c, dt) {
     }
     case 'toOut':
       if (!c.win.open && !c.flap) { c.hop = 0; c.st = 'wantOut'; break; }
-      if (moveTo(c, c.win.cx, IN_Y, c.push ? 32 : 70, dt)) {
+      if (moveTo(c, c.win.cx, INY(), c.push ? 32 : 70, dt)) {
         if (climbing(c, dt)) break;
         const viaFlap = c.flap && !c.push; passFlap(c);
-        c.y = OUT_Y; c.dir = 1;
+        c.y = OUTY(); c.dir = 1;
         if (viaFlap && c.lastSpot && !spotOwner(c.lastSpot)) { c.spot = c.lastSpot; c.st = 'toSpot'; } // gelernt: geht allein zu ihrem Platz
         else { c.st = 'choose'; c.choose = 7; }
         floater(c.x, 490, tr('Raus!'), '#fff');
@@ -2195,11 +2208,11 @@ function updateCat(c, dt) {
     }
     case 'toIn':
       if (!c.win.open && !c.flap) { c.hop = 0; c.st = 'waitIn'; break; }
-      if (moveTo(c, c.win.cx, OUT_Y, c.push ? 38 : 90, dt)) {
+      if (moveTo(c, c.win.cx, OUTY(), c.push ? 38 : 90, dt)) {
         if (climbing(c, dt)) break;
         passFlap(c);
-        c.st = 'in'; c.x = c.win.cx; c.y = IN_Y; c.timer = 10 + Math.random() * 8;
-        floater(c.x, 560, tr('Zuhause!'), '#fff');
+        c.st = 'in'; c.x = c.win.cx; c.y = INY(); c.timer = 10 + Math.random() * 8;
+        floater(c.x, 560 + DY, tr('Zuhause!'), '#fff');
       }
       break;
   }
@@ -2252,7 +2265,7 @@ function updateButterflies(dt) {
 function chaseCat(c, dt) { // Katze jagt dem Fledermaus nach; danach zurück zum Platz
   const b = c.bf;
   c.chaseT -= dt;
-  if (b && !b.leaving) { const d = Math.hypot(b.x - c.x, b.y - c.y); if (d > 10) moveTo(c, b.x, Math.min(b.y, OUT_Y - 12), 88, dt); else c.dir = b.x - c.x; }
+  if (b && !b.leaving) { const d = Math.hypot(b.x - c.x, b.y - c.y); if (d > 10) moveTo(c, b.x, Math.min(b.y, OUTY() - 12), 88, dt); else c.dir = b.x - c.x; }
   if (c.chaseT <= 0 || !b || b.leaving) {
     if (b) b.chasers = Math.max(0, b.chasers - 1);
     c.bf = null; c.noBf = 25; c.st = c.spot ? 'toSpot' : 'choose'; c.choose = 2;
@@ -2722,7 +2735,7 @@ function drawScene(dt) {
   drawOutside();
   drawButterflies();
   drawGift();
-  drawHouse();
+  ctx.save(); ctx.translate(0, DY); drawHouse(); ctx.restore(); // Haus, Fenster und Napf sitzen unten, mit Versatz
   drawWeather(dt);
   drawFx();
   drawDeaths(dt);
@@ -3543,6 +3556,7 @@ function wrapText(text, maxW) {
   return lines;
 }
 function uiButton(x, y, w, h, label, act, o = {}) { // schräger, leicht windschiefer Comic-Knopf (Day-of-the-Tentacle-Richtung); Trefferfläche bleibt das Rechteck
+  if (y >= 520) y += DY; // Knöpfe unten am Bildschirm wandern mit der Höhe
   ui.push({ x, y, w, h, act });
   const col = kMix(o.color || KC.orange, '#1a1230', .42), seed = Math.floor(x * 7 + y * 13 + w * 3), R = i => kRnd(i, seed), dir = seed % 2 ? 1 : -1, sk = Math.min(11, h * .26) * (.6 + R(1) * .6), j = Math.min(4.5, h * .12);
   const q = (dx, dy) => [[x + (dir > 0 ? sk : 0) + R(2) * j + dx, y + R(3) * j + dy], [x + w - (dir > 0 ? 0 : sk) - R(4) * j + dx, y + R(5) * j * .6 + dy], [x + w - (dir > 0 ? sk : 0) - R(6) * j + dx, y + h - R(7) * j + dy], [x + (dir > 0 ? 0 : sk) + R(8) * j * .7 + dx, y + h - R(9) * j * .5 + dy]];
@@ -5259,7 +5273,7 @@ cv.addEventListener('pointerdown', e => {
     return;
   }
   // 2a) Türchen einbauen: nur während einer Welle, dauert eine halbe Welle
-  const fb = WINS.find(w => w.kind === 'flap' && !w.locked && !w.built && Math.abs(p.x - w.cx) <= w.w / 2 + 6 && p.y >= w.top - 6 && p.y <= 640);
+  const fb = WINS.find(w => w.kind === 'flap' && !w.locked && !w.built && Math.abs(p.x - w.cx) <= w.w / 2 + 6 && p.y >= w.top + DY - 6 && p.y <= H);
   if (fb && !state.flapBuild) {
     state.sel = null;
     if (!state.running) { floater(p.x, p.y - 20, tr('Einbau nur während einer Welle'), '#ffe27a'); return; }
@@ -5267,10 +5281,10 @@ cv.addEventListener('pointerdown', e => {
     floater(p.x, p.y - 20, tr('Türchen wird eingebaut …'), '#ffe27a'); return;
   }
   // 2b) Türchen antippen: wartende Katze mit Chip durchschieben
-  const fl = WINS.find(w => w.flap && !w.locked && Math.abs(p.x - w.cx) <= w.w / 2 + 6 && p.y >= w.top - 6 && p.y <= 640);
+  const fl = WINS.find(w => w.flap && !w.locked && Math.abs(p.x - w.cx) <= w.w / 2 + 6 && p.y >= w.top + DY - 6 && p.y <= H);
   if (fl && pushThroughFlap(fl)) { state.sel = null; return; }
   // 3) Fenster / Tür umschalten
-  const win = WINS.find(w => w.kind !== 'flap' && Math.abs(p.x - w.cx) <= w.w / 2 + 3 && p.y >= w.top - 8 && p.y <= w.bot + 8);
+  const win = WINS.find(w => w.kind !== 'flap' && Math.abs(p.x - w.cx) <= w.w / 2 + 3 && p.y >= w.top + DY - 8 && p.y <= w.bot + DY + 8);
   if (win && state.flapBuild && win.id === 'fenster') { floater(p.x, p.y - 20, tr('Wird gerade eingebaut!'), '#ffe27a'); return; } // Fenster bleibt während des Einbaus offen
   if (win) { win.open = !win.open; state.sel = null; Snd.play('creak'); return; }
   // 4) Felder: Katze hinschicken oder Upgrade-Menü
