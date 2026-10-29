@@ -1017,7 +1017,7 @@ function drawSpots() {
 //  CONFIG – alle Zahlen zum Anpassen stehen in diesem Block (Werte, Schwierigkeit, Levels, Upgrades)
 // =====================================================================================
 const W = 360; let H = 640, DY = 0; // H: Spielfeldhöhe, passt sich dem Handy an (mind. 640); DY = H - 640, verschiebt die untere Zone
-const VERSION = 'V 5.1 · Build 54';
+const VERSION = 'V 5.1 · Build 62';
 const DEBUG = typeof location !== 'undefined' && /[?&](debug|dev)\b/.test(location.search); // ?debug in der Adresse: alle Levels frei, viele Leckerlis
 
 // ---- Spielwerte ----
@@ -1298,7 +1298,7 @@ const WINDOW_CLIMB = 0.8;                   // so lange klettert eine Katze durc
 // cost = Grundpreis für Upgrades, first = Sekunden bis die Katze das erste Mal raus will, scarf = Farbe des Namensschilds
 const CATS = {
   leia:  { name: 'Leia',  scarf: '#e03131', cost: 40, range: 70,  text: 'Fauchen bremst Ferdi', idleX: 140, first: 4 },
-  rufio: { name: 'Rufio', scarf: '#1c7ed6', cost: 50, range: 45,  text: 'Schneller Pfotenhieb', idleX: 207, first: 14, cd: 0.7, dmg: 10 },
+  rufio: { name: 'Rufio', scarf: '#1c7ed6', cost: 50, range: 60,  text: 'Schneller Pfotenhieb', idleX: 207, first: 14, cd: 0.7, dmg: 10 },
   esme:  { name: 'Esme',  scarf: '#f2c200', cost: 60, range: 115, text: 'Wirft Spielzeugmaus',  idleX: 270, first: 24, cd: 1.0, dmg: 7 }
 };
 // Zwei Pfade pro Katze (ab Stufe 3, einer davon, Umschulen kostet RESPEC_COST)
@@ -1392,7 +1392,7 @@ const EN = {
   'Abendhof': 'Evening yard', 
   'Ausguck': 'Lookout', 'Kurve': 'Bend', 'Ecke': 'Corner', 'Hügel': 'Hilltop', 'Versteck': 'Hideout', 'Wachposten': 'Watchpost'
 };
-Object.assign(EN, {"klein": "small", "mittel": "medium", "groß": "big"}); Object.assign(EN, {"Entwickler-Code": "Developer code", "Falscher Code.": "Wrong code."}); Object.assign(EN, {"Ferdi im Karton (mittel)": "Ferdi in the Box (medium)", "Dicker Fritz (mittel)": "Chubby Fritz (medium)", "Ferdi als Waschbär (mittel)": "Ferdi as a Raccoon (medium)", "Ferdi im Schneeanzug (mittel)": "Ferdi in the Snowsuit (medium)", "Ferdi der Große (mittel)": "Ferdi the Great (medium)"}); Object.assign(EN, {"Adderall!": "Adderall!", "Das lila Kissen. 30 Sekunden lang lassen sich die Katzen nicht von Fledermäusen ablenken und werden nicht ungeduldig oder beleidigt.": "The purple pill. For 30 seconds the cats are not distracted by bats, do not get impatient and do not sulk."}); Object.assign(EN, {"Adderall": "Adderall", "Adderall!": "Adderall!", "Die weiße Pille. 30 Sekunden lang lassen sich die Katzen nicht von Fledermäusen ablenken und werden nicht ungeduldig.": "The white pill. For 30 seconds the cats are not distracted by bats and do not get impatient."}); Object.assign(EN, {"Auslassen": "Wait", "Wartet ab. +1 Miau-Punkt.": "Waits. +1 Meow Point.", "Auslassen: Die Katze wartet ab und bekommt 1 Miau-Punkt. Gut, wenn zuerst ein anderer Ferdis Aufmerksamkeit bekommen soll.": "Wait: the cat holds back and gets 1 Meow Point. Useful when another cat should draw Ferdi's attention first."}); Object.assign(EN, {"Katzensegen": "Cat blessing", "Alle Katzen schießen 15 % schneller": "All cats shoot 15 % faster", "Schutzschild": "Protective shield", "Ferdi bleibt an Fenster und Tür 1,5 s länger hängen": "Ferdi stays at windows and doors 1.5 s longer", "Schildwall": "Shield wall", "Ferdi wird in Rufios Nähe 30 % langsamer": "Ferdi is 30 % slower near Rufio"}); Object.assign(EN, {"Kartonschutz": "Cardboard shield", "Kartonschutz!": "Cardboard shield!", "Grillrauch": "Grill smoke", "Rauch!": "Smoke!", "Mülltonnen-Krach": "Bin crash", "Eisstoß": "Ice blast", "Ferdi duckt sich hinter den Karton: eine Runde nur ein Drittel Schaden": "Ferdi ducks behind the box: one round at only a third of the damage", "Dichter Rauch: die Katzen treffen eine Runde nur halb so stark": "Thick smoke: the cats hit only half as hard for one round", "Zerschlägt alle Schilde und trifft alle Katzen": "Smashes all shields and hits every cat", "Friert eine Katze ein: sie setzt die nächste Runde aus": "Freezes one cat: she skips the next round", "Beißt die schwächste Katze hart und heilt sich um 5 %": "Bites the weakest cat hard and heals 5 %", "Dicker Fritz": "Chubby Fritz", "Dicker Fritz wedelt mit dem Grillwender: „Die Würstchen sind meine!“": "Chubby Fritz waves his grill turner: \"The sausages are mine!\"", "Grillwender": "grill turner", "Grillfeuer": "Grill fire", "Ferdi im Karton (klein)": "Ferdi in the Box (small)", "Dicker Fritz (klein)": "Chubby Fritz (small)", "Ferdi als Waschbär (klein)": "Ferdi as a Raccoon (small)", "Ferdi im Schneeanzug (klein)": "Ferdi in the Snowsuit (small)", "Ferdi der Große (klein)": "Ferdi the Great (small)", "eingefroren": "frozen", "Eingefroren!": "Frozen!", "Heilt dich um {n}": "Heals you by {n}", "Königsbiss": "Royal bite"}); Object.assign(EN, {"Heilt die schwächste Katze um {n}. Kostet nichts.": "Heals the weakest cat by {n}. Free.", "Heilt alle lebenden Katzen um {n}. Kostet nichts.": "Heals all living cats by {n}. Free.", "Alle Katzen machen 2 Runden lang 30 % mehr Schaden. Kostet 2 Miau-Punkte.": "All cats deal 30 % more damage for 2 rounds. Costs 2 Meow Points.", "Die schwächste Katze bekommt einen Schild mit {n} Punkten. Der Schild schluckt Schaden, bis er leer ist. Kostet 2 Miau-Punkte.": "The weakest cat gets a shield of {n} points. It absorbs damage until it is empty. Costs 2 Meow Points.", "Ferdi greift in den nächsten 2 Runden mit 70 % Wahrscheinlichkeit Rufio an. Schaden {n}. Kostet nichts.": "For the next 2 rounds Ferdi attacks Rufio with 70 % chance. Damage {n}. Free.", "Trifft Ferdi für {n} und bremst ihn 2 Runden um 30 %. Kostet nichts.": "Hits Ferdi for {n} and slows him by 30 % for 2 rounds. Free.", "Drei schnelle Hiebe mit je {n} Schaden. Jeder Hieb kann kritisch treffen (30 %, doppelter Schaden). Kostet 2 Miau-Punkte.": "Three quick hits of {n} damage each. Each hit can crit (30 %, double damage). Costs 2 Meow Points.", "Zieht Ferdis Angriffe 2 Runden auf dich und halbiert den Schaden, den du bekommst. Schaden {n}. Kostet 2 Miau-Punkte.": "Draws Ferdi's attacks for 2 rounds and halves the damage you take. Damage {n}. Costs 2 Meow Points.", "Wirft eine Maus für {n} Schaden. Kostet nichts.": "Throws a mouse for {n} damage. Free.", "Zwei schnelle Kratzer mit je {n} Schaden. Kostet nichts.": "Two quick scratches of {n} damage each. Free.", "3 Mäuse auf einmal, je {n} Schaden. Kostet 2 Miau-Punkte.": "3 mice at once, {n} damage each. Costs 2 Meow Points.", "Ein Glühwürmchen für {n} Schaden. Ferdi verfehlt 2 Runden oft. Kostet 2 Miau-Punkte.": "A firefly for {n} damage. Ferdi often misses for 2 rounds. Costs 2 Meow Points.", "Gemeinsam schnurren": "Purr together", "Rempler": "Ram", "Schildwall": "Shield wall", "Kratzer-Serie": "Scratch series", "Glühwürmchen": "Firefly", "Mäusehagel": "Mouse hail", "Wirbelpfote": "Whirl paw", "Katzensegen": "Cat blessing", "Schutzschild": "Protective shield", "Brüllen": "Roar", "Spielzeugmaus": "Toy mouse", "Ab Stufe 2 frei": "Unlocks at level 2", "Ab Stufe 3 mit Pfad": "Level 3, with path", "Stufe 2": "Level 2", "Spezial": "Special", "Schnurren: Heilt dich um {n} und halbiert den Schaden bis zur nächsten Runde. Kostet nichts.": "Purr: heals you by {n} and halves damage until the next round. Free.", "Schnurren": "Purr", "{n} mit 40 % Leben zurückholen. Kostet 1 Miau-Punkt.": "Bring {n} back with 40 % health. Costs 1 Meow Point.", "Tippe eine Fähigkeit an, um sie zu lesen.": "Tap an ability to read it.", "(Nochmal tippen = einsetzen)": "(tap again = use it)", "Alle Katzen werden geheilt!": "All cats are healed!", "Heilt dich um {n}": "Heals you by {n}"}); Object.assign(EN, {"All cats deal more damage for 2 rounds": "All cats +30 % damage", "Shields the weakest cat": "Shield for the weakest", "Ferdi attacks Rufio (2 rounds)": "Ferdi attacks Rufio", "Draws Ferdi, half damage (2 rounds)": "Draws Ferdi, half damage", "Heals the weakest cat": "Heals the weakest"}); Object.assign(EN, {"Heilendes Schnurren": "Healing purr", "Heilt die schwächste Katze": "Heals the weakest cat", "Katzensegen": "Cat blessing", "Alle Katzen machen 2 Runden mehr Schaden": "All cats deal more damage for 2 rounds", "Schutzschild": "Protective shield", "Schützt die schwächste Katze": "Shields the weakest cat", "Brüllen": "Roar", "Ferdi greift Rufio an (2 Runden)": "Ferdi attacks Rufio (2 rounds)", "Schildwall": "Shield wall", "Zieht Ferdi an, halber Schaden (2 Runden)": "Draws Ferdi, half damage (2 rounds)", "Heilt {n}!": "Heals {n}!", "Schild +{n}": "Shield +{n}", "Schutz für {n}!": "Shield for {n}!", "Segen!": "Blessing!", "Alle Katzen machen mehr Schaden!": "All cats deal more damage!", "Ferdi, hierher!": "Ferdi, over here!", "Schildwall!": "Shield wall!", "Geschluckt!": "Absorbed!", "{n} ({r}): Was tun?": "{n} ({r}): What to do?", "Heilerin": "Healer", "Tank": "Tank", "Schaden": "Damage"}); Object.assign(EN, {"Lisa hat drei Katzen, die ständig rein und raus müssen: Balkontür, Küchentür, überall. Dazu lungert die Nachbarskatze Ferdi vor der Tür, schläft auf dem Katzenturm und wartet, bis ein Fenster offen ist, um das Futter wegzufressen. Lisa kommt sich vor wie in einem Tower-Defense-Spiel. So ist die Idee zu diesem Spiel entstanden.": "It all began in Lisa’s home, where peace and quiet rarely lasted for long. Leia, Rufio and Esme were curious cats who were forever changing their minds. They wanted to go out onto the balcony, then come back in a moment later; soon after, they might be waiting at the kitchen door, ready to head out again. Lisa was constantly opening and closing doors, letting them out whenever they fancied an adventure—and letting them back in the moment they wanted to return.\n\nBut the greatest challenge came from beyond Lisa’s own little kingdom. Ferdi, the neighbour’s cat, had discovered the comforts of her home. He would linger by the doors, settle on the cat tower as if it were his throne, and keep a watchful eye on every window. The moment an opening appeared, Ferdi was ready to slip inside and make a feast of the cats’ food.\n\nSo Lisa found herself on constant lookout: opening doors for Leia, Rufio and Esme, welcoming them back in, and trying to keep Ferdi from sneaking in for a snack. With cats coming and going in every direction, it began to feel less like an ordinary day at home and more like defending a busy little fortress. And somewhere between one open door and another attempted food raid, Lisa had an idea: what if this everyday feline commotion became a game? That was how her tower defence adventure was born."}); Object.assign(EN, {"Ziel": "Goal", "Fenster & Tür": "Windows & door", "Katzen": "Cats", "Ferdi": "Ferdi", "Freigänger": "Strolling cats", "Riegel": "Bolt", "Knacki-Ferdi": "Knacki-Ferdi", "Leckerlis": "Treats", "Verbessern": "Upgrades", "Pillen": "Pills", "Stern": "Star", "Kissen": "Cushion", "Lachs": "Salmon", "Flasche": "Bottle", "Minze": "Mint", "Handy": "Phone", "Speichern": "Saving"}); Object.assign(EN, {"Ziel": "Ziel", "Ferdi leert den Napf. Überlebe die Wellen.": "Ferdi will the bowl empty. Survive the waves.", "Fenster & Tür": "Fenster & Tür", "Antippen zum Öffnen/Schließen. Offen = Ferdi kommt.": "Tap to open or close. Open = Ferdi comes in.", "Katzen": "Katzen", "Offenes Fenster: sie geht raus. Draußen Feld antippen.": "Open window: she goes out. Tap a spot outside.", "Ferdi": "Ferdi", "Mit dem Besen antippen. Drinnen kommt er zurück.": "Tap with the broom. Inside he comes back.", "Freigänger": "Freigänger", "Ab Level 4. Nur Ferdi antippen, nie eigene Katzen.": "From level 4. Tap only Ferdi, never your cats.", "Riegel": "Riegel", "300 Leckerlis. Schließt Fenster & Tür nach 3 Sek.": "300 treats. Closes windows & door after 3 sec.", "Knacki-Ferdi": "Knacki-Ferdi", "Aus der Garage. Bricht geschlossene Fenster auf.": "From the garage. Breaks open closed windows.", "Leckerlis": "Leckerlis", "Jeder verscheuchte Ferdi bringt welche. Hexe: extra.": "Each chased Ferdi gives treats. Witch: extra.", "Verbessern": "Verbessern", "Katze antippen, Upgrade. Ab Stufe 3 zwei Pfade.": "Tap a cat, upgrade. From level 3 two paths.", "Pillen": "Pillen", "Unten links, nur in einer Welle. Rot = zu wenig.": "Bottom left, only during a wave. Red = too few.", "Stern": "Stern", "Katzen 15 Sek. 1,5× schneller. 1× pro Welle.": "Cats 15 sec. 1.5× faster. Once per wave.", "Kissen": "Kissen", "30 Sek. keine Ungeduld bei den Katzen.": "30 sec. cats stay patient.", "Lachs": "Lachs", "Ferdi-Belohnungen 1,5×. 1× pro Welle.": "Ferdi rewards 1.5×. Once per wave.", "Flasche": "Flasche", "5 Sek. alle Ferdis nur 60 % Tempo.": "5 sec. all Ferdis at 60 % speed.", "Minze": "Minze", "10 Sek. alle Katzen doppelt so schnell.": "10 sec. all cats twice as fast.", "Handy": "Handy", "Oben rechts. Holt alle Ferdis im Bild ab. Kostet.": "Top right. Fetches all Ferdis on screen. Costs treats.", "Speichern": "Speichern", "Mond unten links bringt dich ins Bett. Nur dort.": "Moon bottom left takes you to bed. Only place to save."}); Object.assign(EN, {"Riegel": "Bolt", "Im Eingänge-Menü kostet der Riegel 300 Leckerlis. Danach schließen sich Fenster und Terrassentür 3 Sekunden nach dem Öffnen von selbst.": "In the entrances menu the bolt costs 300 treats. After that the window and patio door close by themselves 3 seconds after opening.", "Knacki-Ferdi": "Knacki-Ferdi", "In der Garage bricht Knacki-Ferdi geschlossene Fenster mit dem Brecheisen auf. Dann klettert er durch.": "In the garage Knacki-Ferdi breaks open closed windows with a crowbar. Then he climbs through."}); Object.assign(EN, {"Über das Spiel": "About the game", "Basierend auf einer Geschichte von": "Based on a story from", "Programmierung": "Programming", "Die Geschichte": "The story", "Lisa hat drei Katzen, die ständig rein und raus müssen: Balkontür, Küchentür, überall. Dazu lungert die Nachbarskatze Ferdi vor der Tür, schläft auf dem Katzenturm und wartet, bis ein Fenster offen ist, um das Futter wegzufressen. Lisa kommt sich vor wie in einem Tower-Defense-Spiel. So ist die Idee zu diesem Spiel entstanden.": "It all began in Lisa’s home, where peace and quiet rarely lasted for long. Leia, Rufio and Esme were curious cats who were forever changing their minds. They wanted to go out onto the balcony, then come back in a moment later; soon after, they might be waiting at the kitchen door, ready to head out again. Lisa was constantly opening and closing doors, letting them out whenever they fancied an adventure—and letting them back in the moment they wanted to return.\n\nBut the greatest challenge came from beyond Lisa’s own little kingdom. Ferdi, the neighbour’s cat, had discovered the comforts of her home. He would linger by the doors, settle on the cat tower as if it were his throne, and keep a watchful eye on every window. The moment an opening appeared, Ferdi was ready to slip inside and make a feast of the cats’ food.\n\nSo Lisa found herself on constant lookout: opening doors for Leia, Rufio and Esme, welcoming them back in, and trying to keep Ferdi from sneaking in for a snack. With cats coming and going in every direction, it began to feel less like an ordinary day at home and more like defending a busy little fortress. And somewhere between one open door and another attempted food raid, Lisa had an idea: what if this everyday feline commotion became a game? That was how her tower defence adventure was born."}); Object.assign(EN, {"Zeit ist um!": "Time's up!", "Führe deine Katze über die Straße in den Park. Sie trödelt!": "Lead your cat across the road to the park. It dawdles!", "Steuere deine Katze. Fang den wild flitzenden roten Punkt!": "Steer your cat. Catch the wildly darting red dot!", "Zieh deine Katze. Fang den roten Punkt!": "Drag your cat. Catch the red dot!", "Bitte auf den Bildschirm tippen, um zu starten": "Please tap on the screen to start", 
+Object.assign(EN, {"Erich, der Einbrecher, schleicht durchs Katzentürchen und klaut Leckerlis. Tippe ihn rechtzeitig an, dann haut er ab. Im Eingänge-Menü gibt es eine Überwachung dagegen.":"Erich the burglar sneaks through the cat flap and steals treats. Tap him in time and he runs off. The Entrances menu has surveillance against him.","Erwischt! Erich haut ab.":"Caught! Erich runs off.","Ab Level 3 schleicht Erich manchmal von links durchs Katzentürchen und klaut 200 Leckerlis. Tippe ihn rechtzeitig an, dann haut er ab. Mit der Überwachung im Eingänge-Menü (350 Leckerlis) verlierst du nur noch 50.":"From level 3 on, Erich sometimes sneaks in from the left through the cat flap and steals 200 treats. Tap him in time and he runs off. With the surveillance in the Entrances menu (350 treats) you only lose 50.","Nur für Katzen mit Chip, immer offen. Aber auch Ferdis Chip-Klone und Einbrecher Erich kommen hier durch. Es passt nur eine Katze auf einmal.":"Only for cats with a chip, always open. But Ferdi's chip clones and the burglar Erich get through here too. Only one cat fits at a time.","Verlassen":"Leave","Minispiel: Spaziergang":"Mini-game: Walk","Im Minispiel-Menü: Bring Leia, Rufio und Esme heil über die Straße in den Park. Tippe in die Richtung, in die du gehen willst. Trödelt eine Katze, tippe sie an, dann kommt sie. Du hast 3 Leben, Autos und Roller sind gefährlich. Für jede Katze im Park gibt es Leckerlis.":"In the mini-games menu: bring Leia, Rufio and Esme safely across the road to the park. Tap in the direction you want to go. If a cat dawdles, tap her and she will come. You have 3 lives, cars and scooters are dangerous. Every cat in the park earns treats.","Minispiel: Laserpunkt-Jagd":"Mini-game: Laser dot chase","Im Minispiel-Menü: Zieh deine Katze mit dem Finger und fang den wild flitzenden roten Punkt. Du hast 45 Sekunden, jeder Fang bringt 3 Leckerlis (höchstens 45).":"In the mini-games menu: drag your cat with your finger and catch the wildly darting red dot. You have 45 seconds, every catch earns 3 treats (max 45).","Alles begann in Lisas Zuhause, wo Ruhe und Frieden selten lange anhielten. Leia, Rufio und Esme waren neugierige Katzen, die ständig ihre Meinung änderten. Mal wollten sie auf den Balkon, einen Moment später wieder herein; kurz darauf warteten sie vielleicht schon an der Küchentür, bereit, wieder loszuziehen. Lisa öffnete und schloss ununterbrochen Türen, ließ sie hinaus, wann immer sie Lust auf ein Abenteuer hatten, und ließ sie wieder herein, sobald sie zurückwollten.\n\nDoch die größte Herausforderung kam von jenseits von Lisas kleinem Königreich. Ferdi, der Kater der Nachbarn, hatte die Annehmlichkeiten ihres Zuhauses entdeckt. Er lungerte an den Türen herum, machte es sich auf dem Katzenturm bequem, als wäre es sein Thron, und behielt jedes Fenster im Auge. Sobald sich irgendwo eine Öffnung auftat, war Ferdi bereit, hineinzuschlüpfen und das Futter der Katzen zu verputzen.\n\nSo stand Lisa ständig auf Posten: Sie öffnete Leia, Rufio und Esme die Türen, ließ sie wieder herein und versuchte zu verhindern, dass sich Ferdi für einen Happen hineinschlich. Mit Katzen, die in alle Richtungen kamen und gingen, fühlte sich das weniger wie ein gewöhnlicher Tag zu Hause an und mehr wie die Verteidigung einer geschäftigen kleinen Festung. Und irgendwo zwischen einer offenen Tür und dem nächsten Raubzug kam Lisa eine Idee: Was, wenn dieses alltägliche Katzenchaos zu einem Spiel würde? So entstand ihr Tower-Defense-Abenteuer.":"It all began in Lisa’s home, where peace and quiet rarely lasted for long. Leia, Rufio and Esme were curious cats who were forever changing their minds. They wanted to go out onto the balcony, then come back in a moment later; soon after, they might be waiting at the kitchen door, ready to head out again. Lisa was constantly opening and closing doors, letting them out whenever they fancied an adventure—and letting them back in the moment they wanted to return.\n\nBut the greatest challenge came from beyond Lisa’s own little kingdom. Ferdi, the neighbour’s cat, had discovered the comforts of her home. He would linger by the doors, settle on the cat tower as if it were his throne, and keep a watchful eye on every window. The moment an opening appeared, Ferdi was ready to slip inside and make a feast of the cats’ food.\n\nSo Lisa found herself on constant lookout: opening doors for Leia, Rufio and Esme, welcoming them back in, and trying to keep Ferdi from sneaking in for a snack. With cats coming and going in every direction, it began to feel less like an ordinary day at home and more like defending a busy little fortress. And somewhere between one open door and another attempted food raid, Lisa had an idea: what if this everyday feline commotion became a game? That was how her tower defence adventure was born."}); Object.assign(EN, {"Erich schleicht sich an!":"Erich is sneaking in!","Erich hat {n} Leckerlis geklaut!":"Erich stole {n} treats!","Erich findet nichts.":"Erich finds nothing.","Kamera: Erich gefilmt! Nur {n} Leckerlis weg.":"Camera: Erich caught on film! Only {n} treats gone.","Überwachung kaufen ({c})":"Buy surveillance ({c})","Überwachung eingebaut":"Surveillance installed","Überwachung":"Surveillance","Erich, der Einbrecher, schleicht durchs Katzentürchen und klaut Leckerlis. Im Eingänge-Menü gibt es eine Überwachung dagegen.":"Erich the burglar sneaks through the cat flap and steals treats. The Entrances menu has surveillance against him.","Erich, der Einbrecher":"Erich the burglar","Ab Level 3 schleicht Erich manchmal von links durchs Katzentürchen und klaut 200 Leckerlis. Mit der Überwachung im Eingänge-Menü (350 Leckerlis) verlierst du nur noch 50.":"From level 3 on, Erich sometimes sneaks in from the left through the cat flap and steals 200 treats. With the surveillance in the Entrances menu (350 treats) you only lose 50."}); Object.assign(EN, {"klein": "small", "mittel": "medium", "groß": "big"}); Object.assign(EN, {"Entwickler-Code": "Developer code", "Falscher Code.": "Wrong code."}); Object.assign(EN, {"Ferdi im Karton (mittel)": "Ferdi in the Box (medium)", "Dicker Fritz (mittel)": "Chubby Fritz (medium)", "Ferdi als Waschbär (mittel)": "Ferdi as a Raccoon (medium)", "Ferdi im Schneeanzug (mittel)": "Ferdi in the Snowsuit (medium)", "Ferdi der Große (mittel)": "Ferdi the Great (medium)"}); Object.assign(EN, {"Adderall!": "Adderall!", "Das lila Kissen. 30 Sekunden lang lassen sich die Katzen nicht von Fledermäusen ablenken und werden nicht ungeduldig oder beleidigt.": "The purple pill. For 30 seconds the cats are not distracted by bats, do not get impatient and do not sulk."}); Object.assign(EN, {"Adderall": "Adderall", "Adderall!": "Adderall!", "Die weiße Pille. 30 Sekunden lang lassen sich die Katzen nicht von Fledermäusen ablenken und werden nicht ungeduldig.": "The white pill. For 30 seconds the cats are not distracted by bats and do not get impatient."}); Object.assign(EN, {"Auslassen": "Wait", "Wartet ab. +1 Miau-Punkt.": "Waits. +1 Meow Point.", "Auslassen: Die Katze wartet ab und bekommt 1 Miau-Punkt. Gut, wenn zuerst ein anderer Ferdis Aufmerksamkeit bekommen soll.": "Wait: the cat holds back and gets 1 Meow Point. Useful when another cat should draw Ferdi's attention first."}); Object.assign(EN, {"Katzensegen": "Cat blessing", "Alle Katzen schießen 15 % schneller": "All cats shoot 15 % faster", "Schutzschild": "Protective shield", "Ferdi bleibt an Fenster und Tür 1,5 s länger hängen": "Ferdi stays at windows and doors 1.5 s longer", "Schildwall": "Shield wall", "Ferdi wird in Rufios Nähe 30 % langsamer": "Ferdi is 30 % slower near Rufio"}); Object.assign(EN, {"Kartonschutz": "Cardboard shield", "Kartonschutz!": "Cardboard shield!", "Grillrauch": "Grill smoke", "Rauch!": "Smoke!", "Mülltonnen-Krach": "Bin crash", "Eisstoß": "Ice blast", "Ferdi duckt sich hinter den Karton: eine Runde nur ein Drittel Schaden": "Ferdi ducks behind the box: one round at only a third of the damage", "Dichter Rauch: die Katzen treffen eine Runde nur halb so stark": "Thick smoke: the cats hit only half as hard for one round", "Zerschlägt alle Schilde und trifft alle Katzen": "Smashes all shields and hits every cat", "Friert eine Katze ein: sie setzt die nächste Runde aus": "Freezes one cat: she skips the next round", "Beißt die schwächste Katze hart und heilt sich um 5 %": "Bites the weakest cat hard and heals 5 %", "Dicker Fritz": "Chubby Fritz", "Dicker Fritz wedelt mit dem Grillwender: „Die Würstchen sind meine!“": "Chubby Fritz waves his grill turner: \"The sausages are mine!\"", "Grillwender": "grill turner", "Grillfeuer": "Grill fire", "Ferdi im Karton (klein)": "Ferdi in the Box (small)", "Dicker Fritz (klein)": "Chubby Fritz (small)", "Ferdi als Waschbär (klein)": "Ferdi as a Raccoon (small)", "Ferdi im Schneeanzug (klein)": "Ferdi in the Snowsuit (small)", "Ferdi der Große (klein)": "Ferdi the Great (small)", "eingefroren": "frozen", "Eingefroren!": "Frozen!", "Heilt dich um {n}": "Heals you by {n}", "Königsbiss": "Royal bite"}); Object.assign(EN, {"Heilt die schwächste Katze um {n}. Kostet nichts.": "Heals the weakest cat by {n}. Free.", "Heilt alle lebenden Katzen um {n}. Kostet nichts.": "Heals all living cats by {n}. Free.", "Alle Katzen machen 2 Runden lang 30 % mehr Schaden. Kostet 2 Miau-Punkte.": "All cats deal 30 % more damage for 2 rounds. Costs 2 Meow Points.", "Die schwächste Katze bekommt einen Schild mit {n} Punkten. Der Schild schluckt Schaden, bis er leer ist. Kostet 2 Miau-Punkte.": "The weakest cat gets a shield of {n} points. It absorbs damage until it is empty. Costs 2 Meow Points.", "Ferdi greift in den nächsten 2 Runden mit 70 % Wahrscheinlichkeit Rufio an. Schaden {n}. Kostet nichts.": "For the next 2 rounds Ferdi attacks Rufio with 70 % chance. Damage {n}. Free.", "Trifft Ferdi für {n} und bremst ihn 2 Runden um 30 %. Kostet nichts.": "Hits Ferdi for {n} and slows him by 30 % for 2 rounds. Free.", "Drei schnelle Hiebe mit je {n} Schaden. Jeder Hieb kann kritisch treffen (30 %, doppelter Schaden). Kostet 2 Miau-Punkte.": "Three quick hits of {n} damage each. Each hit can crit (30 %, double damage). Costs 2 Meow Points.", "Zieht Ferdis Angriffe 2 Runden auf dich und halbiert den Schaden, den du bekommst. Schaden {n}. Kostet 2 Miau-Punkte.": "Draws Ferdi's attacks for 2 rounds and halves the damage you take. Damage {n}. Costs 2 Meow Points.", "Wirft eine Maus für {n} Schaden. Kostet nichts.": "Throws a mouse for {n} damage. Free.", "Zwei schnelle Kratzer mit je {n} Schaden. Kostet nichts.": "Two quick scratches of {n} damage each. Free.", "3 Mäuse auf einmal, je {n} Schaden. Kostet 2 Miau-Punkte.": "3 mice at once, {n} damage each. Costs 2 Meow Points.", "Ein Glühwürmchen für {n} Schaden. Ferdi verfehlt 2 Runden oft. Kostet 2 Miau-Punkte.": "A firefly for {n} damage. Ferdi often misses for 2 rounds. Costs 2 Meow Points.", "Gemeinsam schnurren": "Purr together", "Rempler": "Ram", "Schildwall": "Shield wall", "Kratzer-Serie": "Scratch series", "Glühwürmchen": "Firefly", "Mäusehagel": "Mouse hail", "Wirbelpfote": "Whirl paw", "Katzensegen": "Cat blessing", "Schutzschild": "Protective shield", "Brüllen": "Roar", "Spielzeugmaus": "Toy mouse", "Ab Stufe 2 frei": "Unlocks at level 2", "Ab Stufe 3 mit Pfad": "Level 3, with path", "Stufe 2": "Level 2", "Spezial": "Special", "Schnurren: Heilt dich um {n} und halbiert den Schaden bis zur nächsten Runde. Kostet nichts.": "Purr: heals you by {n} and halves damage until the next round. Free.", "Schnurren": "Purr", "{n} mit 40 % Leben zurückholen. Kostet 1 Miau-Punkt.": "Bring {n} back with 40 % health. Costs 1 Meow Point.", "Tippe eine Fähigkeit an, um sie zu lesen.": "Tap an ability to read it.", "(Nochmal tippen = einsetzen)": "(tap again = use it)", "Alle Katzen werden geheilt!": "All cats are healed!", "Heilt dich um {n}": "Heals you by {n}"}); Object.assign(EN, {"All cats deal more damage for 2 rounds": "All cats +30 % damage", "Shields the weakest cat": "Shield for the weakest", "Ferdi attacks Rufio (2 rounds)": "Ferdi attacks Rufio", "Draws Ferdi, half damage (2 rounds)": "Draws Ferdi, half damage", "Heals the weakest cat": "Heals the weakest"}); Object.assign(EN, {"Heilendes Schnurren": "Healing purr", "Heilt die schwächste Katze": "Heals the weakest cat", "Katzensegen": "Cat blessing", "Alle Katzen machen 2 Runden mehr Schaden": "All cats deal more damage for 2 rounds", "Schutzschild": "Protective shield", "Schützt die schwächste Katze": "Shields the weakest cat", "Brüllen": "Roar", "Ferdi greift Rufio an (2 Runden)": "Ferdi attacks Rufio (2 rounds)", "Schildwall": "Shield wall", "Zieht Ferdi an, halber Schaden (2 Runden)": "Draws Ferdi, half damage (2 rounds)", "Heilt {n}!": "Heals {n}!", "Schild +{n}": "Shield +{n}", "Schutz für {n}!": "Shield for {n}!", "Segen!": "Blessing!", "Alle Katzen machen mehr Schaden!": "All cats deal more damage!", "Ferdi, hierher!": "Ferdi, over here!", "Schildwall!": "Shield wall!", "Geschluckt!": "Absorbed!", "{n} ({r}): Was tun?": "{n} ({r}): What to do?", "Heilerin": "Healer", "Tank": "Tank", "Schaden": "Damage"}); Object.assign(EN, {"Lisa hat drei Katzen, die ständig rein und raus müssen: Balkontür, Küchentür, überall. Dazu lungert die Nachbarskatze Ferdi vor der Tür, schläft auf dem Katzenturm und wartet, bis ein Fenster offen ist, um das Futter wegzufressen. Lisa kommt sich vor wie in einem Tower-Defense-Spiel. So ist die Idee zu diesem Spiel entstanden.": "It all began in Lisa’s home, where peace and quiet rarely lasted for long. Leia, Rufio and Esme were curious cats who were forever changing their minds. They wanted to go out onto the balcony, then come back in a moment later; soon after, they might be waiting at the kitchen door, ready to head out again. Lisa was constantly opening and closing doors, letting them out whenever they fancied an adventure—and letting them back in the moment they wanted to return.\n\nBut the greatest challenge came from beyond Lisa’s own little kingdom. Ferdi, the neighbour’s cat, had discovered the comforts of her home. He would linger by the doors, settle on the cat tower as if it were his throne, and keep a watchful eye on every window. The moment an opening appeared, Ferdi was ready to slip inside and make a feast of the cats’ food.\n\nSo Lisa found herself on constant lookout: opening doors for Leia, Rufio and Esme, welcoming them back in, and trying to keep Ferdi from sneaking in for a snack. With cats coming and going in every direction, it began to feel less like an ordinary day at home and more like defending a busy little fortress. And somewhere between one open door and another attempted food raid, Lisa had an idea: what if this everyday feline commotion became a game? That was how her tower defence adventure was born."}); Object.assign(EN, {"Ziel": "Goal", "Fenster & Tür": "Windows & door", "Katzen": "Cats", "Ferdi": "Ferdi", "Freigänger": "Strolling cats", "Riegel": "Bolt", "Knacki-Ferdi": "Knacki-Ferdi", "Leckerlis": "Treats", "Verbessern": "Upgrades", "Pillen": "Pills", "Stern": "Star", "Kissen": "Cushion", "Lachs": "Salmon", "Flasche": "Bottle", "Minze": "Mint", "Handy": "Phone", "Speichern": "Saving"}); Object.assign(EN, {"Ziel": "Ziel", "Ferdi leert den Napf. Überlebe die Wellen.": "Ferdi will the bowl empty. Survive the waves.", "Fenster & Tür": "Fenster & Tür", "Antippen zum Öffnen/Schließen. Offen = Ferdi kommt.": "Tap to open or close. Open = Ferdi comes in.", "Katzen": "Katzen", "Offenes Fenster: sie geht raus. Draußen Feld antippen.": "Open window: she goes out. Tap a spot outside.", "Ferdi": "Ferdi", "Mit dem Besen antippen. Drinnen kommt er zurück.": "Tap with the broom. Inside he comes back.", "Freigänger": "Freigänger", "Ab Level 4. Nur Ferdi antippen, nie eigene Katzen.": "From level 4. Tap only Ferdi, never your cats.", "Riegel": "Riegel", "300 Leckerlis. Schließt Fenster & Tür nach 3 Sek.": "300 treats. Closes windows & door after 3 sec.", "Knacki-Ferdi": "Knacki-Ferdi", "Aus der Garage. Bricht geschlossene Fenster auf.": "From the garage. Breaks open closed windows.", "Leckerlis": "Leckerlis", "Jeder verscheuchte Ferdi bringt welche. Hexe: extra.": "Each chased Ferdi gives treats. Witch: extra.", "Verbessern": "Verbessern", "Katze antippen, Upgrade. Ab Stufe 3 zwei Pfade.": "Tap a cat, upgrade. From level 3 two paths.", "Pillen": "Pillen", "Unten links, nur in einer Welle. Rot = zu wenig.": "Bottom left, only during a wave. Red = too few.", "Stern": "Stern", "Katzen 15 Sek. 1,5× schneller. 1× pro Welle.": "Cats 15 sec. 1.5× faster. Once per wave.", "Kissen": "Kissen", "30 Sek. keine Ungeduld bei den Katzen.": "30 sec. cats stay patient.", "Lachs": "Lachs", "Ferdi-Belohnungen 1,5×. 1× pro Welle.": "Ferdi rewards 1.5×. Once per wave.", "Flasche": "Flasche", "5 Sek. alle Ferdis nur 60 % Tempo.": "5 sec. all Ferdis at 60 % speed.", "Minze": "Minze", "10 Sek. alle Katzen doppelt so schnell.": "10 sec. all cats twice as fast.", "Handy": "Handy", "Oben rechts. Holt alle Ferdis im Bild ab. Kostet.": "Top right. Fetches all Ferdis on screen. Costs treats.", "Speichern": "Speichern", "Mond unten links bringt dich ins Bett. Nur dort.": "Moon bottom left takes you to bed. Only place to save."}); Object.assign(EN, {"Riegel": "Bolt", "Im Eingänge-Menü kostet der Riegel 300 Leckerlis. Danach schließen sich Fenster und Terrassentür 3 Sekunden nach dem Öffnen von selbst.": "In the entrances menu the bolt costs 300 treats. After that the window and patio door close by themselves 3 seconds after opening.", "Knacki-Ferdi": "Knacki-Ferdi", "In der Garage bricht Knacki-Ferdi geschlossene Fenster mit dem Brecheisen auf. Dann klettert er durch.": "In the garage Knacki-Ferdi breaks open closed windows with a crowbar. Then he climbs through."}); Object.assign(EN, {"Über das Spiel": "About the game", "Basierend auf einer Geschichte von": "Based on a story from", "Programmierung": "Programming", "Die Geschichte": "The story", "Lisa hat drei Katzen, die ständig rein und raus müssen: Balkontür, Küchentür, überall. Dazu lungert die Nachbarskatze Ferdi vor der Tür, schläft auf dem Katzenturm und wartet, bis ein Fenster offen ist, um das Futter wegzufressen. Lisa kommt sich vor wie in einem Tower-Defense-Spiel. So ist die Idee zu diesem Spiel entstanden.": "It all began in Lisa’s home, where peace and quiet rarely lasted for long. Leia, Rufio and Esme were curious cats who were forever changing their minds. They wanted to go out onto the balcony, then come back in a moment later; soon after, they might be waiting at the kitchen door, ready to head out again. Lisa was constantly opening and closing doors, letting them out whenever they fancied an adventure—and letting them back in the moment they wanted to return.\n\nBut the greatest challenge came from beyond Lisa’s own little kingdom. Ferdi, the neighbour’s cat, had discovered the comforts of her home. He would linger by the doors, settle on the cat tower as if it were his throne, and keep a watchful eye on every window. The moment an opening appeared, Ferdi was ready to slip inside and make a feast of the cats’ food.\n\nSo Lisa found herself on constant lookout: opening doors for Leia, Rufio and Esme, welcoming them back in, and trying to keep Ferdi from sneaking in for a snack. With cats coming and going in every direction, it began to feel less like an ordinary day at home and more like defending a busy little fortress. And somewhere between one open door and another attempted food raid, Lisa had an idea: what if this everyday feline commotion became a game? That was how her tower defence adventure was born."}); Object.assign(EN, {"Zeit ist um!": "Time's up!", "Führe deine Katze über die Straße in den Park. Sie trödelt!": "Lead your cat across the road to the park. It dawdles!", "Steuere deine Katze. Fang den wild flitzenden roten Punkt!": "Steer your cat. Catch the wildly darting red dot!", "Zieh deine Katze. Fang den roten Punkt!": "Drag your cat. Catch the red dot!", "Bitte auf den Bildschirm tippen, um zu starten": "Please tap on the screen to start", 
   '+1 Portion in jedem Level': '+1 serving in every level', 'Ab Stufe {l}': 'From level {l}', 'Alles löschen': 'Delete all',
   'Am Schuppen wartet ein Pappkarton. Und der Karton hat Augen.': 'A cardboard box waits at the shed. And the box has eyes.',
   'Angelloch': 'Ice hole', 'Ausguck': 'Lookout', 'Baldrian-Kissen!': 'Valerian pillow!', 'Bank': 'Bench', 'Banner': 'Banner', 'Baumstumpf': 'Tree stump',
@@ -1658,6 +1658,7 @@ function floater(x, y, text, color) {
 // ---------- Katzenwerte ----------
 const lvlMul = c => (1 + 0.4 * (c.lvl - 1)) * (c.lvl >= 6 ? MASTER_MUL : 1);
 const buffMul = () => state.items.turm === 1 ? BUFF_DELUXE : BUFF;
+const rangeK = () => 1 + DY / 360; // hohe Handys strecken den Abstand Feld–Weg senkrecht (spreadY), die Reichweite wird entsprechend senkrecht gedehnt
 const catRange = c => CATS[c.type].range * (1 + 0.1 * (c.lvl - 1)) * (isBuffed(c) ? 1.15 * (state.items.turm === 2 ? 1.25 : 1) : 1);
 const catDmg = c => CATS[c.type].dmg * lvlMul(c) * (isBuffed(c) ? buffMul() : 1) * 1;
 const catCd = c => CATS[c.type].cd * (LEVELS[state.level].cdMul || 1) * (state.cats.some(k => k.type === 'leia' && k.path === 'a') ? .85 : 1) / ((isBuffed(c) ? buffMul() : 1) * (state.boostT > 0 ? BOOST_MUL : 1) * (state.catnipT > 0 ? CATNIP_MUL : 1)); // cdMul: Eis-Felder bremsen die Katzen
@@ -1679,7 +1680,7 @@ const Saves = (() => {
     if (!raw || typeof raw !== 'object') return null;
     const old = raw.v === 2, toNew = i => old ? (V2_TO_V3[i] !== undefined ? V2_TO_V3[i] : -1) : i; // v2: alte Level-Nummern umrechnen
     const sv = { v: 3, tut: !!raw.tut, guide: !!raw.guide, name: typeof raw.name === 'string' && raw.name ? raw.name.slice(0, 14) : null, mode: DIFF[raw.mode] ? raw.mode : 'normal', treats: num(raw.treats, 0, 99999, 100),
-      cats: {}, flaps: [], levels: {}, items: { besen: 0, napf: 0, turm: 0, besenPfad: 0, fliegen: 0, zugluft: 0, riegel: 0 }, cur: null, best: num(raw.best, 0, 9999, 0), upd: num(raw.upd, 0, 9e15, Date.now()) };
+      cats: {}, flaps: [], levels: {}, items: { besen: 0, napf: 0, turm: 0, besenPfad: 0, fliegen: 0, zugluft: 0, riegel: 0, kamera: 0 }, cur: null, best: num(raw.best, 0, 9999, 0), upd: num(raw.upd, 0, 9e15, Date.now()) };
     Object.keys(CATS).forEach(id => {
       const d = raw.cats && typeof raw.cats === 'object' && raw.cats[id] || {};
       sv.cats[id] = { lvl: num(d.lvl, 1, 6, 1), chip: !!d.chip, skill: num(d.skill, 0, FLAP_MAX, FLAP_SKILL0), path: d.path === 'a' || d.path === 'b' ? d.path : (d.power ? (id === 'leia' ? 'b' : 'a') : null) };
@@ -1688,7 +1689,7 @@ const Saves = (() => {
     if (raw.levels && typeof raw.levels === 'object' && !Array.isArray(raw.levels)) {
       Object.keys(raw.levels).forEach(k => { const i = toNew(+k), d = raw.levels[k]; if (Number.isInteger(i) && i >= 0 && i < LEVELS.length && d && typeof d === 'object') sv.levels[i] = { s: Math.floor(num(d.s, 0, 3, 0)), c: Math.floor(num(d.c, 0, 3, 0)) }; });
     } else if (Array.isArray(raw.done)) raw.done.forEach(i => { if (Number.isInteger(i) && i >= 0 && i < 2) sv.levels[i] = { s: 1, c: 0 }; }); // v1: nur Garten und Abendhof sind in v2 an gleicher Stelle
-    if (raw.items && typeof raw.items === 'object') { sv.items.besen = Math.floor(num(raw.items.besen, 0, 3, 0)); sv.items.napf = Math.floor(num(raw.items.napf, 0, 2, 0)); sv.items.turm = Math.floor(num(raw.items.turm, 0, 2, 0)); sv.items.besenPfad = Math.floor(num(raw.items.besenPfad, 0, 2, 0)); sv.items.fliegen = Math.floor(num(raw.items.fliegen, 0, 1, 0)); sv.items.zugluft = Math.floor(num(raw.items.zugluft, 0, 1, 0)); sv.items.riegel = Math.floor(num(raw.items.riegel, 0, 1, 0)); }
+    if (raw.items && typeof raw.items === 'object') { sv.items.besen = Math.floor(num(raw.items.besen, 0, 3, 0)); sv.items.napf = Math.floor(num(raw.items.napf, 0, 2, 0)); sv.items.turm = Math.floor(num(raw.items.turm, 0, 2, 0)); sv.items.besenPfad = Math.floor(num(raw.items.besenPfad, 0, 2, 0)); sv.items.fliegen = Math.floor(num(raw.items.fliegen, 0, 1, 0)); sv.items.zugluft = Math.floor(num(raw.items.zugluft, 0, 1, 0)); sv.items.riegel = Math.floor(num(raw.items.riegel, 0, 1, 0)); sv.items.kamera = Math.floor(num(raw.items.kamera, 0, 1, 0)); }
     const c = raw.cur, cl = c && typeof c === 'object' ? toNew(c.level) : -1;
     if (c && typeof c === 'object' && Number.isInteger(cl) && cl >= 0 && cl < LEVELS.length && num(c.wave, 0, 99, 0) > 0 && c.wave < LEVELS[cl].waves.length)
       sv.cur = { level: cl, wave: Math.floor(c.wave), treats: num(c.treats, 0, 99999, 0), napf: Math.floor(num(c.napf, 0, 20, 3)) };
@@ -1938,7 +1939,7 @@ function newRun(level, resume) { // frischer Durchlauf: Katzen-Stufen, Pfade und
   applyMode();
   if (cur) { state.wave = cur.wave; state.treats = cur.treats; state.napf = Math.min(state.napfMax, cur.napf); state.started = true; }
   state.cats.forEach(c => { Object.assign(c, { hop: 0, land: 0, st: 'in', x: CATS[c.type].idleX, y: INY(), dir: 1, timer: CATS[c.type].first, patience: 0, stay: 0, choose: 0, win: null, spot: null, cd: 0, ring: 0, rolled: false, flap: false, push: false, lastSpot: null, atkT: 0, noBf: 0, bf: null }); });
-  WINS.forEach(w => { w.open = false; w.a = 0; w.flapT = 0; }); state.flapBuild = null; setFlapLock();
+  WINS.forEach(w => { w.open = false; w.a = 0; w.flapT = 0; }); state.flapBuild = null; setFlapLock(); erichReset();
   Snd.mode('chip', false); // Titelmelodie läuft weiter, nicht von vorn
   btn.textContent = tr('Welle {n} starten', { n: state.wave + 1 }); btn.style.display = 'block';
   setScreen('game');
@@ -2033,7 +2034,7 @@ function updateDefense(dt) {
   state.enemies.forEach(e => { e.slow = 1; });
   ['boostT', 'calmT', 'lock', 'tapCd', 'catnipT'].forEach(k => { if (state[k] > 0) state[k] = Math.max(0, state[k] - dt); });
   state.cats.forEach(c => { if (c.atkT > 0) c.atkT -= dt; if (c.land > 0) c.land -= dt; });
-  const inR = (e, c, r) => e.mode !== 'inside' && !e.dead && Math.hypot(e.x - c.x, e.y - c.y) <= r;
+  const inR = (e, c, r) => e.mode !== 'inside' && !e.dead && Math.hypot(e.x - c.x, (e.y - c.y) / rangeK()) <= r;
   state.cats.filter(isActive).forEach(c => {
     const r = catRange(c);
     if (c.type === 'leia') {
@@ -2092,6 +2093,7 @@ function update(dt) {
   }
   if (state.started) state.cats.forEach(c => updateCat(c, dt));
   updateWave(dt);
+  erichTick(dt);
   updateDefense(dt);
   updateButterflies(dt);
   updateGift(dt);
@@ -2465,7 +2467,7 @@ function drawEnemy(e, x, y, inside) { // x,y = Fußpunkt
       ctx.restore(); ctx.save(); ctx.translate(x, y); ctx.lineJoin = 'round';
       const s = CAT_SC * sz;
       ctx.beginPath(); ctx.moveTo(flip * -6 * s, -62 * s); ctx.quadraticCurveTo(flip * -44 * s, -40 * s + Math.sin(t * 5) * 3, flip * -34 * s, -2 * s); ctx.lineTo(flip * 4 * s, -6 * s); ctx.closePath(); kInk(KC.red, 3); // Umhang
-      kCatDott('ferdi', 0, 0, s, { flip, mood: e.hp < e.maxhp * .4 ? 'angry' : 'smug', walk: mv, look: [flip, 0], ph });
+      kCatDott('ferdi', 0, 0, s, { flip, mood: e.mood || (e.hp < e.maxhp * .4 ? 'angry' : 'smug'), walk: mv, look: [flip, 0], ph, atk: e.atk || 0 });
       const cx = flip * 4 * s, cy = -88 * s; ctx.translate(cx, cy);
       kPoly([[-12 * s, 0], [-14 * s, -18 * s], [-6 * s, -9 * s], [0, -20 * s], [6 * s, -9 * s], [14 * s, -18 * s], [12 * s, 0]]); kInk(KC.gold, 2.8);
       [-6, 0, 6].forEach(d => { ctx.beginPath(); ctx.arc(d * s, -6 * s, 1.8 * s, 0, TAU); ctx.fillStyle = KC.red; ctx.fill(); });
@@ -2498,15 +2500,25 @@ function hpBar(e, x, y) {
 const enemyTop = e => 52 * (e.sz || 1) + (e.hover || 0) + (e.type === 'schneemann' ? 20 : 0);
 
 // ---------- draußen ----------
-function drawOutside() {
-  const items = [];
-  state.cats.filter(c => !isInside(c) && c.st !== 'stroll').forEach(c => items.push({ y: c.y, draw: () => {
+const catInFront = c => c.y >= OUTY() - 30; // Katzen im Türbereich stehen sonst hinter dem Dach des Hauses
+function drawOutCat(c) {
     const onSpot = !!c.spot && (c.st === 'onSpot' || c.st === 'wantIn');
     kShadow(c.x, c.y + FOOT, 15);
     kCatGame(c, c.x, c.y + FOOT);
     if (onSpot) { for (let i = 0; i < c.lvl; i++) kStar(c.x - (c.lvl - 1) * 5 + i * 10, c.y + FOOT + 9, 4.4, KC.gold, 0, 1.4);
       if (c.path) { ctx.beginPath(); ctx.arc(c.x + 24, c.y + FOOT - 12, 7, 0, TAU); kInk(c.path === 'a' ? KC.orange : KC.sky, 2); ctx.fillStyle = KC.text; ctx.font = KFONT(9); ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(c.path.toUpperCase(), c.x + 24, c.y + FOOT - 11.5); } }
-  } }));
+}
+function drawFrontCats() { // nach dem Haus gezeichnet: Katzen vor der Tür sind nicht vom Dach verdeckt
+  state.cats.filter(c => !isInside(c) && c.st !== 'stroll' && catInFront(c)).sort((a, b) => a.y - b.y).forEach(drawOutCat);
+  const ch = state.cats.find(c => c.st === 'choose'); if (!ch) return; // diese Katze braucht ein Feld: Ring und Pfeil, das Namensschild kommt aus drawBubbles
+  const t = state.t, bob = Math.sin(t * 6) * 3, pulse = .5 + .5 * Math.sin(t * 6), x = ch.x, fy = ch.y + FOOT, col = CATS[ch.type].scarf;
+  ctx.save(); ctx.beginPath(); ctx.ellipse(x, fy + 1, 22 + pulse * 4, 8 + pulse * 2, 0, 0, TAU); ctx.lineWidth = 3; ctx.strokeStyle = col; ctx.stroke(); ctx.lineWidth = 1.2; ctx.strokeStyle = '#fff'; ctx.stroke();
+  const ay = fy - 58 - 20 + bob; kPoly([[x - 9, ay - 12], [x + 9, ay - 12], [x, ay + 2]]); ctx.fillStyle = KC.gold; ctx.fill(); ctx.strokeStyle = KC.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.stroke(); // Pfeil über dem Namensschild
+  ctx.restore();
+}
+function drawOutside() {
+  const items = [];
+  state.cats.filter(c => !isInside(c) && c.st !== 'stroll' && !catInFront(c)).forEach(c => items.push({ y: c.y, draw: () => drawOutCat(c) }));
   state.enemies.filter(e => e.mode !== 'inside').forEach(e => items.push({ y: e.y + (e.type === 'taube' ? 40 : 0), draw: () => {
     drawEnemy(e, e.x + shakeX(e), e.y + FOOT, false);
     const fy = e.y + FOOT - (e.hover || 0);
@@ -2666,7 +2678,7 @@ function drawMenu() {
   const rows = menuRows();
   if (!rows.length) { state.sel = null; return; }
   const c = spotOwner(state.sel), b = menuBox();
-  ctx.beginPath(); ctx.arc(c.x, c.y, catRange(c), 0, TAU); ctx.fillStyle = 'rgba(255,255,255,.2)'; ctx.fill(); ctx.setLineDash([6, 5]); ctx.strokeStyle = KC.ink; ctx.lineWidth = 3; ctx.stroke(); ctx.setLineDash([]); ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.4; ctx.stroke();
+  ctx.beginPath(); ctx.ellipse(c.x, c.y, catRange(c), catRange(c) * rangeK(), 0, 0, TAU); ctx.fillStyle = 'rgba(255,255,255,.2)'; ctx.fill(); ctx.setLineDash([6, 5]); ctx.strokeStyle = KC.ink; ctx.lineWidth = 3; ctx.stroke(); ctx.setLineDash([]); ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.4; ctx.stroke();
   ctx.fillStyle = KC.ink; ctx.fillRect(b.x + 4, b.y + 4, b.w, b.h); ctx.fillStyle = KC.night; ctx.fillRect(b.x, b.y, b.w, b.h); ctx.strokeStyle = KC.ink; ctx.lineWidth = 3.5; ctx.strokeRect(b.x, b.y, b.w, b.h);
   rows.forEach((row, i) => {
     const oy = b.y + i * ROW_H, can = row.cost !== null && state.treats >= row.cost;
@@ -2719,6 +2731,126 @@ function drawPhoneBtn() {
   const can = state.treats >= CALL_COST; ctx.font = KFONT(12); ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.lineWidth = 3; ctx.strokeStyle = KC.ink; ctx.lineJoin = 'round'; ctx.strokeText(CALL_COST, x - 5, y + 53); ctx.fillStyle = can ? KC.gold : '#ff9d9d'; ctx.fillText(CALL_COST, x - 5, y + 53); drawFish(x + 9, y + 49.5, can ? KC.gold : '#ff9d9d');
   ctx.globalAlpha = 1; ctx.textBaseline = 'alphabetic';
 }
+// ---------- Erich, der Einbrecher: schleicht von links unten ans Katzentürchen, kriecht hinein und klaut Leckerlis ----------
+const KAMERA_COST = 350, ERICH_LOSS = 200, ERICH_LOSS_CAM = 50; // Verlust pro Einbruch, mit Überwachungskamera nur noch 50
+const ER_Y = 632, ER_X0 = 84, ER_X1 = 162, ER_S = .62;           // Fußlinie, Halteplatz vor dem Türchen, Platz innen (ganz verschwunden), Größe
+const ERICH = { pause: 0, looked: false, look: 0, st: 'idle', t: 0, x: -60, ph: 0, cd: 40, flip: 1, loot: 0, hit: false, sw: false, seen: false };
+function erichReset() { Object.assign(ERICH, { st: 'idle', t: 0, x: -60, ph: 0, cd: rr(55, 85), flip: 1, loot: 0, hit: false, sw: false }); }
+function buyKamera() { // Überwachung im Eingänge-Menü: einmal kaufen, dauerhaft
+  if (state.items.kamera) return;
+  if (state.treats < KAMERA_COST) { state.note = tr('Zu wenig Leckerlis!'); state.noteT = 2.5; Snd.play('bad'); return; }
+  state.treats -= KAMERA_COST; state.items.kamera = 1; Snd.play('up'); Saves.save({ wallet: true });
+  state.note = tr('Gekauft: {n}', { n: tr('Überwachung') }); state.noteT = 2.5;
+}
+function erichSteal() { // im Haus: nimmt, was er findet (bis 200, mit Kamera bis 50)
+  const cam = !!state.items.kamera, fw = WINS.find(w => w.kind === 'flap'), n = Math.min(cam ? ERICH_LOSS_CAM : ERICH_LOSS, Math.max(0, Math.floor(state.treats)));
+  if (n <= 0) { topNote(tr('Erich findet nichts.'), '#c9f0ff'); return; }
+  state.treats -= n; Saves.save({ wallet: true }); Snd.play('bad');
+  floater(fw.cx, 548 + DY, '−' + n, '#ff8a8a');
+  topNote(cam ? tr('Kamera: Erich gefilmt! Nur {n} Leckerlis weg.', { n }) : tr('Erich hat {n} Leckerlis geklaut!', { n }), '#ffb3b3', 3.2);
+}
+function erichTap(p) { // Erich beim Anschleichen antippen: er erschrickt und haut ab, nichts wird geklaut
+  const E = ERICH; if (E.st !== 'walk' && E.st !== 'kneel') return false;
+  if (Math.abs(p.x - (E.x + 10)) > 46 || Math.abs(p.y - (ER_Y + DY - 24)) > 48) return false;
+  Object.assign(E, { st: 'flee', t: .3, flip: -1, loot: 0, look: 0, pause: 0 }); E.ph = 0;
+  topNote(tr('Erwischt! Erich haut ab.'), '#c9ffc0', 2.6); Snd.play('shoo'); floater(E.x, ER_Y + DY - 60, tr('Husch!'), '#c9ffc0');
+  return true;
+}
+function erichTick(dt) {
+  const E = ERICH, fw = WINS.find(w => w.kind === 'flap');
+  if (E.st === 'idle') { // kommt nur während einer Welle und nur, wenn es das Katzentürchen gibt
+    if (!state.running || fw.locked || state.over) return;
+    E.cd -= dt; if (E.cd > 0) return;
+    Object.assign(E, { st: 'walk', t: 0, x: -50, flip: 1, loot: 0, hit: false, sw: false, pause: 0, looked: false, look: 0 });
+    topNote(tr('Erich schleicht sich an!'), '#ffb3b3'); Snd.play('alarm');
+    if (!E.seen) { E.seen = true; showMsg(tr('Erich, der Einbrecher, schleicht durchs Katzentürchen und klaut Leckerlis. Tippe ihn rechtzeitig an, dann haut er ab. Im Eingänge-Menü gibt es eine Überwachung dagegen.'), 5200); }
+    return;
+  }
+  E.t += dt; E.ph += dt * (E.st === 'flee' ? 17 : 11);
+  if (E.st === 'walk') { // schleicht im Schritt-Rhythmus, bleibt einmal stehen und schaut sich um
+    if (E.pause > 0) { E.pause -= dt; E.ph -= dt * 11; E.look = 1; return; } E.look = 0;
+    if (!E.looked && E.x > 26) { E.looked = true; E.pause = .55; return; }
+    E.x += (45 + 75 * Math.abs(Math.cos(E.ph))) * dt; if (E.x >= ER_X0) { E.x = ER_X0; E.st = 'kneel'; E.t = 0; } }
+  else if (E.st === 'kneel') { E.look = E.t > .22 && E.t < .42 ? 1 : 0; if (E.t > .5) { E.st = 'enter'; E.t = 0; E.sw = false; fw.flapT = .6; Snd.play('creak'); } }
+  else if (E.st === 'enter') { E.x = ER_X0 + (ER_X1 - ER_X0) * dClamp(E.t / 1.4); if (E.t > .7 && !E.sw) { E.sw = true; fw.flapT = .6; } if (E.t >= 1.4) { E.st = 'inside'; E.t = 0; } }
+  else if (E.st === 'inside') { if (!E.hit && E.t > .9) { E.hit = true; erichSteal(); } if (E.t >= 1.7) { Object.assign(E, { st: 'exit', t: 0, flip: -1, loot: 1, sw: false }); fw.flapT = .6; Snd.play('creak'); } }
+  else if (E.st === 'exit') { E.x = ER_X1 - (ER_X1 - ER_X0 + 14) * dClamp(E.t / 1.2); if (E.t > .6 && !E.sw) { E.sw = true; fw.flapT = .6; } if (E.t >= 1.2) { E.st = 'flee'; E.t = 0; } }
+  else if (E.st === 'flee') { E.x -= 155 * dt; if (E.x < -60) { E.st = 'idle'; E.cd = rr(80, 130); } }
+}
+function erJ(p, ph) { // Körperpunkte einer Haltung (Blick nach rechts, Boden y = 0): Hüfte, Schulter, Kopf, Füße, Knie, Hände
+  const s = Math.sin(ph), c = Math.cos(ph), up = v => Math.max(0, v);
+  if (p === 'sneak') {
+    const hip = [0, -33 - Math.abs(s) * 1.4], fA = [10 + 12 * s, -3 - up(c) * 6], fB = [10 - 12 * s, -3 - up(-c) * 6], kn = f => [(hip[0] + f[0]) / 2 + 8, (hip[1] + f[1]) / 2 - 3];
+    return { hip, sh: [26, -57 - Math.abs(s)], hd: [42 + Math.sin(ph * 2) * .8, -67 - Math.abs(s) * 1.6], fA, fB, kA: kn(fA), kB: kn(fB), hA: [42 + 8 * s, -31 + up(-c) * 3], hB: [42 - 8 * s, -33 + up(c) * 3], tilt: .3 + .08 * s };
+  }
+  if (p === 'kneel') return { hip: [-6, -24], sh: [20, -42], hd: [37, -52], fA: [12, -3], fB: [-28, -3], kA: [14, -22], kB: [-14, -4], hA: [57, -47], hB: [36, -3], tilt: .12 };
+  return { hip: [-8, -27 + s * .8], sh: [22, -33], hd: [41, -39 + s * 1.2], fA: [-26, -3], fB: [-34, -3], kA: [0, -5], kB: [-16, -4], hA: [40 + 6 * s, -4], hB: [40 - 6 * s, -4 - up(c) * 3], tilt: .5 }; // crawl
+}
+function kErich(x, y, s, o) { // der Einbrecher: gebückt, bärtig, fleckige Jacke, weiße Handschuhe, Schraubenschlüssel im Gürtel
+  const A = erJ(o.a, o.ph), B = o.b ? erJ(o.b, o.ph) : A, k = o.k || 0, J = {};
+  Object.keys(A).forEach(key => { J[key] = Array.isArray(A[key]) ? A[key].map((v, i) => v + (B[key][i] - v) * k) : A[key] + (B[key] - A[key]) * k; });
+  const lk = o.look || 0; J.tilt = J.tilt * (1 - lk) + (-.25 + Math.sin(state.t * 9) * .06) * lk; if (lk) { J.hd[1] -= 3 * lk; J.sh[1] -= 1.5 * lk; } // Umschauen: Kopf hoch
+  const jacket = '#d8d1a6', jacketD = '#6d6a40', jean = '#4b6285', jeanD = '#223149', shoe = '#6b4328', glove = '#f5f1e8', skin = '#e9b78e', hair = '#5a3a26', beard = '#43291a';
+  ctx.save(); ctx.translate(x, y); ctx.scale(s * o.flip * (o.sx || 1), s * (o.sy || 1)); ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+  kShadow(8, 0, 40);
+  const arm = (hnd, front) => {
+    const ex = (J.sh[0] + hnd[0]) / 2 - 3, ey = (J.sh[1] + hnd[1]) / 2 + 6;
+    kLimbs([[J.sh[0], J.sh[1], 5.6, ex, ey, 4.8], [ex, ey, 4.8, hnd[0], hnd[1], 4]], front ? jacket : '#c4bd92', jacketD, 1.8);
+    ctx.beginPath(); ctx.ellipse(hnd[0], hnd[1], 5.2, 4.6, 0, 0, TAU); kInk(glove, 1.8);
+  };
+  const leg = (f, kn) => { kLimbs([[J.hip[0], J.hip[1], 8, kn[0], kn[1], 6.4], [kn[0], kn[1], 6.4, f[0], f[1] - 3, 5.2]], jean, jeanD, 1.8); ctx.beginPath(); ctx.ellipse(f[0] + 5, f[1], 10.5, 5.2, 0, 0, TAU); kInk(shoe, 1.8); };
+  arm(J.hB, false); leg(J.fB, J.kB);
+  // Körper: Jacke mit Flecken, Gürtel, Schraubenschlüssel
+  ctx.save(); kCap(J.hip[0], J.hip[1], 13.5, J.sh[0], J.sh[1], 12); ctx.fillStyle = jacket; ctx.fill(); ctx.clip();
+  ctx.fillStyle = 'rgba(112,110,58,.7)'; [[.2, .3, 6, 4], [.6, .6, 5, 3.4], [.45, .1, 4, 3], [.8, .35, 3.6, 3]].forEach(([u, v, rx, ry]) => { ctx.beginPath(); ctx.ellipse(J.hip[0] + (J.sh[0] - J.hip[0]) * u - 3, J.hip[1] + (J.sh[1] - J.hip[1]) * u - 6 + v * 12, rx, ry, .5, 0, TAU); ctx.fill(); });
+  ctx.strokeStyle = 'rgba(80,76,40,.5)'; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(J.hip[0] + 2, J.hip[1] - 12); ctx.quadraticCurveTo((J.hip[0] + J.sh[0]) / 2 - 4, (J.hip[1] + J.sh[1]) / 2 - 8, J.sh[0] - 4, J.sh[1] + 6); ctx.stroke();
+  ctx.fillStyle = '#3a3a48'; ctx.save(); ctx.translate(J.hip[0], J.hip[1]); ctx.rotate(Math.atan2(J.sh[1] - J.hip[1], J.sh[0] - J.hip[0]) + Math.PI / 2); ctx.fillRect(-16, -3, 32, 4); ctx.restore(); ctx.restore();
+  kCap(J.hip[0], J.hip[1], 13.5, J.sh[0], J.sh[1], 12); ctx.strokeStyle = jacketD; ctx.lineWidth = 2; ctx.stroke();
+  ctx.save(); ctx.translate(J.hip[0] - 3, J.hip[1] + 1); ctx.rotate(Math.PI * .86); ctx.beginPath(); ctx.roundRect(0, -2, 24, 4, 2); kInk('#8d939c', 1.6); ctx.beginPath(); ctx.arc(26, 0, 4.4, 0, TAU); ctx.strokeStyle = KC.ink; ctx.lineWidth = 4.4; ctx.stroke(); ctx.strokeStyle = '#8d939c'; ctx.lineWidth = 2; ctx.stroke(); ctx.restore(); // Schraubenschlüssel
+  leg(J.fA, J.kA);
+  // Hals, Kopf: Bart, Braue, zusammengekniffene Augen
+  kLimbs([[J.sh[0], J.sh[1], 5, J.hd[0] - 2, J.hd[1] + 6, 4.4]], skin, '#8a5a3a', 1.6);
+  ctx.save(); ctx.translate(J.hd[0], J.hd[1]); ctx.rotate(J.tilt);
+  ctx.beginPath(); ctx.arc(-3, -2, 10.5, 0, TAU); kInk(hair, 1.8);
+  ctx.beginPath(); ctx.arc(0, 0, 9.4, 0, TAU); kInk(skin, 1.8);
+  ctx.beginPath(); ctx.moveTo(-8, -3); ctx.quadraticCurveTo(-2, -12, 8, -7); ctx.quadraticCurveTo(2, -6, -3, -3); ctx.closePath(); ctx.fillStyle = hair; ctx.fill(); // Haartolle
+  ctx.beginPath(); ctx.moveTo(-9, 2); ctx.quadraticCurveTo(-8, 11, 1, 11); ctx.quadraticCurveTo(10, 10, 9, 3); ctx.quadraticCurveTo(5, 6, 1, 4); ctx.quadraticCurveTo(-4, 6, -9, 2); ctx.closePath(); kInk(beard, 1.6); // Bart
+  ctx.beginPath(); ctx.ellipse(-3, 1, 2.4, 3.6, 0, 0, TAU); kInk(skin, 1.3); // Ohr
+  ctx.beginPath(); ctx.moveTo(9, -1); ctx.lineTo(13, 3); ctx.lineTo(8.5, 4); ctx.closePath(); kInk(skin, 1.4); // Nase
+  const st = o.strain || 0;
+  if (st > .3) { ctx.strokeStyle = KC.ink; ctx.lineWidth = 1.8; ctx.beginPath(); ctx.moveTo(2, -2.5); ctx.lineTo(7, -1); ctx.stroke(); } else { ctx.beginPath(); ctx.ellipse(4.6, -1.8, 2.8, 2.1, 0, 0, TAU); ctx.fillStyle = '#fff'; ctx.fill(); ctx.strokeStyle = KC.ink; ctx.lineWidth = 1; ctx.stroke(); ctx.beginPath(); ctx.arc(5.6, -1.4, 1.2, 0, TAU); ctx.fillStyle = KC.ink; ctx.fill(); }
+  ctx.strokeStyle = KC.ink; ctx.lineWidth = 2.2; ctx.beginPath(); ctx.moveTo(0, -6.5 + st); ctx.lineTo(8, -3.6 - st * .5); ctx.stroke(); // grimmige Braue
+  ctx.restore();
+  arm(J.hA, true);
+  if (o.loot) { ctx.save(); ctx.translate(J.hA[0] + 2, J.hA[1] + 9); ctx.beginPath(); ctx.moveTo(-6, -8); ctx.quadraticCurveTo(-13, 2, -7, 8); ctx.lineTo(7, 8); ctx.quadraticCurveTo(13, 2, 6, -8); ctx.closePath(); kInk('#9a7a44', 2); ctx.beginPath(); ctx.ellipse(0, -9, 6, 2.6, 0, 0, TAU); kInk('#6a4a24', 1.6); ctx.beginPath(); ctx.arc(0, 1, 4.2, 0, TAU); kInk('#ffd24a', 1.4); ctx.restore(); } // Beutesack
+  ctx.restore();
+}
+function drawErich() { // wird im Hausversatz (DY) gezeichnet, nach dem Haus: Kamera an der Wand und der Einbrecher selbst
+  const E = ERICH, fw = WINS.find(w => w.kind === 'flap'), T = state.t;
+  if (fw.locked) return;
+  if (state.items.kamera) { // Überwachungskamera über dem Katzentürchen, rotes Lämpchen, bei Besuch REC
+    const cx = fw.cx - 2, cy = 566; ctx.save(); ctx.translate(cx, cy);
+    ctx.fillStyle = '#2a2438'; ctx.fillRect(-2, -10, 4, 8); ctx.beginPath(); ctx.roundRect(-11, -4, 22, 11, 3); kInk('#c8ccd8', 1.8); ctx.beginPath(); ctx.arc(11, 1.5, 4.4, 0, TAU); kInk('#1c2236', 1.6); dsBlob(12.4, .2, 1.4, 1.4, 'rgba(255,255,255,.8)');
+    const on = E.st !== 'idle', led = on ? (Math.sin(T * 12) > 0 ? 1 : .25) : .45 + .35 * Math.sin(T * 2.4);
+    ctx.globalAlpha = led; ctx.beginPath(); ctx.arc(-6, 1, 2, 0, TAU); ctx.fillStyle = '#ff3a3a'; ctx.fill(); ctx.globalAlpha = 1;
+    if (on && E.st !== 'inside') { ctx.font = KFONT(8); ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.strokeStyle = KC.ink; ctx.strokeText('REC', 28, 2); ctx.fillStyle = Math.sin(T * 12) > 0 ? '#ff5a5a' : '#ffd0d0'; ctx.fillText('REC', 28, 2); }
+    ctx.restore();
+  }
+  if (E.st === 'idle') return;
+  if (E.st === 'inside') { // innen: Taschenlampe flackert hinter dem Türchen, ein Rascheln
+    const r = winRect(fw); ctx.save(); winPath(fw); ctx.clip(); const g = ctx.createRadialGradient(fw.cx + Math.sin(T * 6) * 8, r.y + r.h * .6, 2, fw.cx, r.y + r.h * .6, 26); g.addColorStop(0, 'rgba(255,240,160,.8)'); g.addColorStop(1, 'rgba(255,240,160,0)'); ctx.fillStyle = g; ctx.fillRect(r.x, r.y, r.w, r.h); ctx.restore();
+    ctx.font = KFONT(11); ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.strokeStyle = KC.ink; const dots = '.'.repeat(1 + Math.floor(T * 4) % 3); ctx.strokeText(dots, fw.cx, 560); ctx.fillStyle = '#ffe9a0'; ctx.fillText(dots, fw.cx, 560);
+    return;
+  }
+  const o = { ph: E.ph, flip: E.flip, loot: E.loot, a: 'sneak', look: E.look }, p = fw.cx - 20;
+  if (E.st === 'kneel') { o.a = 'sneak'; o.b = 'kneel'; o.k = dEase(dClamp(E.t / .25)); o.strain = 0; }
+  else if (E.st === 'enter') { o.a = 'kneel'; o.b = 'crawl'; o.k = dEase(dClamp(E.t / .3)); const q = Math.sin(Math.PI * dClamp((E.x - 96) / 66)); o.sx = 1 + .07 * q; o.sy = 1 - .1 * q; o.strain = q; }
+  else if (E.st === 'exit') { o.a = 'crawl'; const q = Math.sin(Math.PI * dClamp((ER_X1 - E.x) / 66)); o.sx = 1 + .07 * q; o.sy = 1 - .1 * q; o.strain = q; }
+  else if (E.st === 'flee') { o.a = 'crawl'; o.b = 'sneak'; o.k = dEase(dClamp(E.t / .3)); }
+  ctx.save(); if (E.st === 'enter' || E.st === 'exit') { ctx.beginPath(); ctx.rect(-40, 400, p + 40, 400); ctx.clip(); } // hinter der Wandöffnung nicht mehr sichtbar
+  kErich(E.x, ER_Y, ER_S, o); ctx.restore();
+  if (E.st === 'enter' || E.st === 'exit') { const r = winRect(fw); ctx.fillStyle = 'rgba(150,200,240,.42)'; ctx.fillRect(r.x + 2, r.y + 4, r.w - 4, r.h - 8); } // Rauchglas der Klappe vor dem Körper
+}
 function drawScene(dt) {
   ctx.clearRect(0, 0, W, H);
   ctx.drawImage(bgCanvas, 0, 0, W, H);
@@ -2728,6 +2860,8 @@ function drawScene(dt) {
   drawButterflies();
   drawGift();
   ctx.save(); ctx.translate(0, DY); drawHouse(); ctx.restore(); // Haus, Fenster und Napf sitzen unten, mit Versatz
+  drawFrontCats();
+  ctx.save(); ctx.translate(0, DY); drawErich(); ctx.restore();
   drawWeather(dt);
   drawFx();
   drawDeaths(dt);
@@ -3314,9 +3448,7 @@ function drawBonus(dt) {
     ctx.fillStyle = KC.ink; ctx.fillRect(10, 42, 340, 12); ctx.fillStyle = B.left < (B.finale ? 4 : 8) ? KC.red : KC.gold; ctx.fillRect(12, 44, Math.max(8, 336 * B.left / B.total), 8);
   }
   if (B.phase === 'play') {
-    ctx.fillStyle = 'rgba(40,24,12,.72)'; ctx.beginPath(); ctx.roundRect(316, 6, 36, 30, 10); ctx.fill();
-    line(327, 15, 341, 27, '#fff', 3); line(341, 15, 327, 27, '#fff', 3);
-    ui.push({ x: 310, y: 0, w: 50, h: 40, act: () => { if (B.finale) { finishFinale(); return; } leaveBonus(); } }); // X: zurück ins Minispiel-Menü
+    uiButton(258, 6, 96, 32, tr('Verlassen'), () => { if (B.finale) { finishFinale(); return; } leaveBonus(); }, { size: 12, color: '#e8dcf8' }); // zurück ins Minispiel-Menü
   }
   // Overlays
   if (B.phase !== 'play') { ctx.fillStyle = 'rgba(25,14,8,.45)'; ctx.fillRect(0, 0, W, H); }
@@ -4380,16 +4512,16 @@ function duelMoves(cat) { // je Katze drei Plätze: [Grundfähigkeit, ab Stufe 2
 function startDuel(kind, level, tier = 'big') { // tier: small / medium / big (Boss am Ende des Levels)
   const B = DUEL_BOSS[kind] || DUEL_BOSS.karton, lv = level ?? state.level, T = TIER[tier];
   const mini = tier !== 'big'; // ohne Spezial, ohne Doppelgänger
-  Object.assign(DUEL, { phase: 'intro', t: 0, kind, level: lv, tier, mini, sz: T.sz, taunt: null, segen: 0, inspect: null, smoke: 0, spAnim: null, mp: DUEL_MP.start, round: 1, who: 0, picks: [], steps: [], cur: null, stepT: 0, msg: '', msgT: 0, fx: [], shake: 0, flash: 0, reward: 0 });
+  Object.assign(DUEL, { phase: 'intro', t: 0, kind, level: lv, tier, mini, sz: T.sz, taunt: null, segen: 0, inspect: null, smoke: 0, spAnim: null, proj: [], parts: [], landed: false, mp: DUEL_MP.start, round: 1, who: 0, picks: [], steps: [], cur: null, stepT: 0, msg: '', msgT: 0, fx: [], shake: 0, flash: 0, reward: 0 });
   const hp = Math.round(B.hp * D().hp * T.hp);
-  DUEL.boss = { kind, name: B.name + T.tag, hp, max: hp, slow: null, freeze: 0, blind: 0, decoys: 0, summoned: 0, turn: 0, armorOn: !!B.armor, guardT: 0, hitT: 0, atkT: 0, defeated: false };
+  DUEL.boss = { kind, name: B.name + T.tag, hp, max: hp, slow: null, freeze: 0, blind: 0, decoys: 0, summoned: 0, turn: 0, armorOn: !!B.armor, guardT: 0, hitT: 0, atkT: 0, defeated: false, look: 0, anim: null };
   DUEL.cats = state.cats.map(c => ({ type: c.type, lvl: c.lvl, path: c.path, max: 0, hp: 0, guard: false, armorT: 0, shield: 0, skip: 0, frozenNext: 0, atkT: 0, hitT: 0, hop: 0, down: false }));
   DUEL.cats.forEach(c => { c.max = duelMaxHp(c); c.hp = c.max; });
   Snd.mode('boss', true); setScreen('duel');
 }
 const duelAlive = () => DUEL.cats.filter(c => !c.down);
 const duelFx = (x, y, text, col) => DUEL.fx.push({ x, y, text, col: col || '#fff', t: 1.3, age: 0, y0: y });
-const duelBossXY = () => ({ x: 180, y: 262 });
+const duelBossXY = () => ({ x: 180, y: 272 });
 const duelCatX = i => 64 + i * 116;
 function duelSay(text, t = 1.6) { DUEL.msg = text; DUEL.msgT = t; }
 function duelHurtBoss(raw, o = {}) { // Schaden an Ferdi: Rüstung, Doppelgänger, Anzeige
@@ -4398,6 +4530,7 @@ function duelHurtBoss(raw, o = {}) { // Schaden an Ferdi: Rüstung, Doppelgänge
   let d = raw * rr(.88, 1.12); if (b.armorOn) d *= 1 - B.armor; if (b.guardT > 0) d *= 1 / 3;
   d = Math.max(1, Math.round(d)); b.hp = Math.max(0, b.hp - d); Snd.intensity(1 - b.hp / b.max); b.hitT = .45; DUEL.shake = Math.max(DUEL.shake, o.crit ? .5 : .3); DUEL.flash = .15; juiceHit(o.crit ? 0.12 : 0.07, o.crit ? 0.5 : 0.3);
   duelFx(p.x + rr(-20, 20), p.y - 80, (o.crit ? 'Krit! ' : '') + '−' + d, o.crit ? '#ffd24a' : '#fff');
+  { const tp = TIERPAL[DUEL.tier], hp0 = DUEL_HB[b.kind][1] * DUEL.sz / 3.1 * DUEL_KSC[b.kind]; if (b.kind === 'karton') duelParts(p.x, p.y - hp0 * .5, o.crit ? 9 : 5, { kind: 'bit', col: tp.main, r: 5, sp: 110 }); else duelParts(p.x, p.y - hp0 * .55, o.crit ? 8 : 4, { kind: 'star', col: '#ffe24a', r: 5, sp: 100 }); }
   if (b.armorOn && b.hp <= b.max * .5) { b.armorOn = false; duelFx(p.x, p.y - 120, b.kind === 'karton' ? 'Karton platzt!' : 'Anzug platzt!', '#ffe27a'); Snd.play('alarm'); }
   return d;
 }
@@ -4447,30 +4580,45 @@ function duelHurtCat(ci, raw) {
   if (c.hp <= 0) { c.down = true; duelFx(duelCatX(ci), 310, tr('{n} ist k.o.!', { n: CATS[c.type].name }), '#ffb3b3'); }
 }
 function duelSpecial() { // Spezialfertigkeit des Hauptbosses: jede Welt hat ihre eigene, mit eigener Optik (duelDrawSpecialFx)
-  const b = DUEL.boss, B = DUEL_BOSS[b.kind], alive = DUEL.cats.map((c, i) => i).filter(i => !DUEL.cats[i].down);
-  b.atkT = .6; Snd.play('alarm'); DUEL.spAnim = { kind: b.kind, t: 1.4 }; duelSay(tr(b.name) + ': ' + tr(B.sp.name) + '!', 2);
-  if (b.kind === 'karton') { b.guardT = 1; duelFx(180, 150, tr('Kartonschutz!'), '#c9a06a'); }
-  if (b.kind === 'fritz') { DUEL.smoke = 1; duelFx(180, 150, tr('Rauch!'), '#cfcfd8'); }
-  if (b.kind === 'waschbaer') { alive.forEach(i => { DUEL.cats[i].shield = 0; duelHurtCat(i, B.all * .8); }); }
-  if (b.kind === 'schneemann' && alive.length) { const t = alive[Math.floor(Math.random() * alive.length)]; DUEL.cats[t].frozenNext = 1; duelFx(duelCatX(t), 300, tr('Eingefroren!'), '#bfe6ff'); }
-  if (b.kind === 'gross' && alive.length) { const low = alive.slice().sort((a, z) => DUEL.cats[a].hp - DUEL.cats[z].hp)[0]; duelHurtCat(low, B.hit * 1.8); const h = Math.round(b.max * .05); b.hp = Math.min(b.max, b.hp + h); duelFx(180, 130, '+' + h, '#8dff9b'); }
+  const b = DUEL.boss, B = DUEL_BOSS[b.kind]; Snd.play('alarm'); duelSay(tr(b.name) + ': ' + tr(B.sp.name) + '!', 2);
+  return duelAnim('special', { hit: () => {
+    const alive = DUEL.cats.map((c, i) => i).filter(i => !DUEL.cats[i].down); DUEL.spAnim = { kind: b.kind, t: 1.4 }; DUEL.shake = Math.max(DUEL.shake, .35);
+    if (b.kind === 'karton') { b.guardT = 1; duelFx(180, 150, tr('Kartonschutz!'), '#c9a06a'); }
+    if (b.kind === 'fritz') { DUEL.smoke = 1; duelFx(180, 150, tr('Rauch!'), '#cfcfd8'); }
+    if (b.kind === 'waschbaer') { alive.forEach(i => { DUEL.cats[i].shield = 0; duelHurtCat(i, B.all * .8); }); }
+    if (b.kind === 'schneemann' && alive.length) { const t = alive[Math.floor(Math.random() * alive.length)]; DUEL.cats[t].frozenNext = 1; duelFx(duelCatX(t), 300, tr('Eingefroren!'), '#bfe6ff'); }
+    if (b.kind === 'gross' && alive.length) { const low = alive.slice().sort((a, z) => DUEL.cats[a].hp - DUEL.cats[z].hp)[0]; duelHurtCat(low, B.hit * 1.8); const h = Math.round(b.max * .05); b.hp = Math.min(b.max, b.hp + h); duelFx(180, 130, '+' + h, '#8dff9b'); }
+  } });
 }
 function duelBossSteps() {
   const st = [], b = DUEL.boss, B = DUEL_BOSS[b.kind];
   st.push({ d: .3, run: () => { if (DUEL.phase === 'over') return; DUEL.phase = 'act'; } });
-  st.push({ d: 1.5, run: () => {
-    if (b.hp <= 0) return; b.turn++; b.enrage = b.hp <= b.max * .33; const p = duelBossXY();
-    if (b.freeze > 0) { duelSay(tr('{n} ist eingefroren und setzt aus!', { n: tr(b.name) })); return; }
-    if (B.summon && !DUEL.mini && ((b.summoned < 1 && b.hp <= b.max * .66) || (b.summoned < 2 && b.hp <= b.max * .33))) { b.summoned++; b.decoys = 2; duelSay(tr('{n} ruft Doppelgänger!', { n: tr(b.name) })); duelFx(p.x, p.y - 110, '2 Doppelgänger!', '#ffe27a'); Snd.play('alarm'); b.atkT = .6; return; }
-    if (!DUEL.mini && B.sp && b.turn % 4 === 0) { duelSpecial(); return; }
+  const stp = { d: 1.5, run: () => {
+    stp.d = 1.5; if (b.hp <= 0) return; b.turn++; b.enrage = b.hp <= b.max * .33; const p = duelBossXY();
+    if (b.freeze > 0) { duelSay(tr('{n} ist eingefroren und setzt aus!', { n: tr(b.name) })); stp.d = 1.0; return; }
+    if (B.summon && !DUEL.mini && ((b.summoned < 1 && b.hp <= b.max * .66) || (b.summoned < 2 && b.hp <= b.max * .33))) {
+      b.summoned++; duelSay(tr('{n} ruft Doppelgänger!', { n: tr(b.name) })); Snd.play('alarm');
+      stp.d = duelAnim('summon', { hit: () => { b.decoys = 2; duelFx(p.x, p.y - 110, '2 Doppelgänger!', '#ffe27a'); DUEL.shake = Math.max(DUEL.shake, .2); } }) + .2; return;
+    }
+    if (!DUEL.mini && B.sp && b.turn % 4 === 0) { stp.d = duelSpecial() + .2; return; }
     const big = b.turn % 3 === 0, alive = DUEL.cats.map((c, i) => i).filter(i => !DUEL.cats[i].down);
     if (!alive.length) return;
-    b.atkT = .6; Snd.play('alarm');
-    if (b.blind > 0 && Math.random() < .6) { duelSay(tr(b.name) + ': ' + tr(big ? B.big : B.atk) + '… ' + tr('Daneben!')); duelFx(p.x, p.y - 100, 'Daneben!', '#ffe27a'); return; }
-    if (big) { duelSay(tr(b.name) + ': ' + tr(B.big) + '! ' + tr('Trifft alle!')); alive.forEach(i => duelHurtCat(i, B.all)); }
-    else { const low = alive.slice().sort((a, c) => DUEL.cats[a].hp - DUEL.cats[c].hp)[0], tc = DUEL.taunt && alive.includes(DUEL.taunt.ci) && Math.random() < .7 ? DUEL.taunt.ci : null, t = tc !== null ? tc : Math.random() < .4 ? low : alive[Math.floor(Math.random() * alive.length)]; duelSay(tr(b.name) + ': ' + tr(B.atk) + ' → ' + CATS[DUEL.cats[t].type].name + '!'); duelHurtCat(t, B.hit); }
-  } });
-  st.push({ d: .1, run: () => { if (!duelAlive().length) duelLose(); } });
+    const low = alive.slice().sort((a, c) => DUEL.cats[a].hp - DUEL.cats[c].hp)[0], tc = DUEL.taunt && alive.includes(DUEL.taunt.ci) && Math.random() < .7 ? DUEL.taunt.ci : null, t = tc !== null ? tc : Math.random() < .4 ? low : alive[Math.floor(Math.random() * alive.length)];
+    Snd.play('alarm');
+    if (b.blind > 0 && Math.random() < .6) { // geblendet: schlägt daneben
+      duelSay(tr(b.name) + ': ' + tr(big ? B.big : B.atk) + '… ' + tr('Daneben!'));
+      stp.d = duelAnim('miss', { tx: duelCatX(t) + 70, go: () => duelBossLaunch(b.kind, 'miss', t, alive), hit: () => duelFx(p.x, p.y - 100, 'Daneben!', '#ffe27a') }) + .2; return;
+    }
+    if (big) {
+      duelSay(tr(b.name) + ': ' + tr(B.big) + '! ' + tr('Trifft alle!'));
+      stp.d = duelAnim('big', { go: () => duelBossLaunch(b.kind, 'big', t, alive), hit: () => { DUEL.shake = Math.max(DUEL.shake, .5); alive.forEach(i => { duelHurtCat(i, B.all); duelHitFx(b.kind, 'big', i); }); } }) + .2;
+    } else {
+      duelSay(tr(b.name) + ': ' + tr(B.atk) + ' → ' + CATS[DUEL.cats[t].type].name + '!');
+      stp.d = duelAnim('atk', { tx: duelCatX(t), go: () => duelBossLaunch(b.kind, 'atk', t, alive), hit: () => { if (DUEL.cats[t].down) return; duelHurtCat(t, B.hit); duelHitFx(b.kind, 'atk', t); } }) + .2;
+    }
+  } };
+  st.push(stp);
+  st.push({ d: .1, run: () => { duelFlushAnim(); if (!duelAlive().length) duelLose(); } });
   return st;
 }
 function duelRoundEnd() {
@@ -4498,62 +4646,501 @@ function duelBack() { DUEL.inspect = null; let pv = DUEL.who - 1; while (pv >= 0
 
 // ---------- Zeichnen ----------
 function duelBar(x, y, w, h, f, col, back) { ctx.fillStyle = KC.ink; ctx.fillRect(x - 2, y - 2, w + 4, h + 4); ctx.fillStyle = back || '#4a2a3a'; ctx.fillRect(x, y, w, h); ctx.fillStyle = col; ctx.fillRect(x, y, w * Math.max(0, Math.min(1, f)), h); ctx.fillStyle = 'rgba(255,255,255,.3)'; ctx.fillRect(x, y, w * Math.max(0, Math.min(1, f)), h * .35); }
-function duelDrawArms(b) { // Karton-Boss: Arme schieben sich aus den Seiten der Box und werfen Kartonstücke nach unten (nur Optik, Schaden bleibt wie bisher)
-  if (b.atkT <= 0) return;
-  const p = 1 - b.atkT / .6, up = Math.min(1, p / .3), back = Math.max(0, Math.min(1, (p - .7) / .3)), k = up * (1 - back);
-  [-1, 1].forEach(sd => {
-    const sx = sd * 46, sy = -14, ex = sd * (46 + 52 * k), ey = -14 - 44 * k + Math.sin(state.t * 14 + sd) * 2.5 * k;
-    ctx.beginPath(); ctx.moveTo(sx, sy); ctx.quadraticCurveTo((sx + ex) / 2 + sd * 6, sy - 16 * k, ex, ey); ctx.lineWidth = 13; ctx.strokeStyle = KC.ink; ctx.stroke();
-    ctx.lineWidth = 9; ctx.strokeStyle = '#b98a52'; ctx.stroke();
-    ctx.save(); ctx.translate(ex, ey); ctx.rotate(sd * .3 + Math.sin(state.t * 10) * .15 * k); ctx.beginPath(); ctx.roundRect(-9, -9, 18, 18, 3); kInk('#c9a06a', 2.2); ctx.restore(); // Kartonhand
-  });
-  if (p > .4 && p < 1) { // zwei Kartonstücke fliegen zu den Katzen
-    const q = Math.min(1, (p - .4) / .55);
-    for (let i = 0; i < 2; i++) { const sd = i ? 1 : -1, x = sd * (30 + 60 * q), y = -10 + q * 190; ctx.save(); ctx.translate(x, y); ctx.rotate(q * 9 * sd); ctx.beginPath(); ctx.rect(-8, -8, 16, 16); kInk('#c9a06a', 2); ctx.restore(); }
+// ---------- Boss-Animation im Duell: Atmung, Anlauf, Schlag, Geschosse, Treffer, Niederlage ----------
+const TIERPAL = { // Farbe je Stufe: klein hellgrün (Papier), mittel gelb, groß rot (und er brennt)
+  small:  { main: '#b9e8a4', dark: '#5f9a58', tint: '#7fe08a', ta: .22 },
+  medium: { main: '#eac24c', dark: '#a37c14', tint: '#ffd23c', ta: .24 },
+  big:    { main: '#cf4a2e', dark: '#5e170c', tint: '#ff4a2a', ta: .28 }
+};
+const dClamp = x => Math.max(0, Math.min(1, x));
+const dEase = x => x < .5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
+const dBack = x => 1 + 2.9 * Math.pow(x - 1, 3) + 1.9 * Math.pow(x - 1, 2);
+const dLerp = (a, b, f) => a + (b - a) * f;
+const DUEL_ANIM = { // dur = Länge, launch = Moment des Abwurfs/Schlags, hitAt = Moment der Wirkung
+  atk: { dur: 1.3, launch: .38, hitAt: .58 }, big: { dur: 1.8, launch: .36, hitAt: .74 }, special: { dur: 1.8, launch: .34, hitAt: .55 },
+  summon: { dur: 1.5, launch: .34, hitAt: .5 }, miss: { dur: 1.3, launch: .38, hitAt: .58 }
+};
+const DUEL_MELEE = { karton: 1, gross: 1, waschbaer: .9, fritz: .25, schneemann: .2 }; // wie weit der Boss beim Angriff nach vorn springt
+const DUEL_KSC = { karton: 1, waschbaer: .88, schneemann: .85, gross: .88, fritz: .86 };   // Größenfaktor, damit hohe Figuren nicht in die Anzeige ragen
+const DUEL_ORIGIN = { karton: [0, -70], fritz: [26, -92], waschbaer: [0, -88], schneemann: [24, -104], gross: [0, -96] }; // Abwurfpunkt über dem Fuß des Bosses
+const DUEL_HB = { karton: [62, 112], fritz: [58, 165], waschbaer: [56, 170], schneemann: [46, 172], gross: [62, 170] }; // halbe Breite, Höhe in Pixeln bei Größe 3,1
+function duelAnim(kind, o = {}) { // startet eine Boss-Animation; go = Abwurf (nur Optik), hit = Wirkung im Treffermoment
+  const b = DUEL.boss, T = DUEL_ANIM[kind];
+  b.anim = { kind, t: 0, dur: T.dur, launch: T.launch, hitAt: T.hitAt, tx: o.tx === undefined ? 180 : o.tx, go: o.go || null, hit: o.hit || null, done: false, launched: false };
+  return T.dur;
+}
+function duelFlushAnim() { const a = DUEL.boss.anim; if (a && !a.done) { a.done = true; a.hit && a.hit(); } } // Wirkung auch ohne gezeichnetes Bild
+const duelCatXY = i => ({ x: duelCatX(i), y: 352 });
+function duelParts(x, y, n, o = {}) { // Teilchen: dot, bit (drehendes Stück), puff (Wolke), star
+  for (let i = 0; i < n; i++) DUEL.parts.push({ x, y, vx: rr(-1, 1) * (o.sp || 90), vy: -rr(.2, 1) * (o.up === undefined ? 120 : o.up) + (o.vy || 0), g: o.g === undefined ? 420 : o.g, life: (o.life || .7) * rr(.8, 1.2), t: 0, kind: o.kind || 'dot', col: o.col || '#fff', r: (o.r || 4) * rr(.7, 1.3), rot: rr(0, 6), vr: rr(-9, 9), grow: o.grow || 0 });
+}
+function duelRing(x, y, r2, col, life = .55, flat = 1) { DUEL.parts.push({ x, y, vx: 0, vy: 0, g: 0, life, t: 0, kind: 'ring', col, r: 6, r2, flat, rot: 0, vr: 0, grow: 0 }); }
+function duelSlash(x, y, col = '#ffe9e0') { DUEL.parts.push({ x, y, vx: 0, vy: 0, g: 0, life: .45, t: 0, kind: 'slash', col, r: 26, r2: 0, rot: 0, vr: 0, grow: 0 }); }
+function duelShoot(kind, x1, y1, o = {}) { // Geschoss vom Boss zu einer Katze
+  const b = DUEL.boss, p = duelBossXY(), og0 = DUEL_ORIGIN[b.kind] || [0, -80], osc = DUEL.sz / 3.1 * DUEL_KSC[b.kind], og = [og0[0] * osc, og0[1] * osc];
+  DUEL.proj.push({ kind, x0: p.x + og[0], y0: p.y + og[1], x1, y1, t: -(o.delay || 0), dur: o.dur || .3, arc: o.arc === undefined ? 70 : o.arc, rot: rr(0, 6), vr: rr(-10, 10), big: !!o.big, onLand: o.onLand || null });
+}
+function duelDrawProj(dt) {
+  for (let i = DUEL.proj.length - 1; i >= 0; i--) {
+    const q = DUEL.proj[i]; q.t += dt; if (q.t < 0) continue;
+    const f = dClamp(q.t / q.dur), x = dLerp(q.x0, q.x1, f), y = dLerp(q.y0, q.y1, f) - Math.sin(Math.PI * f) * q.arc, r = q.rot + q.vr * q.t, tp = TIERPAL[DUEL.tier];
+    ctx.save(); ctx.translate(x, y); ctx.rotate(r); ctx.lineJoin = 'round';
+    if (q.kind === 'bit') { ctx.beginPath(); ctx.rect(-8, -8, 16, 16); kInk(tp.main, 2.2); ctx.strokeStyle = tp.dark; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(-8, 0); ctx.lineTo(8, 0); ctx.stroke(); }
+    else if (q.kind === 'sausage') { ctx.beginPath(); ctx.roundRect(-11, -4.5, 22, 9, 4.5); kInk('#b6502c', 2.2); ctx.strokeStyle = '#6a2a14'; ctx.lineWidth = 1.2; [-5, 0, 5].forEach(gx => { ctx.beginPath(); ctx.moveTo(gx, -4); ctx.lineTo(gx, 4); ctx.stroke(); }); }
+    else if (q.kind === 'fire') { ctx.rotate(-r); ctx.globalCompositeOperation = 'lighter'; const g = ctx.createRadialGradient(0, 0, 2, 0, 0, 22); g.addColorStop(0, 'rgba(255,240,150,1)'); g.addColorStop(.4, 'rgba(255,140,30,.9)'); g.addColorStop(1, 'rgba(255,60,10,0)'); ctx.fillStyle = g; ctx.fillRect(-24, -24, 48, 48); ctx.globalCompositeOperation = 'source-over'; }
+    else if (q.kind === 'can') { ctx.beginPath(); ctx.roundRect(-13, -13, 26, 30, 3); kInk('#8c93a6', 2.4); ctx.beginPath(); ctx.roundRect(-15, -17, 30, 6, 3); kInk('#a8afc2', 2.2); ctx.strokeStyle = 'rgba(20,20,40,.4)'; ctx.lineWidth = 1.4; [-6, 0, 6].forEach(gx => { ctx.beginPath(); ctx.moveTo(gx, -9); ctx.lineTo(gx, 14); ctx.stroke(); }); }
+    else if (q.kind === 'snow') { ctx.beginPath(); ctx.arc(0, 0, q.big ? 12 : 9, 0, TAU); kInk('#f4fbff', 2.4); ctx.fillStyle = 'rgba(120,150,220,.3)'; ctx.beginPath(); ctx.arc(2, 2, q.big ? 7 : 5, 0, TAU); ctx.fill(); }
+    ctx.restore();
+    if (q.kind === 'fire' && Math.random() < .6) duelParts(x, y, 1, { kind: 'dot', col: '#ff9a2a', sp: 20, up: 10, g: -40, life: .3, r: 4 });
+    if (f >= 1) { DUEL.proj.splice(i, 1); q.onLand && q.onLand(q); }
   }
 }
-function duelDrawSpecialFx(dt) { // Optik der Spezialfertigkeit, 1,4 Sekunden lang über dem Boss
-  const a = DUEL.spAnim; if (!a || a.t <= 0) return; a.t -= dt;
-  const k = 1 - a.t / 1.4, p = duelBossXY(); ctx.save(); ctx.globalAlpha = Math.min(1, a.t * 2);
-  if (a.kind === 'karton') { const x = (1 - k) * 90; ctx.fillStyle = '#c9a06a'; ctx.fillRect(p.x - 120 + x, p.y - 130, 60, 140); ctx.fillRect(p.x + 60 - x, p.y - 130, 60, 140); } // Klappen schließen sich
-  else if (a.kind === 'fritz') { for (let i = 0; i < 9; i++) { const q = (k + i / 9) % 1, x = p.x + Math.sin(i * 2.1) * 60, y = p.y - 60 - q * 120; ctx.fillStyle = 'rgba(200,200,210,.5)'; ctx.beginPath(); ctx.arc(x, y, 8 + q * 14, 0, TAU); ctx.fill(); } } // Rauchwolken steigen auf
-  else if (a.kind === 'waschbaer') { ctx.strokeStyle = '#8fd46a'; ctx.lineWidth = 5; for (let i = 0; i < 3; i++) { ctx.beginPath(); ctx.arc(p.x, p.y - 40, 40 + k * 110 + i * 14, 0, TAU); ctx.stroke(); } } // Schockwelle aus dem Müll
-  else if (a.kind === 'schneemann') { ctx.fillStyle = '#ffffff'; for (let i = 0; i < 16; i++) { const q = (k * 1.4 + i / 16) % 1, x = p.x - 120 + (i * 37) % 240, y = p.y - 150 + q * 280; ctx.beginPath(); ctx.arc(x, y, 2.6, 0, TAU); ctx.fill(); } } // Schnee fällt
-  else { ctx.strokeStyle = '#ffd24a'; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(p.x, p.y - 40, 40 + k * 120, 0, TAU); ctx.stroke(); } // goldener Ring
-  ctx.restore();
-}
-function duelTint() { // Box-Farbe je Stufe: klein hellgrün (Papier), mittel gelb (härterer Karton)
-  const w = DUEL.sz * 30, h = DUEL.sz * 34, col = { small: '#9be8a8', medium: '#ffd23c', big: '#ff4a2a' }[DUEL.tier];
-  ctx.save(); ctx.globalAlpha = DUEL.tier === 'big' ? .28 : .32; ctx.fillStyle = col; ctx.beginPath(); ctx.roundRect(-w / 2, -h * .95, w, h, 8); ctx.fill(); ctx.restore();
-}
-function duelFire() { // der große Boss brennt: Glut steigt auf, roter Schein dahinter
-  const t = state.t; ctx.save(); ctx.globalCompositeOperation = 'lighter';
-  const g = ctx.createRadialGradient(0, -20, 10, 0, -20, 110); g.addColorStop(0, 'rgba(255,90,30,.35)'); g.addColorStop(1, 'rgba(255,40,10,0)'); ctx.fillStyle = g; ctx.fillRect(-120, -130, 240, 240);
-  for (let i = 0; i < 16; i++) { const q = (t * 1.6 + i / 16) % 1, x = Math.sin(i * 1.7 + t * 2) * (46 + 12 * (1 - q)), y = 58 - q * 170, r = 5 + 9 * (1 - q);
-    ctx.globalAlpha = 1 - q; ctx.fillStyle = q < .5 ? '#ffb53a' : '#ff5a22'; ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); }
-  ctx.restore();
-}
-function duelDrawBoss(dt) {
-  const b = DUEL.boss, p = duelBossXY(); b.hitT = Math.max(0, b.hitT - dt); b.atkT = Math.max(0, b.atkT - dt);
-  const hurt = b.hitT > 0 ? Math.sin(b.hitT * 40) * 6 : 0, lunge = b.atkT > 0 ? Math.sin(b.atkT / .6 * Math.PI) * 26 : 0, down = b.defeated ? Math.min(1, DUEL.t * 1.5) : 0;
-  ctx.save(); ctx.translate(p.x + hurt, p.y + lunge + down * 30);
-  if (b.defeated) { ctx.rotate(down * .35); ctx.globalAlpha = 1 - down * .4; }
-  if (b.hitT > 0) ctx.globalAlpha *= .75 + .25 * Math.sin(b.hitT * 60);
-  const e = { type: b.kind, x: 0, y: 0, dx: -1, sz: DUEL.sz, mode: 'front', wait: 0, freeze: b.freeze > 0 ? 1 : 0, pause: 0, hp: Math.max(.01, b.hp / b.max), maxhp: 1, blind: b.blind, hover: 0 };
-  kShadow(0, 0, 70 * DUEL.sz / 3.1); drawEnemy(e, 0, 0, true); duelTint(); if (DUEL.tier === 'big') duelFire();
-  if (b.kind === 'karton') duelDrawArms(b);
-  if (b.blind > 0) for (let i = 0; i < 4; i++) { const a = state.t * 5 + i * 1.6; kStar(Math.cos(a) * 30, -150 + Math.sin(a) * 6, 5, KC.gold, a, 1.2); }
-  if (b.hitT > 0) { // Schmerz: Schmerzzeichen springen vom Körper weg, dazu ein Zucken aus dem Sternenkranz
-    const k = b.hitT / .45, n = 5;
-    for (let i = 0; i < n; i++) { const a = -Math.PI / 2 + (i - (n - 1) / 2) * .55, r = 70 + (1 - k) * 40; kStar(Math.cos(a) * r, -170 - (1 - k) * 20 + Math.sin(i * 2.3) * 6, 6 * k + 2, '#ffe24a', a, 1.6); }
-    ctx.save(); ctx.globalAlpha = k; ctx.strokeStyle = '#ff5a5a'; ctx.lineWidth = 4; ctx.lineCap = 'round';
-    [[-62, -120], [62, -120], [-70, -60], [70, -60]].forEach(([x, y]) => { ctx.beginPath(); ctx.moveTo(x * .8, y * .8); ctx.lineTo(x * 1.05, y * 1.05); ctx.stroke(); }); // Schmerzlinien
+function duelDrawParts(dt) {
+  for (let i = DUEL.parts.length - 1; i >= 0; i--) {
+    const q = DUEL.parts[i]; q.t += dt; if (q.t >= q.life) { DUEL.parts.splice(i, 1); continue; }
+    q.vy += q.g * dt; q.x += q.vx * dt; q.y += q.vy * dt; q.rot += q.vr * dt;
+    const f = q.t / q.life, a = 1 - f; ctx.save(); ctx.globalAlpha = Math.max(0, a); ctx.translate(q.x, q.y);
+    if (q.kind === 'dot') { ctx.beginPath(); ctx.arc(0, 0, q.r * (1 - f * .4), 0, TAU); ctx.fillStyle = q.col; ctx.fill(); }
+    else if (q.kind === 'bit') { ctx.rotate(q.rot); ctx.fillStyle = q.col; ctx.fillRect(-q.r, -q.r * .7, q.r * 2, q.r * 1.4); ctx.strokeStyle = KC.ink; ctx.lineWidth = 1.2; ctx.strokeRect(-q.r, -q.r * .7, q.r * 2, q.r * 1.4); }
+    else if (q.kind === 'puff') { ctx.globalAlpha = Math.max(0, a * .55); ctx.beginPath(); ctx.arc(0, 0, q.r + q.grow * q.t, 0, TAU); ctx.fillStyle = q.col; ctx.fill(); }
+    else if (q.kind === 'star') kStar(0, 0, q.r * (1 - f * .5), q.col, q.rot, 1.2);
+    else if (q.kind === 'ring') { const rr2 = dLerp(q.r, q.r2, 1 - Math.pow(1 - f, 2)); ctx.beginPath(); ctx.ellipse(0, 0, rr2, rr2 * q.flat, 0, 0, TAU); ctx.strokeStyle = q.col; ctx.lineWidth = 5 * a + 1; ctx.stroke(); }
+    else if (q.kind === 'slash') { ctx.strokeStyle = KC.ink; ctx.lineWidth = 7; ctx.lineCap = 'round'; const gr = Math.min(1, f * 4); [-9, 0, 9].forEach(o => { ctx.beginPath(); ctx.moveTo(-16 + o, -26); ctx.lineTo(-16 + o + 30 * gr, -26 + 52 * gr); ctx.stroke(); }); ctx.strokeStyle = q.col; ctx.lineWidth = 3.4; [-9, 0, 9].forEach(o => { ctx.beginPath(); ctx.moveTo(-16 + o, -26); ctx.lineTo(-16 + o + 30 * gr, -26 + 52 * gr); ctx.stroke(); }); }
     ctx.restore();
   }
-  if (b.freeze > 0) { ctx.fillStyle = 'rgba(160,220,255,.35)'; ctx.beginPath(); ctx.ellipse(0, -80, 70, 100, 0, 0, TAU); ctx.fill(); ctx.strokeStyle = 'rgba(255,255,255,.7)'; ctx.lineWidth = 3; ctx.stroke(); }
-  if (b.decoys > 0) { ctx.globalAlpha = .38; ctx.translate(-70, 6); drawEnemy(Object.assign({}, e, { sz: 2.2 }), 0, 0, true); ctx.translate(140, 0); drawEnemy(Object.assign({}, e, { sz: 2.2 }), 0, 0, true); }
+}
+function duelHitFx(kind, mode, ci) { // Wirkung am Ziel: je Boss und Angriff eigene Teilchen
+  const c = duelCatXY(ci), tp = TIERPAL[DUEL.tier], big = mode === 'big';
+  if (kind === 'karton') { duelParts(c.x, c.y, big ? 9 : 6, { kind: 'bit', col: tp.main, r: 5, sp: 110 }); duelParts(c.x, c.y + 18, 4, { kind: 'puff', col: '#d8c8a8', r: 8, grow: 22, up: 30, g: 0, life: .6 }); }
+  else if (kind === 'fritz') { duelParts(c.x, c.y, big ? 12 : 7, { kind: 'dot', col: big ? '#ff8a2a' : '#8a3a1c', r: 4, sp: 120 }); if (big) duelRing(c.x, c.y + 20, 60, '#ff9a2a', .5, .35); }
+  else if (kind === 'waschbaer') { if (big) duelParts(c.x, c.y, 10, { kind: 'bit', col: '#8c93a6', r: 5, sp: 130 }); else duelSlash(c.x, c.y); }
+  else if (kind === 'schneemann') { duelParts(c.x, c.y, big ? 12 : 8, { kind: 'dot', col: '#f4fbff', r: 4, sp: 110 }); duelParts(c.x, c.y + 10, 3, { kind: 'puff', col: '#dcefff', r: 8, grow: 20, up: 30, g: 0, life: .5 }); }
+  else { if (big) duelRing(c.x, c.y + 20, 70, '#b47aff', .5, .35); duelParts(c.x, c.y, 8, { kind: 'star', col: '#ffd24a', r: 6, sp: 110 }); duelRing(c.x, c.y, 36, '#fff', .35, 1); }
+  Snd.play('thwack');
+}
+function duelBossLaunch(kind, mode, t, alive) { // Abwurf: Geschosse fliegen los (nur Optik; Schaden kommt im Treffermoment)
+  const tp = TIERPAL[DUEL.tier], rangedBit = kind === 'karton' && mode === 'big', c = ci => duelCatXY(ci);
+  if (mode === 'atk' || mode === 'miss') {
+    if (kind === 'fritz') duelShoot('sausage', c(t).x, c(t).y, { dur: .27, arc: 80 });
+    if (kind === 'schneemann') duelShoot('snow', c(t).x, c(t).y, { dur: .27, arc: 70 });
+  } else if (mode === 'big') {
+    alive.forEach((ci, n) => {
+      if (rangedBit) duelShoot('bit', c(ci).x, c(ci).y, { dur: .62, arc: 110, delay: n * .05 });
+      if (kind === 'fritz') duelShoot('fire', c(ci).x, c(ci).y, { dur: .6, arc: 60, delay: n * .06 });
+      if (kind === 'schneemann') [0, 1].forEach(m => duelShoot('snow', c(ci).x + (m ? 14 : -14), c(ci).y, { dur: .6, arc: 130 + m * 30, delay: n * .05 + m * .07, big: true }));
+    });
+    if (kind === 'waschbaer') duelShoot('can', 180, 352, { dur: .66, arc: 150, big: true });
+    if (kind === 'gross') { duelRing(180, 392, 260, '#b47aff', .7, .22); duelRing(180, 392, 200, '#7a3aff', .8, .22); }
+  }
+}
+
+function kFlame(x, y, w, h, t, seed) { // eine Flamme: außen rot, Mitte orange, Kern gelb, die Spitze flackert
+  const f1 = Math.sin(t * 9 + seed * 3), f2 = Math.sin(t * 13 + seed * 5), tx = f1 * w * .35, ty = -h * (1 + f2 * .14);
+  [['#e8341c', 1], ['#ff8a1c', .72], ['#ffd84a', .42]].forEach(([c, s]) => {
+    ctx.beginPath(); ctx.moveTo(x - w * s / 2, y);
+    ctx.bezierCurveTo(x - w * s * .6, y - h * s * .45, x + tx * s * .6 - w * s * .15, y + ty * s * .7, x + tx * s, y + ty * s);
+    ctx.bezierCurveTo(x + tx * s * .6 + w * s * .15, y + ty * s * .7, x + w * s * .6, y - h * s * .45, x + w * s / 2, y);
+    ctx.closePath(); ctx.fillStyle = c; ctx.fill();
+  });
+}
+function duelLayer(draw, tints, alpha = 1, scale = 1) { // Boss in eine Zwischenebene zeichnen: so lässt er sich einfärben (Stufe, Treffer-Blitz)
+  const sc = cv.width / W, S = 320, px = Math.round(S * sc);
+  if (BOSSCV.width !== px) { BOSSCV.width = px; BOSSCV.height = px; }
+  const o = BOSSCV.getContext('2d'), main = ctx;
+  o.setTransform(1, 0, 0, 1, 0, 0); o.clearRect(0, 0, px, px); o.save(); o.setTransform(sc, 0, 0, sc, 160 * sc, 270 * sc);
+  ctx = o; try { draw(); } finally { ctx = main; }
+  o.restore(); o.setTransform(1, 0, 0, 1, 0, 0); o.globalCompositeOperation = 'source-atop';
+  (tints || []).forEach(([col, a]) => { if (a > 0) { o.globalAlpha = Math.min(1, a); o.fillStyle = col; o.fillRect(0, 0, px, px); } });
+  o.globalAlpha = 1; o.globalCompositeOperation = 'source-over';
+  ctx.save(); ctx.globalAlpha *= alpha; ctx.scale(scale, scale); ctx.drawImage(BOSSCV, -160, -270, S, S); ctx.restore();
+}
+const BOSSCV = document.createElement('canvas');
+function duelFlames(kind, P) { // der große Boss brennt: Flammen an Rand und Kopf, roter Schein, Glut
+  const t = state.t, k = DUEL.sz / 3.1, hb = DUEL_HB[kind], hw = hb[0] * k * DUEL_KSC[kind], hh = hb[1] * k * DUEL_KSC[kind];
+  [[-1, .2], [1, .2], [-1, .5], [1, .5], [-.9, .8], [.9, .8], [-.3, 1.03], [.3, 1.03]].forEach(([fx, fy], i) => kFlame(fx * hw * .95, -hh * fy + 6, 16 * k + 3, 28 * k + 6, t + i * .37, i + 1));
+  ctx.save(); ctx.globalCompositeOperation = 'lighter';
+  for (let i = 0; i < 12; i++) { const q = (t * 1.3 + i / 12) % 1, x = Math.sin(i * 1.9 + t * 1.6) * (hw * .9 + 10 * (1 - q)), y = -hh * .3 - q * hh * .95, r = 3.5 + 5 * (1 - q); ctx.globalAlpha = (1 - q) * .9; ctx.fillStyle = q < .5 ? '#ffc23a' : '#ff6a22'; ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); }
   ctx.restore();
 }
+function bossKarton(P) { // Ferdi im Karton: Pappe atmet, Klappen flattern, Arme schlagen, Augen folgen der Katze; klein = Papier, mittel = Karton, groß = verkohlt
+  const t = P.t, w = P.w, s = P.s, hurt = P.hurt, b = DUEL.boss, pal = TIERPAL[DUEL.tier], k = DUEL.sz, big = DUEL.tier === 'big', med = DUEL.tier === 'medium', small = DUEL.tier === 'small';
+  const open = !b.armorOn, guard = b.guardT > 0, blink = ((t + 1.3) % 3.7) < .12, dm = 1 - b.hp / b.max, def = dEase(P.def);
+  ctx.save(); ctx.scale(k, k); ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+  if (P.def > .12) { // besiegt: Ferdi plumpst aus dem Karton, die Augen sind Kreuze
+    const f = dEase(dClamp((P.def - .12) / .45)), fy = -8 - 15 * f + Math.sin(DUEL.t * 7) * 1.2 * f;
+    ctx.save(); ctx.translate(0, fy); kCatDott('ferdi', 0, 0, .85 / k, { mood: 'dead', flip: 1, ph: 0 }); ctx.restore();
+  }
+  if (def > 0) ctx.scale(1 + .38 * def, 1 - .7 * def); // der Karton klappt in sich zusammen
+  const tap = Math.sin(t * 5);
+  [-9, 9].forEach((fx, i) => { ctx.beginPath(); ctx.ellipse(fx, -2 - Math.max(0, tap * (i ? 1 : -1)) * 1.5, 5, 3.5, 0, 0, TAU); kInk('#e8b48a', 2.2); });
+  const ear = 5 * Math.max(hurt, w * .6);
+  [-1, 1].forEach(d => { kPoly([[d * 7, -28], [d * (13 + ear * .4), -42 + ear], [d * 17, -28]]); kInk(pal.dark, 2.4); });
+  const gr = ctx.createLinearGradient(0, -34, 0, -4); gr.addColorStop(0, pal.main); gr.addColorStop(1, pal.dark);
+  ctx.beginPath(); ctx.rect(-19, -34, 38, 30); kInk(gr, 3);
+  ctx.save(); ctx.clip(); ctx.strokeStyle = 'rgba(0,0,0,.15)'; ctx.lineWidth = 1.2; // Wellpappe (Papier: zerknittert)
+  for (let y = -29; y < -5; y += 5) { ctx.beginPath(); ctx.moveTo(-19, y); if (small) for (let x = -19; x <= 19; x += 4) ctx.lineTo(x, y + (((x + 19) / 4) % 2 ? 1.6 : -1.6)); else ctx.lineTo(19, y); ctx.stroke(); }
+  ctx.fillStyle = 'rgba(255,255,255,.18)'; ctx.fillRect(-19, -34, 7, 30);
+  if (med) { ctx.fillStyle = pal.dark; [-27, -12].forEach(y => { ctx.fillRect(-19, y, 38, 3.4); }); } // Klebebänder: der Karton ist verstärkt
+  if (big) { ctx.fillStyle = 'rgba(20,6,0,.5)'; [[-12, -14, 9, 6], [10, -24, 8, 7], [4, -8, 10, 5], [-15, -30, 6, 5]].forEach(([x, y, rx, ry]) => { ctx.beginPath(); ctx.ellipse(x, y, rx, ry, .4, 0, TAU); ctx.fill(); }); ctx.globalCompositeOperation = 'lighter'; ctx.strokeStyle = `rgba(255,150,40,${.5 + .3 * Math.sin(t * 5)})`; ctx.lineWidth = 1.3; [[-16, -10, -8, -17], [7, -30, 14, -22], [-2, -8, 6, -13]].forEach(([x1, y1, x2, y2]) => { ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); }); ctx.globalCompositeOperation = 'source-over'; }
+  ctx.restore();
+  ctx.beginPath(); ctx.rect(-19, -34, 38, 30); ctx.strokeStyle = KC.ink; ctx.lineWidth = 3; ctx.stroke();
+  ctx.fillStyle = small ? '#f4f4e0' : '#e8d29a'; ctx.fillRect(-4, -34, 8, 30); ctx.strokeStyle = KC.ink; ctx.lineWidth = 1.6; ctx.strokeRect(-4, -34, 8, 30);
+  if (dm > .35) { ctx.strokeStyle = KC.ink; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(-19, -20); ctx.lineTo(-13, -17); ctx.lineTo(-15, -12); ctx.lineTo(-9, -9); ctx.stroke(); } // Risse
+  if (dm > .65) { ctx.fillStyle = 'rgba(20,10,20,.55)'; ctx.beginPath(); ctx.moveTo(10, -30); ctx.lineTo(19, -26); ctx.lineTo(13, -22); ctx.lineTo(18, -15); ctx.lineTo(8, -17); ctx.closePath(); ctx.fill(); ctx.strokeStyle = KC.ink; ctx.lineWidth = 1.4; ctx.stroke(); }
+  // Klappen oben: flattern, reißen bei Schwung auf, schließen sich beim Kartonschutz
+  const th = guard ? -1.38 : (open ? .95 : .45) + Math.sin(t * 3.1) * .05 + .5 * w - .35 * s + .5 * hurt;
+  [-1, 1].forEach(d => { const hx = d * 19, hy = -34, L = 15, ux = d * Math.sin(th), uy = -Math.cos(th); kPoly([[hx - d * 10, hy], [hx, hy], [hx + ux * L, hy + uy * L], [hx - d * 10 + ux * L, hy + uy * L]]); kInk(pal.dark, 2.4); });
+  // Gesicht: dunkler Schlitz, leuchtende Augen
+  ctx.fillStyle = '#1b1030'; ctx.fillRect(-13, -26, 26, 8);
+  const eye = big ? '#ff6a2a' : med ? '#ffd21f' : '#e8ff6a', squint = Math.max(w * .55, hurt * .9);
+  [-1, 1].forEach(d => {
+    const cx = d * 6 + P.look * 1.6;
+    if (hurt > .3) { ctx.strokeStyle = eye; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(cx - d * 3, -24.8); ctx.lineTo(cx + d * 2, -22.5); ctx.lineTo(cx - d * 3, -20.2); ctx.stroke(); return; }
+    const ry = blink ? .5 : 2.7 * (1 - squint * .5);
+    if (big) { ctx.save(); ctx.globalCompositeOperation = 'lighter'; const g = ctx.createRadialGradient(cx, -22, 1, cx, -22, 8); g.addColorStop(0, 'rgba(255,120,40,.6)'); g.addColorStop(1, 'rgba(255,80,20,0)'); ctx.fillStyle = g; ctx.fillRect(cx - 8, -30, 16, 16); ctx.restore(); }
+    ctx.fillStyle = eye; ctx.beginPath(); ctx.ellipse(cx, -22, 3.4, ry, 0, 0, TAU); ctx.fill();
+    if (!blink) { ctx.fillStyle = KC.ink; ctx.fillRect(cx - .7 + P.look * .6, -24.6, 1.4, 5); }
+    if (squint > .15) { ctx.strokeStyle = KC.ink; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(cx - d * 4.4, -26.4 + squint * 1.2); ctx.lineTo(cx + d * 3.6, -25.6 - squint * 1.8); ctx.stroke(); } // böse Braue
+  });
+  if (guard) { kPoly([[-19, -35], [19, -35], [19, -23.4], [-19, -23.4]]); kInk(pal.main, 2.6); ctx.fillStyle = small ? '#f4f4e0' : '#e8d29a'; ctx.fillRect(-4, -35, 8, 11.6); } // Deckel: Ferdi duckt sich dahinter
+  // Arme: hängen locker, heben sich beim Anlauf, schlagen oder werfen
+  const up = Math.max(w, P.kind === 'special' || P.kind === 'summon' ? Math.sin(Math.PI * dClamp(P.u / .8)) : 0), thr = P.kind === 'atk' || P.kind === 'miss';
+  [-1, 1].forEach(d => {
+    const sx = d * 19, sy = -18; let hx = d * 27, hy = -7 + Math.sin(t * 2 + d) * 1.2;
+    hx = dLerp(hx, d * 31, up); hy = dLerp(hy, -50 - Math.sin(t * 14) * 1.2 * w, up);
+    hx = dLerp(hx, thr ? d * 16 : d * 6, s); hy = dLerp(hy, thr ? -12 : 34, s);
+    ctx.beginPath(); ctx.moveTo(sx, sy); ctx.quadraticCurveTo(sx + d * 10, (sy + hy) / 2 - 6, hx, hy); ctx.lineWidth = 8.5; ctx.strokeStyle = KC.ink; ctx.stroke(); ctx.lineWidth = 5.4; ctx.strokeStyle = pal.main; ctx.stroke();
+    ctx.save(); ctx.translate(hx, hy); ctx.rotate(d * .3 + Math.sin(t * 9) * .12 * w); ctx.beginPath(); ctx.roundRect(-4, -4, 8, 8, 2); kInk(pal.dark, 1.8); ctx.restore();
+  });
+  ctx.restore();
+}
+function bossFritz(P) { // Dicker Fritz: Bauch wippt, Wender wedelt, Würstchen-Gabel, Grill mit Glut und Rauch; Schürze je Stufe grün, gelb, rot
+  const t = P.t, w = P.w, s = P.s, hurt = P.hurt, b = DUEL.boss, pal = TIERPAL[DUEL.tier], k = DUEL.sz * .65, big = DUEL.tier === 'big';
+  const blink = ((t + .6) % 4.1) < .12, bel = Math.sin(t * 2.2), kind = P.kind, fire = kind === 'big', toss = kind === 'atk' || kind === 'miss', fan = kind === 'special' || kind === 'summon';
+  ctx.save(); ctx.scale(k, k); ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+  // Grill links: Glut glimmt, bei Grillfeuer schießt eine Flamme hoch
+  ctx.save(); ctx.translate(-44, 0);
+  [-7, 7].forEach(lx => { ctx.beginPath(); ctx.moveTo(lx * .6, -12); ctx.lineTo(lx * 1.3, 0); ctx.lineWidth = 2.4; ctx.strokeStyle = KC.ink; ctx.stroke(); });
+  ctx.beginPath(); ctx.ellipse(0, -16, 15, 9, 0, 0, Math.PI); ctx.lineTo(-15, -16); ctx.closePath(); kInk('#3a3a46', 2.4);
+  ctx.beginPath(); ctx.ellipse(0, -16, 15, 4, 0, 0, TAU); kInk('#2a2a34', 2); ctx.fillStyle = `rgba(255,${110 + 50 * Math.sin(t * 6)},40,.9)`; ctx.beginPath(); ctx.ellipse(0, -16, 11, 2.6, 0, 0, TAU); ctx.fill();
+  if (fire) kFlame(0, -16, 16, 34 * Math.sin(Math.PI * dClamp(P.u / .9)) + 6, t, 2);
+  ctx.restore();
+  // Beine und Schuhe
+  [-8, 8].forEach((fx, i) => { ctx.beginPath(); ctx.roundRect(fx - 5, -15, 10, 14, 3); kInk('#4a5a7a', 2.2); ctx.beginPath(); ctx.ellipse(fx + (i ? 2 : -2), -1.5, 7, 3.6, 0, 0, TAU); kInk('#6a3f22', 2.2); });
+  // Bauch (Hemd) und Schürze mit Karo
+  ctx.beginPath(); ctx.ellipse(0, -28 - bel * .3, 22 + bel * .5, 19 + bel * .4, 0, 0, TAU); kInk('#f2ead8', 3);
+  ctx.beginPath(); ctx.moveTo(-15, -41); ctx.lineTo(15, -41); ctx.quadraticCurveTo(21 + bel * .4, -23, 17, -12); ctx.lineTo(-17, -12); ctx.quadraticCurveTo(-21 - bel * .4, -23, -15, -41); ctx.closePath(); kInk(pal.main, 2.6);
+  ctx.save(); ctx.clip(); ctx.strokeStyle = 'rgba(255,255,255,.4)'; ctx.lineWidth = 2; for (let x = -18; x <= 18; x += 7) { ctx.beginPath(); ctx.moveTo(x, -42); ctx.lineTo(x, -10); ctx.stroke(); } for (let y = -38; y <= -12; y += 7) { ctx.beginPath(); ctx.moveTo(-20, y); ctx.lineTo(20, y); ctx.stroke(); }
+  if (big) { ctx.fillStyle = 'rgba(20,6,0,.4)'; [[-6, -18, 6, 4], [8, -30, 5, 6]].forEach(([x, y, rx, ry]) => { ctx.beginPath(); ctx.ellipse(x, y, rx, ry, .3, 0, TAU); ctx.fill(); }); }
+  ctx.restore();
+  ctx.beginPath(); ctx.roundRect(-8, -25, 16, 8, 2); kInk(pal.dark, 1.8);
+  // Arme: links der Wender, rechts die Würstchen-Gabel
+  const upA = fire ? w : fan ? .6 : 0, slam = fire ? s : 0;
+  let lx = -31, ly = -28 + Math.sin(t * 2.4) * 1.5, la = -2.2 + Math.sin(t * 2.4) * .25; // Wender wedelt
+  lx = dLerp(lx, -26, upA); ly = dLerp(ly, -68, upA); la = dLerp(la, -1.7, upA);
+  if (fan) { lx = -32 + Math.sin(t * 16) * 3; ly = -44 + Math.cos(t * 16) * 4; la = -2.2 + Math.sin(t * 16) * .5; }
+  lx = dLerp(lx, -6, slam); ly = dLerp(ly, -14, slam); la = dLerp(la, 1.5, slam);
+  let rx = 31, ry = -30 + Math.sin(t * 2 + 1) * 1.2, ra = -.7;
+  if (toss) { rx = dLerp(rx, 40, w); ry = dLerp(ry, -62, w); ra = dLerp(ra, -1.9, w); rx = dLerp(rx, 14, s); ry = dLerp(ry, -22, s); ra = dLerp(ra, .9, s); }
+  if (fire) { rx = dLerp(rx, 28, upA); ry = dLerp(ry, -66, upA); }
+  if (fan) { rx = 32 - Math.sin(t * 16) * 3; ry = -44 - Math.cos(t * 16) * 4; }
+  const arm = (sx, sy, hx, hy, d) => { ctx.beginPath(); ctx.moveTo(sx, sy); ctx.quadraticCurveTo(sx + d * 8, (sy + hy) / 2 + 4, hx, hy); ctx.lineWidth = 7.5; ctx.strokeStyle = KC.ink; ctx.stroke(); ctx.lineWidth = 4.6; ctx.strokeStyle = '#f2ead8'; ctx.stroke(); ctx.beginPath(); ctx.arc(hx, hy, 3.8, 0, TAU); kInk('#f0b890', 1.8); };
+  arm(-19, -36, lx, ly, -1); arm(19, -36, rx, ry, 1);
+  // Grillwender (Spatel)
+  ctx.save(); ctx.translate(lx, ly); ctx.rotate(la); ctx.beginPath(); ctx.moveTo(0, -1); ctx.lineTo(24, -1); ctx.lineWidth = 3.4; ctx.strokeStyle = KC.ink; ctx.stroke(); ctx.lineWidth = 1.7; ctx.strokeStyle = '#9aa2b4'; ctx.stroke();
+  ctx.beginPath(); ctx.roundRect(22, -5, 11, 8, 1.6); kInk('#c8cfdc', 1.8); if (big) kFlame(30, -4, 9, 16, t, 7); ctx.restore();
+  // Gabel mit Würstchen (verschwindet beim Wurf)
+  if (!(toss && P.u > .38 && P.u < .9)) { ctx.save(); ctx.translate(rx, ry); ctx.rotate(ra); ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(16, 0); ctx.lineWidth = 2.4; ctx.strokeStyle = KC.ink; ctx.stroke(); ctx.beginPath(); ctx.roundRect(11, -3.4, 15, 6.8, 3.4); kInk('#b6502c', 1.8); ctx.restore(); }
+  // Kopf: Mütze, Gesicht, Schnurrbart
+  const hy2 = -55 + bel * .3;
+  ctx.beginPath(); ctx.arc(0, hy2, 11.5, 0, TAU); kInk('#f0b890', 2.8);
+  ctx.fillStyle = 'rgba(255,120,120,.38)'; [-1, 1].forEach(d => { ctx.beginPath(); ctx.ellipse(d * 6.5, hy2 + 3, 3, 2, 0, 0, TAU); ctx.fill(); });
+  [-1, 1].forEach(d => { const ex = d * 4.6 + P.look * 1; if (blink) { ctx.strokeStyle = KC.ink; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(ex - 2.4, hy2 - 2); ctx.lineTo(ex + 2.4, hy2 - 2); ctx.stroke(); }
+    else if (hurt > .3) { ctx.strokeStyle = KC.ink; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(ex - d * 2.4, hy2 - 4); ctx.lineTo(ex + d * 2, hy2 - 2); ctx.lineTo(ex - d * 2.4, hy2); ctx.stroke(); }
+    else { ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.ellipse(ex, hy2 - 2, 2.8, 3, 0, 0, TAU); ctx.fill(); ctx.strokeStyle = KC.ink; ctx.lineWidth = 1.2; ctx.stroke(); ctx.fillStyle = KC.ink; ctx.beginPath(); ctx.arc(ex + P.look * .9, hy2 - 1.6, 1.4, 0, TAU); ctx.fill(); }
+    if (w > .25 || b.hp < b.max * .33) { ctx.strokeStyle = KC.ink; ctx.lineWidth = 1.8; ctx.beginPath(); ctx.moveTo(ex - d * 3.6, hy2 - 7.4 + w * 1.5); ctx.lineTo(ex + d * 2.6, hy2 - 5.4 - w * 1.6); ctx.stroke(); } });
+  ctx.fillStyle = '#5a3a22'; ctx.beginPath(); ctx.moveTo(0, hy2 + 2.4); ctx.quadraticCurveTo(-7, hy2 - .4, -10, hy2 + 4); ctx.quadraticCurveTo(-5, hy2 + 5, 0, hy2 + 3.6); ctx.quadraticCurveTo(5, hy2 + 5, 10, hy2 + 4); ctx.quadraticCurveTo(7, hy2 - .4, 0, hy2 + 2.4); ctx.fill(); ctx.strokeStyle = KC.ink; ctx.lineWidth = 1.4; ctx.stroke();
+  ctx.fillStyle = '#7a2a2a'; ctx.beginPath(); if (s > .3 || hurt > .3 || fan) ctx.ellipse(0, hy2 + 8, 3.6, 2.6 + (s + hurt) * 1.4, 0, 0, TAU); else ctx.ellipse(0, hy2 + 7.6, 3.4, 1.6, 0, 0, Math.PI); ctx.fill(); ctx.stroke();
+  ctx.beginPath(); ctx.roundRect(-9, hy2 - 13, 18, 6.6, 2); kInk('#fffdf4', 2.2); // Mützenband
+  ctx.beginPath(); [[-7, -4], [0, -9], [7, -4]].forEach(([cx, cy], i) => { ctx.moveTo(cx + 6.2, hy2 - 17 + cy * .1 + 0); ctx.arc(cx, hy2 - 17 + cy * .35, 6.2, 0, TAU); }); kInk('#fffdf4', 2.2);
+  ctx.beginPath(); ctx.roundRect(-9, hy2 - 13, 18, 3.4, 1); ctx.fillStyle = pal.main; ctx.fill();
+  if (big) kFlame(0, hy2 - 22, 12, 22, t, 11);
+  ctx.restore();
+}
+function bossRaccoonExtras(P) { // Waschbär: Pfoten mit Krallen holen aus, bei der Mülltonne hält er sie über den Kopf
+  const w = P.w, s = P.s, k = DUEL.sz, can = P.kind === 'big' && P.u < DUEL_ANIM.big.launch + .02, claw = P.kind === 'atk' || P.kind === 'miss';
+  if (!(w > .02 || s > .02) && !can) return;
+  ctx.save(); ctx.scale(k, k); ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+  if (can) { const f = dEase(dClamp(P.u / DUEL_ANIM.big.launch)); ctx.save(); ctx.translate(0, -62 - 20 * f - Math.sin(state.t * 20) * 1.2 * f); ctx.beginPath(); ctx.roundRect(-9, -3, 18, 22, 2); kInk('#8c93a6', 2.2); ctx.beginPath(); ctx.roundRect(-11, -7, 22, 5, 2.4); kInk('#a8afc2', 2); ctx.beginPath(); ctx.moveTo(3, -7); ctx.quadraticCurveTo(10, -16, 6, -19); ctx.lineWidth = 2.6; ctx.strokeStyle = KC.ink; ctx.stroke(); ctx.lineWidth = 1.4; ctx.strokeStyle = '#f2d84a'; ctx.stroke(); ctx.restore(); }
+  if (claw) [-1, 1].forEach(d => { const hx = dLerp(d * 20, d * 5, s), hy = dLerp(-14, -42, w); const hyy = dLerp(hy, -10, s); ctx.save(); ctx.translate(hx, hyy); ctx.beginPath(); ctx.ellipse(0, 0, 5.4, 4.6, 0, 0, TAU); kInk('#4a4a58', 2); ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.2; [-2.6, 0, 2.6].forEach(o => { ctx.beginPath(); ctx.moveTo(o, 3); ctx.lineTo(o + d * .6, 7.4); ctx.stroke(); }); ctx.restore(); });
+  ctx.restore();
+}
+function bossSnowExtras(P) { // Schneemann: baut über dem Arm einen Schneeball auf, bevor er wirft
+  const kind = P.kind, k = DUEL.sz; if (!((kind === 'atk' || kind === 'miss' || kind === 'big') && P.u < DUEL_ANIM[kind].launch + .02)) return;
+  const f = dEase(dClamp(P.u / DUEL_ANIM[kind].launch)); ctx.save(); ctx.scale(k, k); ctx.translate(30, -60 - 6 * f); ctx.beginPath(); ctx.arc(0, 0, 3 + (kind === 'big' ? 7 : 5) * f, 0, TAU); kInk('#f4fbff', 2); ctx.restore();
+}
+function duelBodyDraw(kind, P) {
+  if (kind === 'karton' || kind === 'fritz') { ctx.save(); ctx.scale(DUEL_KSC[kind], DUEL_KSC[kind]); kind === 'karton' ? bossKarton(P) : bossFritz(P); ctx.restore(); return; }
+  const k = DUEL.sz * DUEL_KSC[kind], hp = Math.max(.01, DUEL.boss.hp / DUEL.boss.max);
+  const atk = kind === 'gross' ? (P.kind ? (P.u < DUEL_ANIM[P.kind].launch ? -.5 * P.w : P.s) : 0) : 0;
+  const e = { type: kind, x: 0, y: 0, dx: -1, sz: k, mode: 'front', wait: 1, freeze: 0, pause: 0, hp, maxhp: 1, blind: 0, hover: 0, atk, mood: P.hurt > .3 ? 'panic' : P.kind === 'big' || P.w > .3 ? 'angry' : undefined };
+  drawEnemy(e, 0, 0, true);
+  if (kind === 'waschbaer') bossRaccoonExtras(P); else if (kind === 'schneemann') { ctx.save(); ctx.scale(DUEL_KSC[kind], DUEL_KSC[kind]); bossSnowExtras(P); ctx.restore(); }
+}
+
+// ---------- Themen-Hintergrund der Bosskämpfe: je Welt eine eigene Bühne (Herbstgarten, Nachbarschaft, Nachtzeit, Winterzauber, Ferdis Reich) ----------
+const DSTAGE = {}; // Zwischenspeicher je Welt, wird neu gebaut, wenn sich die Leinwandgröße ändert
+const DS_HZ = 225; // Horizont: dahinter Himmel und Kulisse, davor der Boden, auf dem Boss und Katzen stehen
+function dsRnd(seed) { let s = seed >>> 0; return () => (s = (s * 1664525 + 1013904223) >>> 0) / 4294967296; }
+function duelWorld() { const i = WORLD_BOSS.indexOf(DUEL.kind); if (i >= 0) return i; return Math.max(0, WORLDS.findIndex(x => DUEL.level >= x.from && DUEL.level < x.from + x.n)); }
+function dsGrad(y0, y1, stops) { const g = ctx.createLinearGradient(0, y0, 0, y1); stops.forEach(([o, c]) => g.addColorStop(o, c)); return g; }
+function dsGlow(x, y, r, col, a) { const g = ctx.createRadialGradient(x, y, 0, x, y, r); g.addColorStop(0, col); g.addColorStop(1, 'rgba(0,0,0,0)'); ctx.save(); ctx.globalAlpha = a; ctx.fillStyle = g; ctx.fillRect(x - r, y - r, r * 2, r * 2); ctx.restore(); }
+function dsBlob(x, y, rx, ry, col) { ctx.beginPath(); ctx.ellipse(x, y, rx, ry, 0, 0, TAU); ctx.fillStyle = col; ctx.fill(); }
+function dsHills(y, amp, col, seed, step = 60) { const R = dsRnd(seed); ctx.beginPath(); ctx.moveTo(-10, DS_HZ + 4); ctx.lineTo(-10, y); for (let x = -10; x <= W + 10; x += step) ctx.quadraticCurveTo(x + step / 2, y - amp * (.4 + R()), x + step, y + (R() - .5) * amp * .4); ctx.lineTo(W + 10, DS_HZ + 4); ctx.closePath(); ctx.fillStyle = col; ctx.fill(); }
+function dsTreeAutumn(x, y, s, cols) { // dicker Herbstbaum
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+  ctx.beginPath(); ctx.moveTo(-10, 0); ctx.quadraticCurveTo(-7, -50, -4, -92); ctx.lineTo(6, -92); ctx.quadraticCurveTo(8, -50, 12, 0); ctx.closePath(); kInk('#5a3a22', 3);
+  [[-34, -108, 34], [30, -112, 32], [0, -140, 40], [-6, -100, 36], [-46, -84, 24], [44, -88, 24]].forEach(([cx, cy, r], i) => { ctx.beginPath(); ctx.arc(cx, cy, r, 0, TAU); kInk(cols[i % cols.length], 3); });
+  ctx.restore();
+}
+function dsFir(x, y, s, snow) { // Tanne, im Winter mit Schneehauben
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+  ctx.fillStyle = '#4a3220'; ctx.fillRect(-5, -14, 10, 16);
+  [[0, -14, 40, 46], [0, -46, 33, 40], [0, -76, 25, 36], [0, -104, 17, 30]].forEach(([cx, cy, w, h]) => { ctx.beginPath(); ctx.moveTo(cx - w, cy); ctx.lineTo(cx, cy - h); ctx.lineTo(cx + w, cy); ctx.closePath(); kInk(snow ? '#2d6a58' : '#1f4a3a', 2.4);
+    if (snow) { ctx.beginPath(); ctx.moveTo(cx - w * .62, cy - h * .38); ctx.lineTo(cx, cy - h); ctx.lineTo(cx + w * .62, cy - h * .38); ctx.quadraticCurveTo(cx + w * .2, cy - h * .5, cx, cy - h * .42); ctx.quadraticCurveTo(cx - w * .25, cy - h * .56, cx - w * .62, cy - h * .38); ctx.fillStyle = '#f2f8ff'; ctx.fill(); } });
+  ctx.restore();
+}
+function dsBin(x, y, s, tip) { // Mülltonne aus Blech
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.rotate(tip || 0);
+  dsBlob(0, 2, 24, 6, 'rgba(0,0,0,.35)');
+  ctx.beginPath(); ctx.moveTo(-20, -52); ctx.lineTo(20, -52); ctx.lineTo(17, 0); ctx.lineTo(-17, 0); ctx.closePath(); kInk('#8a93a6', 2.6);
+  ctx.strokeStyle = 'rgba(30,30,50,.45)'; ctx.lineWidth = 2; [-9, 0, 9].forEach(o => { ctx.beginPath(); ctx.moveTo(o, -48); ctx.lineTo(o * .9, -4); ctx.stroke(); });
+  ctx.beginPath(); ctx.roundRect(-23, -62, 46, 11, 4); kInk('#a3acbe', 2.6); ctx.beginPath(); ctx.roundRect(-5, -68, 10, 6, 2); kInk('#6f788c', 2);
+  ctx.restore();
+}
+function dsHouse(x, w, h, wall, roof, R) { // Haus der Nachbarschaft mit beleuchteten Fenstern
+  ctx.fillStyle = wall; ctx.fillRect(x, DS_HZ - h, w, h);
+  ctx.beginPath(); ctx.moveTo(x - 6, DS_HZ - h); ctx.lineTo(x + w / 2, DS_HZ - h - w * .36); ctx.lineTo(x + w + 6, DS_HZ - h); ctx.closePath(); ctx.fillStyle = roof; ctx.fill();
+  ctx.fillStyle = roof; ctx.fillRect(x + w * .7, DS_HZ - h - w * .3, 9, w * .22);
+  for (let r = 0; r < 2; r++) for (let c = 0; c < Math.max(1, Math.floor(w / 28)); c++) { const wx = x + 8 + c * 26, wy = DS_HZ - h + 10 + r * 28; if (wy + 18 > DS_HZ - 4) continue; ctx.fillStyle = R() < .75 ? '#ffd877' : '#41406a'; ctx.fillRect(wx, wy, 15, 18); ctx.fillStyle = 'rgba(40,30,60,.55)'; ctx.fillRect(wx + 7, wy, 1.6, 18); ctx.fillRect(wx, wy + 8, 15, 1.6); }
+}
+function dsArch(x, y, s) { // moosiger Steinbogen wie im Park: Durchgang dunkel, Pfeiler mit Fugen und Moos
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+  ctx.beginPath(); ctx.moveTo(-17, 0); ctx.lineTo(-17, -70); ctx.arc(0, -70, 17, Math.PI, 0); ctx.lineTo(17, 0); ctx.closePath(); ctx.fillStyle = 'rgba(14,24,18,.7)'; ctx.fill();
+  ctx.beginPath(); ctx.moveTo(-27, 0); ctx.lineTo(-27, -70); ctx.arc(0, -70, 27, Math.PI, 0); ctx.lineTo(27, 0); ctx.lineTo(17, 0); ctx.lineTo(17, -70); ctx.arc(0, -70, 17, 0, Math.PI, true); ctx.lineTo(-17, 0); ctx.closePath(); kInk('#8a9686', 3);
+  ctx.strokeStyle = 'rgba(30,40,30,.5)'; ctx.lineWidth = 1.6; for (let a = 0; a < 7; a++) { const an = Math.PI + (a + .5) / 7 * Math.PI; ctx.beginPath(); ctx.moveTo(Math.cos(an) * 17, -70 + Math.sin(an) * 17); ctx.lineTo(Math.cos(an) * 27, -70 + Math.sin(an) * 27); ctx.stroke(); } [-50, -30, -10].forEach(yy => { ctx.beginPath(); ctx.moveTo(-27, yy); ctx.lineTo(-17, yy); ctx.moveTo(17, yy); ctx.lineTo(27, yy); ctx.stroke(); });
+  [[-24, -60, 6, 4], [22, -40, 5, 4], [-6, -96, 9, 4], [20, -88, 6, 3], [-23, -18, 6, 3]].forEach(([mx, my, rx, ry]) => dsBlob(mx, my, rx, ry, '#5a8a3a'));
+  ctx.restore();
+}
+function dsLamp(x, y) { // Straßenlaterne (das Leuchten kommt live dazu)
+  ctx.fillStyle = '#1c1828'; ctx.fillRect(x - 3, y - 106, 6, 108); ctx.fillRect(x - 8, y - 6, 16, 8);
+  ctx.beginPath(); ctx.roundRect(x - 9, y - 120, 18, 15, 3); kInk('#2a2438', 2); ctx.fillStyle = '#ffe58a'; ctx.fillRect(x - 6, y - 116, 12, 9);
+}
+const DS_RUNES = [[[-6, -72], [0, -80], [6, -72], [6, -62]], [[-6, -54], [6, -54], [-6, -42], [6, -42]], [[0, -36], [0, -18]], [[-6, -30], [6, -30]]];
+function dsRuneStone(x, y, s) { // Stein mit Schneehaube, die Runen leuchten live
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s); dsBlob(0, 2, 28, 7, 'rgba(60,80,120,.45)');
+  ctx.beginPath(); ctx.moveTo(-17, 0); ctx.lineTo(-19, -66); ctx.lineTo(-9, -90); ctx.lineTo(10, -94); ctx.lineTo(19, -72); ctx.lineTo(17, 0); ctx.closePath(); kInk('#4f6c9c', 3);
+  ctx.beginPath(); ctx.moveTo(-19, -66); ctx.lineTo(-9, -90); ctx.lineTo(-6, -60); ctx.lineTo(-10, 0); ctx.lineTo(-17, 0); ctx.closePath(); ctx.fillStyle = 'rgba(160,190,235,.35)'; ctx.fill();
+  dsBlob(0, -92, 13, 4.5, '#f6fbff'); dsBlob(0, 1, 26, 6, '#f4faff'); ctx.restore();
+}
+function dsRuneGlow(x, y, s, t, i) {
+  const a = .55 + .4 * Math.sin(t * 1.8 + i * 2); dsGlow(x, y - 48 * s, 64 * s, '#5ac8ff', .3 * a);
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.strokeStyle = '#8af0ff'; ctx.globalAlpha = a; ctx.lineWidth = 2.6; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  DS_RUNES.forEach(g => { ctx.beginPath(); g.forEach(([px, py], k) => k ? ctx.lineTo(px, py) : ctx.moveTo(px, py)); ctx.stroke(); }); ctx.restore();
+}
+function dsEye(x, y, d) { // riesiges rotes Auge an der Thronsaal-Wand, Ferdi sieht alles
+  ctx.save(); ctx.translate(x, y); ctx.scale(d, 1); ctx.rotate(-.25);
+  ctx.beginPath(); ctx.moveTo(-34, 5); ctx.quadraticCurveTo(0, -36, 36, -4); ctx.quadraticCurveTo(2, 28, -34, 5); ctx.closePath();
+  const g = ctx.createRadialGradient(0, 0, 2, 0, 0, 36); g.addColorStop(0, '#ffe04a'); g.addColorStop(.45, '#ff3a1a'); g.addColorStop(1, '#8a0a14'); ctx.fillStyle = g; ctx.fill(); ctx.strokeStyle = '#150a30'; ctx.lineWidth = 3.5; ctx.lineJoin = 'round'; ctx.stroke();
+  ctx.beginPath(); ctx.ellipse(2, 0, 5, 15, 0, 0, TAU); ctx.fillStyle = '#150005'; ctx.fill(); dsBlob(-6, -8, 3, 2, 'rgba(255,255,255,.8)'); ctx.restore();
+}
+function dsPile(x, y, s) { // Haufen aus Wollknäueln und Knochen
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s); dsBlob(0, 4, 40, 11, 'rgba(0,0,0,.4)');
+  ctx.beginPath(); ctx.moveTo(-36, 2); ctx.quadraticCurveTo(-20, -30, 0, -26); ctx.quadraticCurveTo(22, -32, 36, 2); ctx.closePath(); kInk('#4a3a5a', 2.6);
+  [[-15, -22, 9, '#e8508a'], [11, -26, 8, '#8a6ae8'], [-2, -11, 8, '#ffd24a']].forEach(([cx, cy, r, c]) => { ctx.beginPath(); ctx.arc(cx, cy, r, 0, TAU); kInk(c, 2.2); ctx.strokeStyle = 'rgba(40,10,50,.5)'; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.arc(cx, cy, r * .6, .3, 2.6); ctx.stroke(); });
+  [[24, -8, .5], [-27, -6, -.4]].forEach(([bx, by, rot]) => { ctx.save(); ctx.translate(bx, by); ctx.rotate(rot); ctx.beginPath(); ctx.roundRect(-11, -2.5, 22, 5, 2.5); kInk('#efe6d0', 2); [[-11, -3], [-11, 3], [11, -3], [11, 3]].forEach(([kx, ky]) => dsBlob(kx, ky, 3.2, 3.2, '#efe6d0')); ctx.restore(); });
+  ctx.restore();
+}
+function dsFlameC(x, y, w, h, t, seed, cols) { // Flamme in beliebigen Farben (grün, violett)
+  const f1 = Math.sin(t * 9 + seed * 3), f2 = Math.sin(t * 13 + seed * 5), tx = f1 * w * .35, ty = -h * (1 + f2 * .14);
+  [[cols[0], 1], [cols[1], .72], [cols[2], .42]].forEach(([c, sc]) => { ctx.beginPath(); ctx.moveTo(x - w * sc / 2, y); ctx.bezierCurveTo(x - w * sc * .6, y - h * sc * .45, x + tx * sc * .6 - w * sc * .15, y + ty * sc * .7, x + tx * sc, y + ty * sc); ctx.bezierCurveTo(x + tx * sc * .6 + w * sc * .15, y + ty * sc * .7, x + w * sc * .6, y - h * sc * .45, x + w * sc / 2, y); ctx.closePath(); ctx.fillStyle = c; ctx.fill(); });
+}
+function dsBuild(w) { // die ruhende Kulisse einer Welt (einmal gezeichnet)
+  const R = dsRnd(40 + w * 17), HZ = DS_HZ;
+  if (w === 0) { // Herbstgarten: warmer Nachmittag, Zaun, Schuppen, Laubbäume
+    ctx.fillStyle = dsGrad(0, HZ, [[0, '#f0a36a'], [.6, '#f8cf92'], [1, '#fde9b8']]); ctx.fillRect(0, 0, W, HZ + 2);
+    dsGlow(270, 170, 120, '#fff0b0', .75); dsBlob(270, 170, 26, 26, '#fff7d0');
+    dsHills(HZ - 28, 30, '#d9a35c', 3); dsHills(HZ - 10, 22, '#b9833f', 9, 80);
+    ctx.fillStyle = '#9a6a3c'; ctx.fillRect(238, HZ - 66, 92, 64); ctx.beginPath(); ctx.moveTo(230, HZ - 66); ctx.lineTo(284, HZ - 100); ctx.lineTo(338, HZ - 66); ctx.closePath(); kInk('#6a4a2a', 3);
+    ctx.fillStyle = '#4a321e'; ctx.fillRect(268, HZ - 44, 30, 42); ctx.fillStyle = '#fbd878'; ctx.fillRect(246, HZ - 56, 14, 14); // Schuppen
+    dsArch(112, HZ + 2, .85); dsArch(250, HZ + 2, .85);
+    ctx.fillStyle = dsGrad(HZ, H, [[0, '#9a7a40'], [.5, '#76562c'], [1, '#4c361c']]); ctx.fillRect(0, HZ, W, H - HZ);
+    for (let x = -4; x < W + 10; x += 16) { ctx.fillStyle = '#c99a62'; ctx.fillRect(x, HZ - 30, 11, 36); ctx.beginPath(); ctx.moveTo(x, HZ - 30); ctx.lineTo(x + 5.5, HZ - 38); ctx.lineTo(x + 11, HZ - 30); ctx.fillStyle = '#c99a62'; ctx.fill(); ctx.strokeStyle = '#6a4a2a'; ctx.lineWidth = 1.6; ctx.strokeRect(x, HZ - 30, 11, 36); }
+    ctx.fillStyle = '#a97a4a'; ctx.fillRect(0, HZ - 18, W, 5); ctx.fillRect(0, HZ - 4, W, 4);
+    for (let i = 0; i < 44; i++) { const x = R() * W, y = HZ + 14 + R() * (H - HZ - 30), c = ['#d9642a', '#e8a02e', '#b8401e', '#f0c43c'][i % 4]; dsBlob(x, y, 7 + R() * 7, 3 + R() * 3, c); }
+    for (let i = 0; i < 90; i++) { const x = R() * W, y = HZ + 8 + R() * (H - HZ); ctx.strokeStyle = 'rgba(70,90,30,.5)'; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + (R() - .5) * 4, y - 6 - R() * 5); ctx.stroke(); }
+    dsTreeAutumn(30, HZ + 34, 1.15, ['#d9642a', '#e8a02e', '#b8401e']); dsTreeAutumn(344, HZ + 22, .85, ['#e8a02e', '#d9642a', '#f0c43c']);
+    [[24, 330], [336, 345]].forEach(([x, y]) => { dsBlob(x, y, 20, 6, 'rgba(0,0,0,.3)'); ctx.beginPath(); ctx.ellipse(x, y - 14, 20, 16, 0, 0, TAU); kInk('#e8782a', 2.6); ctx.strokeStyle = 'rgba(120,50,10,.55)'; ctx.lineWidth = 1.6; [-8, 0, 8].forEach(o => { ctx.beginPath(); ctx.ellipse(x + o, y - 14, 5, 15, 0, 0, TAU); ctx.stroke(); }); ctx.fillStyle = '#4a7a2a'; ctx.fillRect(x - 2, y - 33, 4, 7); });
+  } else if (w === 1) { // Nachbarschaft: Abendrot, Häuser, Hecke, Terrasse
+    ctx.fillStyle = dsGrad(0, HZ, [[0, '#2f2a6a'], [.5, '#a0507a'], [1, '#f4a070']]); ctx.fillRect(0, 0, W, HZ + 2);
+    dsGlow(60, HZ - 10, 130, '#ffcf86', .6);
+    for (let i = 0; i < 26; i++) { ctx.fillStyle = 'rgba(255,255,255,' + (.3 + R() * .5) + ')'; ctx.fillRect(R() * W, R() * 90, 1.6, 1.6); }
+    let x = -10; const cols = [['#5a4478', '#3a2a58'], ['#6a4a6a', '#432a48'], ['#4a4a7a', '#2e2e58']]; for (let i = 0; x < W; i++) { const ww = 58 + R() * 30, hh = 50 + R() * 34, c = cols[i % 3]; dsHouse(x, ww, hh, c[0], c[1], R); x += ww + 6 + R() * 8; }
+    for (let x2 = -10; x2 < W + 20; x2 += 34) dsBlob(x2, HZ - 2, 24, 17, '#2a5a3a'); for (let x2 = 6; x2 < W + 20; x2 += 52) dsBlob(x2, HZ - 8, 16, 11, '#3a7248');
+    ctx.fillStyle = dsGrad(HZ, H, [[0, '#c4a27e'], [.5, '#98795c'], [1, '#6a5240']]); ctx.fillRect(0, HZ, W, H - HZ);
+    ctx.strokeStyle = 'rgba(50,30,20,.35)'; ctx.lineWidth = 1.6; for (let i = 0; i < 12; i++) { const y = HZ + 6 + Math.pow(i / 11, 1.5) * (H - HZ); ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+    for (let i = -8; i <= 8; i++) { ctx.beginPath(); ctx.moveTo(180 + i * 12, HZ); ctx.lineTo(180 + i * 56, H); ctx.stroke(); }
+    ctx.fillStyle = '#4d3a2e'; ctx.fillRect(12, 96, 4, HZ - 96 + 4); // Pfosten links
+    ctx.fillStyle = '#2e2220'; ctx.fillRect(338, 20, 9, HZ - 16); ctx.fillRect(322, 34, 41, 4); ctx.fillRect(326, 54, 33, 4); // Strommast rechts: hält die Lichterkette und die Kabel
+    ctx.strokeStyle = 'rgba(20,14,24,.7)'; ctx.lineWidth = 1.4; [[324, 36, 50, 44], [360, 36, 60, 38], [328, 56, 78, 40], [357, 56, 84, 34]].forEach(([x0, y0, y1, sag]) => { ctx.beginPath(); ctx.moveTo(x0, y0); ctx.quadraticCurveTo(170, y0 + sag + 20, -10, y1); ctx.stroke(); });
+    ctx.fillStyle = '#e8e0d0'; ctx.beginPath(); ctx.moveTo(318, 150); ctx.lineTo(352, 190); ctx.lineTo(284, 190); ctx.closePath(); kInk('#d8584a', 2.6); ctx.fillStyle = '#4d3a2e'; ctx.fillRect(316, 190, 4, 100); dsBlob(318, 292, 18, 5, 'rgba(0,0,0,.3)'); // Sonnenschirm
+    dsBlob(46, HZ - 4, 30, 20, '#0c1a12'); dsLamp(92, HZ + 4); dsLamp(272, HZ + 4);
+  } else if (w === 2) { // Nachtzeit: Mond, Nebel, Friedhof, Mülltonnen
+    ctx.fillStyle = dsGrad(0, HZ, [[0, '#04061a'], [.6, '#141a44'], [1, '#2a2a5e']]); ctx.fillRect(0, 0, W, HZ + 2);
+    for (let i = 0; i < 70; i++) { ctx.fillStyle = 'rgba(255,255,255,' + (.25 + R() * .6) + ')'; const s = R() < .15 ? 2.4 : 1.4; ctx.fillRect(R() * W, R() * (HZ - 30), s, s); }
+    dsGlow(98, 106, 140, '#4a8aff', .55);
+    ctx.save(); ctx.beginPath(); ctx.arc(98, 106, 46, 0, TAU); ctx.clip(); ctx.fillStyle = '#bfe4ff'; ctx.fillRect(40, 50, 120, 120); ctx.fillStyle = dsGrad(0, HZ, [[0, '#04061a'], [.6, '#141a44'], [1, '#2a2a5e']]); ctx.beginPath(); ctx.arc(119, 94, 41, 0, TAU); ctx.fill(); ctx.restore();
+    [[40, 140, 62, 11], [160, 152, 74, 10], [296, 100, 76, 12], [246, 116, 52, 9], [70, 120, 40, 8]].forEach(([cx, cy, rx, ry]) => { dsBlob(cx, cy, rx, ry, 'rgba(96,60,160,.75)'); dsBlob(cx + 6, cy - ry * .5, rx * .7, ry * .6, 'rgba(150,110,215,.5)'); });
+    dsHills(HZ - 24, 26, '#10143a', 5);
+    for (let x = -6; x < W + 6;) { const bw = 12 + R() * 18, bh = 14 + R() * 34; ctx.fillStyle = '#0b1036'; ctx.fillRect(x, HZ - 14 - bh, bw, bh + 16); if (R() < .35) { ctx.beginPath(); ctx.moveTo(x, HZ - 14 - bh); ctx.lineTo(x + bw / 2, HZ - 24 - bh); ctx.lineTo(x + bw, HZ - 14 - bh); ctx.fill(); } for (let k = 0; k < 3; k++) if (R() < .4) { ctx.fillStyle = '#ffd877'; ctx.fillRect(x + 2 + R() * (bw - 6), HZ - 10 - bh + R() * (bh - 4), 2.4, 3); } x += bw + 1 + R() * 3; }
+    dsHills(HZ - 8, 18, '#0c1030', 11, 70);
+    ctx.fillStyle = dsGrad(HZ, H, [[0, '#26343a'], [.5, '#18242a'], [1, '#0e161a']]); ctx.fillRect(0, HZ, W, H - HZ);
+    ctx.strokeStyle = '#0a0c20'; ctx.lineWidth = 3; for (let x = 0; x < W + 10; x += 14) { ctx.beginPath(); ctx.moveTo(x, HZ + 4); ctx.lineTo(x, HZ - 34); ctx.stroke(); ctx.beginPath(); ctx.moveTo(x - 4, HZ - 30); ctx.lineTo(x, HZ - 40); ctx.lineTo(x + 4, HZ - 30); ctx.fillStyle = '#0a0c20'; ctx.fill(); } ctx.beginPath(); ctx.moveTo(0, HZ - 20); ctx.lineTo(W, HZ - 20); ctx.stroke(); // Eisenzaun
+    kDeadTree(34, HZ + 26, 1.0, 1); kDeadTree(332, HZ + 20, .85, -1);
+    kGrave(112, HZ + 20, .8, 'RIP'); kGrave(250, HZ + 18, .75, 'R.I.P.'); kGrave(300, HZ + 74, .9, 'RIP'); kGrave(20, HZ + 100, .9, 'R.I.P.');
+    dsBin(330, 300, 1.05, 0); dsBin(30, 330, .95, -.9); // Mülltonnen, eine umgekippt
+    for (let i = 0; i < 20; i++) { const x = R() * W, y = HZ + 10 + R() * (H - HZ); ctx.strokeStyle = 'rgba(80,110,80,.4)'; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + (R() - .5) * 4, y - 6 - R() * 4); ctx.stroke(); }
+  } else if (w === 3) { // Winterzauber: Polarlicht, Berge, verschneite Tannen
+    ctx.fillStyle = dsGrad(0, HZ, [[0, '#101a4a'], [.55, '#3a5a9a'], [1, '#bfe3f4']]); ctx.fillRect(0, 0, W, HZ + 2);
+    for (let i = 0; i < 40; i++) { ctx.fillStyle = 'rgba(255,255,255,' + (.3 + R() * .5) + ')'; ctx.fillRect(R() * W, R() * 110, 1.6, 1.6); }
+    dsGlow(290, 146, 64, '#e8e4ff', .6); dsBlob(290, 146, 18, 18, '#f6f2dc');
+    [[40, 215, '#8aa4cc', 70], [150, 230, '#a2bcdc', 90], [270, 210, '#8aa4cc', 80]].forEach(([x, y, c, h]) => { ctx.beginPath(); ctx.moveTo(x - 110, HZ); ctx.lineTo(x, HZ - h); ctx.lineTo(x + 110, HZ); ctx.closePath(); ctx.fillStyle = c; ctx.fill(); ctx.beginPath(); ctx.moveTo(x - 30, HZ - h * .6); ctx.lineTo(x, HZ - h); ctx.lineTo(x + 30, HZ - h * .6); ctx.lineTo(x + 12, HZ - h * .68); ctx.lineTo(x, HZ - h * .58); ctx.lineTo(x - 14, HZ - h * .7); ctx.closePath(); ctx.fillStyle = '#f4faff'; ctx.fill(); });
+    ctx.fillStyle = dsGrad(HZ, H, [[0, '#eef6fd'], [.5, '#c8dcf0'], [1, '#98b4d4']]); ctx.fillRect(0, HZ, W, H - HZ);
+    ctx.beginPath(); ctx.ellipse(180, 330, 150, 34, 0, 0, TAU); ctx.fillStyle = 'rgba(150,210,240,.35)'; ctx.fill(); ctx.strokeStyle = 'rgba(255,255,255,.6)'; ctx.lineWidth = 2; ctx.stroke(); // zugefrorener Teich
+    for (let i = 0; i < 9; i++) dsBlob(R() * W, HZ + 20 + R() * (H - HZ - 30), 26 + R() * 24, 5 + R() * 4, 'rgba(120,150,200,.3)');
+    [[12, HZ + 8, .75], [64, HZ + 2, .55], [300, HZ + 2, .55], [346, HZ + 10, .8]].forEach(([x, y, s]) => dsFir(x, y, s, true));
+    dsRuneStone(26, HZ + 108, 1.0); dsRuneStone(334, HZ + 102, .95);
+    [[200, HZ + 150, 30], [60, HZ + 220, 26], [320, HZ + 210, 30]].forEach(([x, y, r]) => { ctx.beginPath(); ctx.ellipse(x, y, r, r * .35, 0, 0, TAU); ctx.fillStyle = '#ffffff'; ctx.fill(); });
+  } else { // Ferdis Reich: Thronsaal
+    ctx.fillStyle = dsGrad(0, HZ + 8, [[0, '#1c0c36'], [1, '#3e2068']]); ctx.fillRect(0, 0, W, HZ + 8);
+    ctx.strokeStyle = 'rgba(10,0,30,.45)'; ctx.lineWidth = 1.6; for (let y = 0; y < HZ + 8; y += 24) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); for (let x = (y / 24 % 2) * 20; x < W; x += 40) { ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, y + 24); ctx.stroke(); } }
+    dsEye(60, 142, 1); dsEye(300, 142, -1);
+    ctx.beginPath(); ctx.moveTo(130, HZ); ctx.lineTo(130, 120); ctx.quadraticCurveTo(130, 70, 180, 64); ctx.quadraticCurveTo(230, 70, 230, 120); ctx.lineTo(230, HZ); ctx.closePath(); kInk('#5a2a8a', 3); // Thron
+    ctx.beginPath(); ctx.moveTo(144, HZ); ctx.lineTo(144, 124); ctx.quadraticCurveTo(144, 84, 180, 78); ctx.quadraticCurveTo(216, 84, 216, 124); ctx.lineTo(216, HZ); ctx.closePath(); ctx.fillStyle = '#7a2a4a'; ctx.fill(); dsBlob(180, 98, 11, 11, '#ffd24a'); ctx.beginPath(); ctx.moveTo(160, 60); ctx.lineTo(166, 44); ctx.lineTo(173, 56); ctx.lineTo(180, 40); ctx.lineTo(187, 56); ctx.lineTo(194, 44); ctx.lineTo(200, 60); ctx.closePath(); kInk('#ffd24a', 2.4);
+    [[18, 200], [342, 200]].forEach(([x, y]) => { ctx.fillStyle = dsGrad(0, HZ, [[0, '#7a5ac0'], [1, '#3a2470']]); ctx.fillRect(x - 17, 0, 34, HZ + 4); ctx.strokeStyle = '#150a30'; ctx.lineWidth = 3; ctx.strokeRect(x - 17, -4, 34, HZ + 8); ctx.fillStyle = '#ffd24a'; ctx.fillRect(x - 22, HZ - 8, 44, 12); ctx.fillRect(x - 22, 0, 44, 10); }); // Säulen
+    [[110], [250]].forEach(([x]) => { ctx.beginPath(); ctx.moveTo(x - 20, 30); ctx.lineTo(x + 20, 30); ctx.lineTo(x + 20, 150); ctx.lineTo(x, 136); ctx.lineTo(x - 20, 150); ctx.closePath(); kInk('#9a2a4a', 2.6); dsBlob(x, 76, 11, 10, '#ffd24a'); ctx.beginPath(); ctx.moveTo(x - 10, 70); ctx.lineTo(x - 7, 56); ctx.lineTo(x - 2, 66); ctx.lineTo(x + 2, 66); ctx.lineTo(x + 7, 56); ctx.lineTo(x + 10, 70); ctx.closePath(); kInk('#ffd24a', 2); }); // Banner mit Katzenkopf
+    for (let r = 0; r < 9; r++) { const y0 = HZ + Math.pow(r / 9, 1.6) * (H - HZ), y1 = HZ + Math.pow((r + 1) / 9, 1.6) * (H - HZ); for (let c = -9; c < 9; c++) { const xa = 180 + c * (14 + (y0 - HZ) * .26), xb = 180 + (c + 1) * (14 + (y0 - HZ) * .26), xa1 = 180 + c * (14 + (y1 - HZ) * .26), xb1 = 180 + (c + 1) * (14 + (y1 - HZ) * .26); ctx.beginPath(); ctx.moveTo(xa, y0); ctx.lineTo(xb, y0); ctx.lineTo(xb1, y1); ctx.lineTo(xa1, y1); ctx.closePath(); ctx.fillStyle = (r + c) % 2 ? '#3a2260' : '#241446'; ctx.fill(); } }
+    ctx.beginPath(); ctx.moveTo(158, HZ); ctx.lineTo(202, HZ); ctx.lineTo(W - 14, H); ctx.lineTo(14, H); ctx.closePath(); ctx.fillStyle = '#9a1e3a'; ctx.fill(); ctx.strokeStyle = '#ffd24a'; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(158, HZ); ctx.lineTo(14, H); ctx.moveTo(202, HZ); ctx.lineTo(W - 14, H); ctx.stroke(); // roter Teppich
+    dsPile(30, 298, .85); dsPile(330, 302, .85);
+  }
+}
+function dsLive(w, dt) { // bewegte Teile über der Kulisse: fallendes Laub, Lichter, Fledermäuse, Nebel, Schnee, Fackeln
+  const t = state.t, HZ = DS_HZ; ctx.save();
+  if (w === 0) { for (let i = 0; i < 16; i++) { const x = (i * 53 + t * (16 + i % 4 * 5) + Math.sin(t * 1.3 + i) * 26 + 400) % 400 - 20, y = (i * 71 + t * (26 + i % 5 * 7)) % 430; ctx.save(); ctx.translate(x, y); ctx.rotate(t * 1.4 + i); ctx.fillStyle = ['#d9642a', '#e8a02e', '#b8401e', '#f0c43c'][i % 4]; ctx.beginPath(); ctx.ellipse(0, 0, 6, 3, 0, 0, TAU); ctx.fill(); ctx.restore(); } }
+  else if (w === 1) { ctx.strokeStyle = '#2a1e2a'; ctx.lineWidth = 2; ctx.beginPath(); for (let i = 0; i <= 30; i++) { const x = 14 + i * 11.2, y = 98 + Math.sin(i / 30 * Math.PI) * 34; i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); } ctx.stroke();
+    for (let i = 0; i < 16; i++) { const f = i / 15, x = 14 + f * 332, y = 98 + Math.sin(f * Math.PI) * 34 + 5, on = .6 + .4 * Math.sin(t * 3 + i * 1.7); dsGlow(x, y, 17, ['#ff6a5a', '#ffd24a', '#7ae08a', '#6ab8ff'][i % 4], .55 * on); dsBlob(x, y, 3.4, 3.4, ['#ff8a7a', '#ffe27a', '#9af0a8', '#8ac8ff'][i % 4]); }
+    for (let i = 0; i < 10; i++) { const x = (i * 41 + t * 8) % 360, y = 150 + (i * 37) % 80 + Math.sin(t * 2 + i) * 6; dsBlob(x, y, 1.6, 1.6, 'rgba(255,230,140,' + (.4 + .4 * Math.sin(t * 3 + i)) + ')'); }
+    [92, 272].forEach((x, i) => { const fl = .85 + .15 * Math.sin(t * 7 + i * 3) * Math.sin(t * 2.3); dsGlow(x, HZ - 110, 74, '#ffd860', .55 * fl); ctx.fillStyle = 'rgba(255,216,96,' + .16 * fl + ')'; ctx.beginPath(); ctx.ellipse(x, HZ + 14, 52, 12, 0, 0, TAU); ctx.fill(); });
+    if (t % 5 > .18) [-1, 1].forEach(d => { ctx.save(); ctx.translate(46 + d * 9, HZ - 10); ctx.rotate(d * .3); dsGlow(0, 0, 16, '#ffe04a', .6); ctx.beginPath(); ctx.ellipse(0, 0, 5.5, 3, 0, 0, TAU); ctx.fillStyle = '#ffe04a'; ctx.fill(); ctx.fillStyle = '#150a00'; ctx.fillRect(-1, -3, 2, 6); ctx.restore(); }); }
+  else if (w === 2) { for (let i = 0; i < 8; i++) { ctx.fillStyle = 'rgba(255,255,255,' + (.3 + .5 * Math.abs(Math.sin(t * 1.6 + i * 2.3))) + ')'; ctx.fillRect((i * 97 + 20) % W, (i * 43) % 120 + 6, 2.2, 2.2); }
+    for (let i = 0; i < 3; i++) { const x = (t * (40 + i * 14) + i * 140) % 440 - 40, y = 70 + i * 34 + Math.sin(t * 2 + i) * 14, fl = Math.sin(t * 16 + i) * 5; ctx.fillStyle = '#05061a'; ctx.beginPath(); ctx.moveTo(x, y); ctx.quadraticCurveTo(x - 9, y - 7 - fl, x - 18, y - fl * .5); ctx.quadraticCurveTo(x - 10, y - 1, x - 4, y + 2); ctx.lineTo(x + 4, y + 2); ctx.quadraticCurveTo(x + 10, y - 1, x + 18, y - fl * .5); ctx.quadraticCurveTo(x + 9, y - 7 - fl, x, y); ctx.fill(); }
+    for (let i = 0; i < 12; i++) { const x = 20 + (i * 83 + Math.sin(t * .6 + i) * 30) % 330, y = HZ + 30 + (i * 59) % 200 + Math.sin(t * .9 + i * 2) * 10; dsGlow(x, y, 9, '#d8ff7a', .35 + .35 * Math.sin(t * 2.2 + i)); }
+    for (let i = 0; i < 6; i++) { const x = (i * 130 + t * 9) % 520 - 80, y = HZ + 12 + i * 34; ctx.fillStyle = 'rgba(150,170,190,.13)'; ctx.beginPath(); ctx.ellipse(x, y, 110, 16, 0, 0, TAU); ctx.fill(); } }
+  else if (w === 3) { dsRuneGlow(26, HZ + 108, 1.0, t, 0); dsRuneGlow(334, HZ + 102, .95, t, 1); for (let k = 0; k < 3; k++) { ctx.beginPath(); ctx.moveTo(-10, 60 + k * 26); for (let x = -10; x <= W + 10; x += 20) ctx.lineTo(x, 60 + k * 26 + Math.sin(x * .02 + t * (.7 + k * .2) + k) * 18); for (let x = W + 10; x >= -10; x -= 20) ctx.lineTo(x, 100 + k * 26 + Math.sin(x * .02 + t * (.7 + k * .2) + k + 1) * 14); ctx.closePath(); ctx.fillStyle = ['rgba(80,255,170,.16)', 'rgba(90,220,255,.13)', 'rgba(170,120,255,.12)'][k]; ctx.fill(); }
+    ctx.fillStyle = '#fff'; for (let i = 0; i < 54; i++) { const x = (i * 37 + t * (10 + i % 5 * 3) + Math.sin(t + i) * 14 + 400) % 400 - 20, y = (i * 53 + t * (28 + i % 4 * 9)) % 450; ctx.globalAlpha = .55 + .35 * (i % 3) / 2; ctx.beginPath(); ctx.arc(x, y, 1.4 + i % 3 * .7, 0, TAU); ctx.fill(); } ctx.globalAlpha = 1; }
+  else { [[60, 1], [300, 2]].forEach(([x], i) => dsGlow(x, 142, 66, '#ff2a1a', .3 + .14 * Math.sin(t * 2.4 + i)));
+    [[18, HZ - 52], [342, HZ - 52]].forEach(([x, y], i) => { ctx.fillStyle = '#3a2410'; ctx.fillRect(x - 3, y, 6, 14); ctx.beginPath(); ctx.moveTo(x - 9, y); ctx.lineTo(x + 9, y); ctx.lineTo(x + 5, y + 8); ctx.lineTo(x - 5, y + 8); ctx.closePath(); ctx.fillStyle = '#c8962a'; ctx.fill(); dsGlow(x, y - 8, 46, '#ffb44a', .38 + .08 * Math.sin(t * 9 + i)); kFlame(x, y + 1, 12, 22, t, i + 3); });
+    [[104, ['#18c84a', '#7aff7a', '#e8ffd0'], '#3aff7a'], [256, ['#8a2ae8', '#c27aff', '#f4e0ff'], '#b46aff']].forEach(([x, cols, gc], i) => { ctx.fillStyle = '#2a2030'; ctx.fillRect(x - 2, HZ - 30, 4, 40); ctx.beginPath(); ctx.moveTo(x - 10, HZ - 38); ctx.lineTo(x + 10, HZ - 38); ctx.lineTo(x + 6, HZ - 28); ctx.lineTo(x - 6, HZ - 28); ctx.closePath(); ctx.fillStyle = '#4a3a58'; ctx.fill(); dsGlow(x, HZ - 52, 62, gc, .45 + .1 * Math.sin(t * 8 + i)); dsFlameC(x, HZ - 37, 14, 26, t, i + 7, cols); });
+    for (let i = 0; i < 12; i++) { const q = (t * .22 + i / 12) % 1, x = 40 + (i * 61) % 280 + Math.sin(t + i) * 10, y = HZ - q * 190; dsBlob(x, y, 1.6, 1.6, 'rgba(255,220,140,' + (1 - q) * .8 + ')'); } }
+  ctx.restore();
+}
+function duelStage(dt) { // statt des Level-Hintergrunds: die Bühne der Welt, in der gekämpft wird
+  const w = duelWorld(), px = cv.width, st = DSTAGE[w];
+  if (!st || st.width !== px || st.height !== cv.height) {
+    const c = st || document.createElement('canvas'); c.width = px; c.height = cv.height; const o = c.getContext('2d'), main = ctx;
+    o.setTransform(px / W, 0, 0, cv.height / H, 0, 0); ctx = o; try { dsBuild(w); } finally { ctx = main; } DSTAGE[w] = c;
+  }
+  ctx.clearRect(0, 0, W, H); ctx.drawImage(DSTAGE[w], 0, 0, W, H); dsLive(w, dt);
+  ctx.fillStyle = 'rgba(3,5,14,.16)'; ctx.fillRect(0, 0, W, H); // leicht abgedunkelt, damit Boss und Katzen vorne stehen
+  kVig(W, H, .7);
+}
+function duelBossPose(b, dt) { // Haltung des Bosses in diesem Bild: Ruhe-Atmung, Anlauf, Schlag, Sprung, Treffer, Auftritt, Niederlage
+  const t = state.t, a = b.anim, P = { t, kind: null, u: 0, w: 0, s: 0, dx: 0, dy: 0, sx: 1, sy: 1, rot: 0, jump: 0, alpha: 1, def: 0, hurt: dClamp(b.hitT / .45), look: 0 };
+  const tgtX = a ? a.tx : (DUEL.phase === 'cmd' && DUEL.cats[DUEL.who] ? duelCatX(DUEL.who) : 180), want = Math.max(-1, Math.min(1, (tgtX - 180) / 110));
+  b.look = (b.look || 0) + (want - (b.look || 0)) * Math.min(1, dt * 6); P.look = b.look;
+  const mel = DUEL_MELEE[b.kind];
+  P.dy = Math.sin(t * 2) * 1.5; P.sy = 1 + Math.sin(t * 2) * .012; // Atmung
+  if (a) {
+    a.t += dt; const u = a.t / a.dur; P.u = u; P.kind = a.kind;
+    if (!a.launched && u >= a.launch) { a.launched = true; a.go && a.go(); }
+    if (!a.done && u >= a.hitAt) { a.done = true; a.hit && a.hit(); }
+    P.w = u < a.launch ? dEase(u / a.launch) : Math.max(0, 1 - (u - a.launch) / .12);
+    P.s = u < a.launch ? 0 : u < a.hitAt + .05 ? Math.min(1, (u - a.launch) / Math.max(.05, a.hitAt - a.launch)) : Math.max(0, 1 - (u - a.hitAt - .05) / .3);
+    const dir = Math.sign(a.tx - 180) || 1;
+    if (a.kind === 'atk' || a.kind === 'miss') { // Anlauf duckt sich, Schlag springt nach vorn auf das Ziel zu
+      P.sy *= 1 - .13 * P.w + .08 * P.s; P.sx = 1 + .09 * P.w - .05 * P.s; P.rot = -dir * .07 * P.w + dir * .06 * P.s; P.dy += 34 * mel * P.s; P.dx = (a.tx - 180) * .22 * mel * P.s;
+    } else if (a.kind === 'big') { // in die Hocke, dann hoher Sprung, bei der Landung wird er breit gedrückt
+      const v = dClamp((u - a.launch) / (a.hitAt - a.launch)), land = u >= a.hitAt ? dClamp(1 - (u - a.hitAt) / .14) : 0;
+      P.jump = Math.sin(Math.PI * v); P.dy += -44 * P.jump * mel; P.sy *= 1 - .2 * P.w + .12 * P.jump - .2 * land; P.sx = 1 + .12 * P.w + .16 * land;
+    } else { // Spezial und Rufen: aufbäumen und zittern
+      const f = Math.sin(Math.PI * dClamp(u / .8)); P.dy += -14 * f; P.sy *= 1 + .08 * f; P.sx = 1 - .04 * f; P.rot = Math.sin(a.t * 40) * .02 * f;
+    }
+    if (u >= 1) b.anim = null;
+  }
+  if (P.hurt > 0) { P.dx += Math.sin(b.hitT * 40) * 5 * P.hurt; P.sy *= 1 - .1 * P.hurt; P.sx *= 1 + .08 * P.hurt; P.dy -= 4 * P.hurt; }
+  if (DUEL.phase === 'intro' && !b.defeated) { // Auftritt: fällt von oben herein und landet mit Wumms
+    const e = dClamp(DUEL.t / .9); P.dy += -150 * (1 - e) * (1 - e); P.sy *= .55 + .45 * dBack(e); P.sx *= .7 + .3 * dBack(e); P.alpha = dClamp(e * 3);
+  }
+  if (b.defeated) { // besiegt: schwankt, kippt um, sinkt ein
+    const d = dClamp(DUEL.t / 1.6), top = dEase(dClamp((DUEL.t - .3) / .9)); P.def = d;
+    if (b.kind !== 'karton') { P.rot = Math.sin(DUEL.t * 9) * .06 * (1 - top) + .6 * top; P.dy += 26 * top; P.dx += 10 * top; P.sy *= 1 - .08 * top; }
+    P.alpha = 1 - .3 * d;
+  }
+  return P;
+}
+function duelDrawBoss(dt) {
+  const b = DUEL.boss, p = duelBossXY(), kind = b.kind, k = DUEL.sz; b.hitT = Math.max(0, b.hitT - dt);
+  const P = duelBossPose(b, dt), hb = DUEL_HB[kind], sc = k / 3.1 * DUEL_KSC[kind], hh = hb[1] * sc, tp = TIERPAL[DUEL.tier];
+  if (DUEL.phase === 'intro' && !DUEL.landed && DUEL.t > .85) { DUEL.landed = true; DUEL.shake = Math.max(DUEL.shake, .45); duelRing(p.x, p.y, 150, '#e8dcf8', .6, .22); duelParts(p.x, p.y, 10, { kind: 'puff', col: '#cfc6d8', r: 10, grow: 26, up: 30, g: 0, life: .7, sp: 120 }); Snd.play('thwack'); }
+  kShadow(p.x + P.dx, p.y, (hb[0] * sc + 8) * (1 - .3 * P.jump));
+  ctx.save(); ctx.translate(p.x + P.dx, p.y + P.dy);
+  ctx.save(); ctx.rotate(P.rot); ctx.scale(P.sx, P.sy);
+  if (DUEL.tier === 'big' && !b.defeated) { ctx.save(); ctx.globalCompositeOperation = 'lighter'; const g = ctx.createRadialGradient(0, -hh * .45, 10, 0, -hh * .45, hh * .95); g.addColorStop(0, 'rgba(255,90,30,.38)'); g.addColorStop(1, 'rgba(255,40,10,0)'); ctx.fillStyle = g; ctx.fillRect(-hh, -hh * 1.5, hh * 2, hh * 2); ctx.restore(); }
+  const tints = []; if (kind !== 'karton' && kind !== 'fritz') tints.push([tp.tint, tp.ta * 1.6]);
+  if (b.freeze > 0) tints.push(['#9fd8ff', .35]);
+  if (P.hurt > 0) tints.push(['#ffffff', .7 * P.hurt * (.65 + .35 * Math.sin(DUEL.t * 60))]);
+  duelLayer(() => duelBodyDraw(kind, P), tints, P.alpha);
+  if (b.decoys > 0) { ctx.save(); ctx.translate(-76, 4); duelLayer(() => duelBodyDraw(kind, P), [['#b8d0ff', .25]], .4, .72); ctx.translate(152, 0); duelLayer(() => duelBodyDraw(kind, P), [['#b8d0ff', .25]], .4, .72); ctx.restore(); }
+  if (DUEL.tier === 'big' && !b.defeated) duelFlames(kind, P);
+  ctx.restore();
+  if (b.blind > 0) for (let i = 0; i < 4; i++) { const a = state.t * 5 + i * 1.6; kStar(Math.cos(a) * 30, -hh - 6 + Math.sin(a) * 6, 5, KC.gold, a, 1.2); }
+  if (b.defeated && DUEL.t > .3) for (let i = 0; i < 4; i++) { const a = DUEL.t * 4 + i * 1.57; kStar(Math.cos(a) * 36, -hh * (kind === 'karton' ? .9 : .75) + Math.sin(a) * 8, 5, KC.gold, a, 1.2); } // Sternchen kreisen
+  if (b.hitT > 0) { // Schmerz: Sterne springen vom Körper weg, rote Schmerzlinien
+    const f = b.hitT / .45, n = 5;
+    for (let i = 0; i < n; i++) { const a = -Math.PI / 2 + (i - (n - 1) / 2) * .55, r = hh * .45 + 30 + (1 - f) * 40; kStar(Math.cos(a) * r, -hh * .55 - Math.abs(Math.sin(a)) * r * .6 - (1 - f) * 20, 6 * f + 2, '#ffe24a', a, 1.6); }
+    ctx.save(); ctx.globalAlpha = f; ctx.strokeStyle = '#ff5a5a'; ctx.lineWidth = 4; ctx.lineCap = 'round';
+    [[-62, -.7], [62, -.7], [-70, -.35], [70, -.35]].forEach(([x, y]) => { ctx.beginPath(); ctx.moveTo(x * .8, hh * y * .8); ctx.lineTo(x * 1.05, hh * y * 1.05); ctx.stroke(); });
+    ctx.restore();
+  }
+  if (b.freeze > 0) { ctx.strokeStyle = 'rgba(255,255,255,.7)'; ctx.lineWidth = 3; ctx.fillStyle = 'rgba(160,220,255,.25)'; ctx.beginPath(); ctx.ellipse(0, -hh * .5, hb[0] * sc + 12, hh * .55, 0, 0, TAU); ctx.fill(); ctx.stroke(); }
+  ctx.restore();
+}
+function duelDrawSpecialFx(dt) { // Spezialfertigkeiten: jede Welt hat ihre eigene Optik, der Rauch bleibt liegen, solange er wirkt
+  const a = DUEL.spAnim; if (a) { a.t -= dt; if (a.t <= 0) DUEL.spAnim = null; }
+  const T = state.t, p = duelBossXY();
+  if (DUEL.smoke > 0 || (DUEL.spAnim && DUEL.spAnim.kind === 'fritz')) { // Grillrauch zieht über die Katzen
+    ctx.save(); for (let i = 0; i < 11; i++) { const x = 20 + i * 32 + Math.sin(T * .8 + i) * 12, y = 338 + Math.sin(T * .9 + i * 1.7) * 16, r = 28 + 6 * Math.sin(T * 1.3 + i); ctx.globalAlpha = .26 + .06 * Math.sin(T + i); ctx.fillStyle = i % 2 ? '#aab0bd' : '#8a909e'; ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); } ctx.restore();
+  }
+  const sp = DUEL.spAnim; if (!sp) return;
+  const f = 1 - sp.t / 1.4, tp = TIERPAL[DUEL.tier]; ctx.save(); ctx.globalAlpha = Math.min(1, sp.t * 2);
+  if (sp.kind === 'karton') { for (let i = 0; i < 3; i++) { const q = dClamp(f * 1.3 - i * .15); ctx.strokeStyle = tp.main; ctx.lineWidth = 4 * (1 - q) + 1; ctx.beginPath(); ctx.ellipse(p.x, p.y - 56, 40 + q * 90, 52 + q * 60, 0, 0, TAU); ctx.stroke(); } }
+  else if (sp.kind === 'fritz') { for (let i = 0; i < 9; i++) { const q = (f * 1.2 + i / 9) % 1, x = p.x + 20 + q * (i % 2 ? 90 : -60) + Math.sin(i * 2.1) * 20, y = p.y - 70 + q * 50 - Math.sin(q * Math.PI) * 40, r = 12 + q * 26; ctx.fillStyle = 'rgba(190,195,205,.55)'; ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); } }
+  else if (sp.kind === 'waschbaer') { for (let i = 0; i < 3; i++) { const q = dClamp(f * 1.2 - i * .12); ctx.strokeStyle = '#8fd46a'; ctx.lineWidth = 5 * (1 - q) + 1; ctx.beginPath(); ctx.ellipse(p.x, 394, 20 + q * 230, (20 + q * 230) * .2, 0, 0, TAU); ctx.stroke(); } }
+  else if (sp.kind === 'schneemann') { ctx.fillStyle = '#ffffff'; for (let i = 0; i < 46; i++) { const q = (f * 1.6 + i / 46) % 1, x = (i * 53 + q * 120) % 380 - 10, y = q * 470 - 30; ctx.beginPath(); ctx.arc(x, y, 2 + (i % 3), 0, TAU); ctx.fill(); } const g = ctx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, 'rgba(220,240,255,.28)'); g.addColorStop(1, 'rgba(220,240,255,0)'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H); }
+  else { ctx.strokeStyle = '#ffd24a'; ctx.lineWidth = 4 * (1 - f) + 1; ctx.beginPath(); ctx.ellipse(p.x, p.y - 60, 40 + f * 150, 40 + f * 120, 0, 0, TAU); ctx.stroke(); }
+  ctx.restore();
+}
+
 function duelDrawCat(c, i, active, dt) {
   const x = duelCatX(i), y = 392; c.atkT = Math.max(0, c.atkT - dt); c.hitT = Math.max(0, c.hitT - dt); c.hop = Math.max(0, c.hop - dt * 2);
   const jump = c.atkT > 0 ? Math.sin(c.atkT / .55 * Math.PI) * -34 : 0, shake = c.hitT > 0 ? Math.sin(c.hitT * 50) * 5 : 0;
@@ -4564,6 +5151,7 @@ function duelDrawCat(c, i, active, dt) {
   duelBar(x - 40, y + 14, 80, 8, c.hp / c.max, c.hp < c.max * .3 ? '#9d444f' : '#508761');
   ctx.font = KSCRIPT(11); ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.strokeStyle = KC.ink; const lbl = CATS[c.type].name + '  ' + c.hp + '/' + c.max + (c.shield > 0 ? '  +' + c.shield : ''); ctx.strokeText(lbl, x, y + 33); ctx.fillStyle = active ? KC.gold : KC.cream; ctx.fillText(lbl, x, y + 33);
   if (c.guard) { ctx.fillStyle = 'rgba(141,255,155,.9)'; ctx.fillText('♥ geschützt', x, y + 47); }
+  if (c.skip || c.frozenNext) { ctx.save(); ctx.fillStyle = 'rgba(160,220,255,.32)'; ctx.strokeStyle = 'rgba(255,255,255,.8)'; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.roundRect(x - 34, y - 78, 68, 90, 12); ctx.fill(); ctx.stroke(); ctx.restore(); }
   if (c.skip) { ctx.fillStyle = '#bfe6ff'; ctx.fillText(tr('❄ eingefroren'), x, y + 47); }
 }
 function duelDrawHud() {
@@ -4609,10 +5197,10 @@ function duelCommand() { // Befehlsfenster: erster Tipp zeigt die Beschreibung, 
 }
 function drawDuel(dt) {
   kCorners();
-  DUEL.t += dt; backdrop(.35, dt);
+  DUEL.t += dt; duelStage(dt);
   const sk = DUEL.shake > 0 ? (DUEL.shake = Math.max(0, DUEL.shake - dt), DUEL.shake) : 0;
   ctx.save(); if (sk) ctx.translate(Math.sin(DUEL.t * 70) * sk * 12, Math.cos(DUEL.t * 63) * sk * 8);
-  duelDrawBoss(dt); duelDrawSpecialFx(dt); DUEL.cats.forEach((c, i) => duelDrawCat(c, i, DUEL.phase === 'cmd' && i === DUEL.who, dt));
+  duelDrawBoss(dt); duelDrawSpecialFx(dt); DUEL.cats.forEach((c, i) => duelDrawCat(c, i, DUEL.phase === 'cmd' && i === DUEL.who, dt)); duelDrawProj(dt); duelDrawParts(dt);
   ctx.restore();
   duelDrawHud();
   if (DUEL.flash > 0) { DUEL.flash -= dt; ctx.fillStyle = 'rgba(255,255,255,' + Math.max(0, DUEL.flash * 2) + ')'; ctx.fillRect(0, 0, W, H); }
@@ -4802,6 +5390,7 @@ const TUT = [
   { t: 'Freigänger', x: 'Ab Level 4 gehen deine Katzen auch spazieren. Sie tragen ihr Namensschild. Tippe nur Ferdi an, nie eine eigene Katze.' },
   { t: 'Riegel', x: 'Im Eingänge-Menü kostet der Riegel 300 Leckerlis. Danach schließen sich Fenster und Terrassentür 3 Sekunden nach dem Öffnen von selbst.' },
   { t: 'Knacki-Ferdi', x: 'In der Garage bricht Knacki-Ferdi geschlossene Fenster mit dem Brecheisen auf. Dann klettert er durch.' },
+  { t: 'Erich, der Einbrecher', x: 'Ab Level 3 schleicht Erich manchmal von links durchs Katzentürchen und klaut 200 Leckerlis. Tippe ihn rechtzeitig an, dann haut er ab. Mit der Überwachung im Eingänge-Menü (350 Leckerlis) verlierst du nur noch 50.' },
   { t: 'Leckerlis', x: 'Jeder verscheuchte Ferdi bringt Leckerlis. Die Hexe oben mit dem goldenen Leckerli bringt extra.' },
   { t: 'Katzen verbessern', x: 'Tippe eine Katze auf ihrem Feld an und wähle Upgrade. Ab Stufe 3 wählt sie einen von zwei Pfaden.' },
   { t: 'Die Pillen: so liest du sie', x: 'Links am Rand, unter dem Menü-Knopf, stehen vier Verbrauchsgüter. Du benutzt sie nur während einer Welle. Die Zahl darunter ist der Preis. Ist sie rot, hast du zu wenig Leckerlis.', icons: 'pills' },
@@ -4810,6 +5399,8 @@ const TUT = [
   { t: 'Lachs-Leckerli', x: 'Der Lachs. Ferdi-Belohnungen steigen bis zum Wellenende auf das 1,5-fache. Einmal pro Welle.', icons: 'pill:lachs' },
   { t: 'Katzenminze-Bombe', x: 'Die grüne Minze. 10 Sekunden lang schießen alle Katzen doppelt so schnell.', icons: 'pill:catnip' },
   { t: 'Das Handy', x: 'Oben rechts ruft das Handy Ferdis Besitzer an. Er holt alle Ferdis im Bild ab. Das kostet Leckerlis.', icons: 'phone' },
+  { t: 'Minispiel: Spaziergang', x: 'Im Minispiel-Menü: Bring Leia, Rufio und Esme heil über die Straße in den Park. Tippe in die Richtung, in die du gehen willst. Trödelt eine Katze, tippe sie an, dann kommt sie. Du hast 3 Leben, Autos und Roller sind gefährlich. Für jede Katze im Park gibt es Leckerlis.' },
+  { t: 'Minispiel: Laserpunkt-Jagd', x: 'Im Minispiel-Menü: Zieh deine Katze mit dem Finger und fang den wild flitzenden roten Punkt. Du hast 45 Sekunden, jeder Fang bringt 3 Leckerlis (höchstens 45).' },
   { t: 'Speichern', x: 'Zwischen den Wellen: der Mond unten links bringt dich ins Bett. Nur dort wird gespeichert.' },
   { t: 'Ziel', x: 'Überstehe alle Wellen. Frisst Ferdi den Napf leer, ist das Spiel vorbei. Weniger Verluste bringen mehr Sterne.' }
 ];
@@ -5020,7 +5611,7 @@ function drawFlaps(dt) {
   const INFO = [
     { w: WINS[0], tempo: 3, risk: 3, txt: 'Schnell: Katzen kommen ohne Umweg rein und raus. Aber hier steht Ferdi zuerst und ist sofort drin.' },
     { w: WINS[1], tempo: 1, risk: 1, txt: 'Langsam: Katzen müssen hochklettern. Dafür braucht Ferdi länger bis ins Haus und du hast Zeit zum Verscheuchen.' },
-    { w: WINS[2], tempo: 2, risk: 0, txt: 'Nur für Katzen mit Chip, immer offen. Chip-Klone von Ferdi kommen aber auch durch. Es passt nur eine Katze auf einmal.' }
+    { w: WINS[2], tempo: 2, risk: 0, txt: 'Nur für Katzen mit Chip, immer offen. Aber auch Ferdis Chip-Klone und Einbrecher Erich kommen hier durch. Es passt nur eine Katze auf einmal.' }
   ];
   INFO.forEach(({ w, tempo, risk, txt }, i) => {
     const x = 14, y = 74 + i * 134, pw = 332, ph = 126, lock = w.kind === 'flap' && !flapUnlocked();
@@ -5034,7 +5625,8 @@ function drawFlaps(dt) {
   });
   uiButton(14, 484, 164, 36, state.items.fliegen ? tr('Fliegengitter eingebaut') : tr('Fliegengitter kaufen ({c})', { c: FLIEGEN_COST }), () => buyFliegen(), { color: state.items.fliegen ? '#cdbfe0' : KC.sky, size: 12 });
   uiButton(182, 484, 164, 36, state.items.zugluft ? tr('Zugluft-Alarm eingebaut') : tr('Zugluft-Alarm kaufen ({c})', { c: ZUGLUFT_COST }), () => buyZugluft(), { color: state.items.zugluft ? '#cdbfe0' : KC.sky, size: 12 });
-  uiButton(14, 528, 332, 36, state.items.riegel ? tr('Riegel eingebaut') : tr('Riegel kaufen ({c})', { c: RIEGEL_COST }), () => buyRiegel(), { color: state.items.riegel ? '#cdbfe0' : KC.sky, size: 12 });
+  uiButton(14, 528, 164, 36, state.items.riegel ? tr('Riegel eingebaut') : tr('Riegel kaufen ({c})', { c: RIEGEL_COST }), () => buyRiegel(), { color: state.items.riegel ? '#cdbfe0' : KC.sky, size: 12 });
+  uiButton(182, 528, 164, 36, state.items.kamera ? tr('Überwachung eingebaut') : tr('Überwachung kaufen ({c})', { c: KAMERA_COST }), () => buyKamera(), { color: state.items.kamera ? '#cdbfe0' : KC.sky, size: 11 });
   noteLine(dt, 578);
   uiButton(90, 598, 180, 38, tr('Zurück'), () => setScreen('cats'), { color: KC.mint, size: 17 });
 }
@@ -5152,7 +5744,7 @@ function drawOptions(dt) {
   uiButton(176, 540, 170, 40, tr('Über das Spiel'), () => setScreen('about'), { color: KC.sky, size: 14 });
 }
 // ---------- Über das Spiel: Entstehung und Geschichte ----------
-const ABOUT_STORY = 'Lisa hat drei Katzen, die ständig rein und raus müssen: Balkontür, Küchentür, überall. Dazu lungert die Nachbarskatze Ferdi vor der Tür, schläft auf dem Katzenturm und wartet, bis ein Fenster offen ist, um das Futter wegzufressen. Lisa kommt sich vor wie in einem Tower-Defense-Spiel. So ist die Idee zu diesem Spiel entstanden.';
+const ABOUT_STORY = "Alles begann in Lisas Zuhause, wo Ruhe und Frieden selten lange anhielten. Leia, Rufio und Esme waren neugierige Katzen, die ständig ihre Meinung änderten. Mal wollten sie auf den Balkon, einen Moment später wieder herein; kurz darauf warteten sie vielleicht schon an der Küchentür, bereit, wieder loszuziehen. Lisa öffnete und schloss ununterbrochen Türen, ließ sie hinaus, wann immer sie Lust auf ein Abenteuer hatten, und ließ sie wieder herein, sobald sie zurückwollten.\n\nDoch die größte Herausforderung kam von jenseits von Lisas kleinem Königreich. Ferdi, der Kater der Nachbarn, hatte die Annehmlichkeiten ihres Zuhauses entdeckt. Er lungerte an den Türen herum, machte es sich auf dem Katzenturm bequem, als wäre es sein Thron, und behielt jedes Fenster im Auge. Sobald sich irgendwo eine Öffnung auftat, war Ferdi bereit, hineinzuschlüpfen und das Futter der Katzen zu verputzen.\n\nSo stand Lisa ständig auf Posten: Sie öffnete Leia, Rufio und Esme die Türen, ließ sie wieder herein und versuchte zu verhindern, dass sich Ferdi für einen Happen hineinschlich. Mit Katzen, die in alle Richtungen kamen und gingen, fühlte sich das weniger wie ein gewöhnlicher Tag zu Hause an und mehr wie die Verteidigung einer geschäftigen kleinen Festung. Und irgendwo zwischen einer offenen Tür und dem nächsten Raubzug kam Lisa eine Idee: Was, wenn dieses alltägliche Katzenchaos zu einem Spiel würde? So entstand ihr Tower-Defense-Abenteuer.";
 function drawAbout(dt) {
   backdrop(.6, dt);
   panel(14, 24, 332, 566);
@@ -5326,6 +5918,7 @@ cv.addEventListener('pointerdown', e => {
   if (hitBox(p, 4, 28, 36, 36)) { setScreen('pause'); return; }
   if (p.x >= 312 && p.y >= 64 && p.y <= 132) { callOwner(); return; }
   if (tapGift(p)) return;
+  if (erichTap(p)) return;
   if (p.x <= 46 && p.y >= 69 && p.y < 113) { useBoost(); return; }
   if (p.x <= 46 && p.y >= 113 && p.y <= 157) { useCalm(); return; }
   if (p.x <= 46 && p.y >= 157 && p.y <= 201) { useLachs(); return; }
